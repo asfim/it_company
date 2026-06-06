@@ -392,6 +392,7 @@
                 <button class="product-tab-btn" data-idx="1">Letter Of credit</button>
                 <button class="product-tab-btn" data-idx="2">POS System</button>
                 <button class="product-tab-btn" data-idx="3">ISP Software</button>
+                <button class="product-tab-btn" data-idx="4">Logo Design</button>
             </div>
 
             <!-- Content Area -->
@@ -418,20 +419,9 @@
                         <span class="product-mock-label" id="mockTitle">E-Commerce</span>
                     </div>
                     <div class="product-mock-body">
-                        <div class="product-mock-hero">
-                            <span class="product-mock-hero-text" id="mockHero">Shop Dashboard</span>
-                        </div>
-                        <div class="product-mock-row">
-                            <div class="product-mock-card"></div>
-                            <div class="product-mock-card"></div>
-                            <div class="product-mock-card"></div>
-                        </div>
-                        <div class="product-mock-footer"></div>
-                        <div class="product-mock-mini-row">
-                            <div class="product-mock-mini"></div>
-                            <div class="product-mock-mini"></div>
-                            <div class="product-mock-mini"></div>
-                        </div>
+                        <img id="mockImage" class="product-preview-img"
+                            src="{{ asset('images/webapp_ecommerce.png') }}"
+                            alt="E-Commerce Product Preview">
                     </div>
                 </div>
             </div>
@@ -446,28 +436,35 @@
                 desc: "E-commerce platform helps you manage inventory, process payments securely, and deliver exceptional shopping experiences to your customers across all devices.",
                 features: ["Product & Inventory Management", "Secure Payment Gateways", "Order Tracking & Analytics"],
                 mockTitle: "E-Commerce",
-                mockHero: "Shop Dashboard"
+                image: "{{ asset('images/webapp_ecommerce.png') }}"
             },
             {
                 title: "Simplify Trade Finance Operations",
                 desc: "A complete solution for managing Letters of Credit, streamlining the documentation process, and ensuring secure international trade transactions.",
                 features: ["Automated LC Processing", "Secure Document Handling", "Real-time Status Tracking"],
                 mockTitle: "Trade Finance",
-                mockHero: "LC Overview"
+                image: "{{ asset('images/webapp_erp.png') }}"
             },
             {
                 title: "Fast And Reliable Point Of Sale",
                 desc: "Our modern POS system handles fast checkout, tracks offline and online sales, manages inventory automatically, and provides daily sales insights.",
                 features: ["Fast Checkout Processing", "Real-time Inventory Sync", "Sales Reporting & Insights"],
                 mockTitle: "POS System",
-                mockHero: "POS Terminal"
+                image: "{{ asset('images/webapp_pos.png') }}"
             },
             {
                 title: "Complete ISP Billing And Management",
                 desc: "Powerful ISP management software for automated billing, bandwidth tracking, customer ticketing, and network monitoring all in one unified dashboard.",
                 features: ["Automated Billing & Invoicing", "Bandwidth Management", "Customer Support Ticketing"],
                 mockTitle: "ISP Admin",
-                mockHero: "Network Dashboard"
+                image: "{{ asset('images/uiux_systems.png') }}"
+            },
+            {
+                title: "Memorable Logos That Define Your Brand",
+                desc: "Professional logo design crafted to reflect your brand personality, stand out in the market, and work flawlessly across digital and print platforms.",
+                features: ["Custom Logo Concepts", "Brand Identity Guidelines", "Vector & Print-Ready Files"],
+                mockTitle: "Logo Design",
+                image: "{{ asset('images/logo_design.png') }}"
             }
         ];
 
@@ -484,7 +481,13 @@
                         return '<div class="product-feature-item"><span class="product-feat-dot"></span>' + f + '</div>';
                     }).join('');
                     document.getElementById('mockTitle').textContent = p.mockTitle;
-                    document.getElementById('mockHero').textContent = p.mockHero;
+                    var mockImg = document.getElementById('mockImage');
+                    mockImg.style.opacity = '0';
+                    setTimeout(function () {
+                        mockImg.src = p.image;
+                        mockImg.alt = p.mockTitle + ' Product Preview';
+                        mockImg.style.opacity = '1';
+                    }, 200);
 
                     // Re-initialize Lucide icons if dynamically inserted
                     if (window.lucide) {

@@ -46,7 +46,7 @@
 
         <div class="nav-links">
             <a href="{{ url('/') }}">Home</a>
-            <a href="{{ url('/') }}">About</a>
+            <a href="{{ route('about') }}">About</a>
             <div class="dropdown">
                 <a href="#" class="dropdown-trigger">
                     Services <i class="fa-solid fa-chevron-down"></i>
@@ -97,14 +97,14 @@
                 </div>
             </div>
             <a href="{{ url('/') }}">Branches</a>
-            <a href="{{ url('/') }}">Contact</a>
-            <a href="{{ url('/') }}" class="btn-get-started mobile-only">
+            <a href="{{ route('contact') }}">Contact</a>
+            <a href="{{ route('contact') }}" class="btn-get-started mobile-only">
                 Get Started <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
         <div class="header-right">
-            <a href="{{ url('/') }}" class="btn-get-started">
+            <a href="{{ route('contact') }}" class="btn-get-started">
                 Get Started <i class="fa-solid fa-arrow-right"></i>
             </a>
             <button class="mobile-menu-toggle" aria-label="Toggle Menu">
@@ -149,10 +149,10 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="{{ route('about') }}">About Us</a></li>
                         <li><a href="#">Our Services</a></li>
                         <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </div>
 
