@@ -97,7 +97,7 @@
                     </a>
                 </div>
             </div>
-            <a href="{{ url('/') }}">Branches</a>
+            <a href="{{ route('blog') }}">Blog</a>
             <a href="{{ route('contact') }}">Contact</a>
             <a href="{{ route('contact') }}" class="btn-get-started mobile-only">
                 Get Started <i class="fa-solid fa-arrow-right"></i>

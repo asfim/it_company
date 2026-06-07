@@ -99,6 +99,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Active nav link highlighting
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.kastana-header .nav-links > a');
+    navLinks.forEach(link => {
+        const href = new URL(link.href, window.location.origin).pathname;
+        if (href === '/' && currentPath === '/') {
+            link.classList.add('nav-active');
+        } else if (href !== '/' && currentPath.startsWith(href)) {
+            link.classList.add('nav-active');
+        }
+    });
+
+    // Mark services dropdown trigger as active when on a services sub-page
+    const dropdownTrigger = document.querySelector('.kastana-header .dropdown-trigger');
+    if (dropdownTrigger && currentPath.startsWith('/services')) {
+        dropdownTrigger.classList.add('nav-active');
+    }
+
     // Initialize Lucide icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

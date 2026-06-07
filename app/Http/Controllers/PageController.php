@@ -64,4 +64,9 @@ class PageController extends Controller
     {
         return view('services.ui-ux-design');
     }
+
+    public function blog()
+    {
+        return view('blog.index');
+    }
 }

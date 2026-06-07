@@ -143,7 +143,7 @@ body {
   left: 0;
   width: 300px;
   height: 100%;
-  background: radial-gradient(circle at 0% 50%, rgba(245, 158, 11, 0.15), transparent 70%);
+  background: radial-gradient(circle at 0% 50%, rgba(34, 197, 94, 0.12), transparent 70%);
   pointer-events: none;
 
 }
@@ -219,7 +219,14 @@ body {
 
 .kastana-header .nav-links>a:hover,
 .kastana-header .nav-links .dropdown-trigger:hover {
-  color: #f59e0b;
+  color: var(--green);
+}
+
+/* Active nav link */
+.kastana-header .nav-links>a.nav-active,
+.kastana-header .nav-links .dropdown-trigger.nav-active {
+  color: var(--green);
+  font-weight: 700;
 }
 
 /* Services Dropdown Submenu */
@@ -382,7 +389,7 @@ body {
 
 .btn-get-started {
   padding: 0.8rem 1.8rem;
-  background: #f59e0b;
+  background: var(--green);
   color: white;
   border-radius: 50px;
   font-weight: 700;
@@ -391,13 +398,14 @@ body {
   align-items: center;
   gap: 0.8rem;
   transition: 0.3s;
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
 .btn-get-started:hover {
   transform: translateY(-2px);
-  background: #d97706;
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  background: var(--green-dark);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.45);
+  color: white;
 }
 
 /* NexusTech Hero Section */
@@ -2896,7 +2904,7 @@ body {
   /* Hamburger active state transforms to close 'X' button */
   .kastana-header.mobile-active .mobile-menu-toggle .bar.b1 {
     transform: translateY(7px) rotate(45deg);
-    background-color: #f59e0b;
+    background-color: var(--green);
     /* change color when active to match branding */
   }
 
@@ -2907,7 +2915,7 @@ body {
 
   .kastana-header.mobile-active .mobile-menu-toggle .bar.b3 {
     transform: translateY(-8px) rotate(-45deg);
-    background-color: #f59e0b;
+    background-color: var(--green);
   }
 
   /* Responsive Nav Links (Slide Down Menu) */
