@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Graphics Design Services')
+@section('title', 'Professional Graphic Design, Publishing & Image Editing | Crowns IT')
+@section('meta_description', 'Crowns IT delivers premium graphic design, logo design, book cover & formatting, KDP publishing uploads, Amazon A+ content, social media posters, and high-volume e-commerce photo editing.')
 
 @section('content')
 <style>
@@ -22,21 +23,12 @@
   --line: rgba(34, 197, 94, 0.12);
   --bg-dark: #f0f0ee;
   --bg-card: rgba(255, 255, 255, 0.03);
-  --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
-  --text-main: #ffffff;
-  --text-dim: #a1a1aa;
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glow-blue: rgba(59, 130, 246, 0.5);
-  --glow-purple: rgba(139, 92, 246, 0.5);
-  --primary-orange: #EB5424;
 
   --green: #22c55e;
   --green-dark: #16a34a;
   --green-light: #dcfce7;
   --navy: #1a2744;
   --gray-text: #6b7280;
-  --red-accent: #ef4444;
 }
 
 .graphics-page::before {
@@ -59,6 +51,7 @@
   color: var(--text);
 }
 
+/* Hero Section */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -103,12 +96,8 @@
 }
 
 @keyframes drift {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(30px, 40px) scale(1.05);
-  }
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 40px) scale(1.05); }
 }
 
 .hero-inner {
@@ -116,54 +105,21 @@
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
   align-items: center;
   position: relative;
   z-index: 1;
 }
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  border-radius: 100px;
-  font-size: 0.8rem;
-  color: #166534;
-  margin-bottom: 28px;
-  animation: fadeUp 0.8s ease both;
-}
-
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(0.8);
-  }
-}
-
 .hero h1 {
   font-family: 'Sora', sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 24px;
-  animation: fadeUp 0.8s ease 0.1s both;
+  animation: fadeUp 0.8s ease both;
 }
 
 .hero h1 em {
@@ -178,16 +134,16 @@
   font-size: 1.1rem;
   color: var(--muted);
   line-height: 1.7;
-  max-width: 480px;
+  max-width: 540px;
   margin-bottom: 40px;
-  animation: fadeUp 0.8s ease 0.2s both;
+  animation: fadeUp 0.8s ease 0.1s both;
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
   align-items: center;
-  animation: fadeUp 0.8s ease 0.3s both;
+  animation: fadeUp 0.8s ease 0.2s both;
 }
 
 .btn-large {
@@ -200,7 +156,7 @@
   display: flex;
   gap: 40px;
   margin-top: 56px;
-  animation: fadeUp 0.8s ease 0.4s both;
+  animation: fadeUp 0.8s ease 0.3s both;
 }
 
 .stat-item strong {
@@ -216,67 +172,17 @@
   color: var(--muted);
 }
 
-.hero-visual {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.ba-showcase {
-  display: contents;
-}
-
-.ba-showcase-text {
-  animation: fadeUp 0.8s ease 0.2s both;
-}
-
-.ba-showcase-text h2 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  line-height: 1.2;
-  margin-bottom: 24px;
-  color: var(--text);
-}
-
-.ba-showcase-text p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--muted);
-  margin-bottom: 32px;
-}
-
-.feature-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: var(--text);
-  font-weight: 500;
-}
-
-.feature-item i {
-  color: var(--accent);
-  font-size: 1.1rem;
-}
-
+/* Before-After Sketch to Vector Box */
 .ba-box {
   position: relative;
   width: 100%;
-  height: 100%;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
   aspect-ratio: 4/3;
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.18);
-  animation: fadeUp 0.8s ease 0.3s both;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+  animation: fadeUp 0.8s ease 0.2s both;
 }
 
 .ba-image-container {
@@ -286,20 +192,23 @@
   overflow: hidden;
 }
 
-.slider-image {
+.image-after {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  z-index: 1;
 }
 
 .image-before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
   z-index: 2;
-}
-
-.image-after {
-  z-index: 1;
+  border-right: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 .ba-slider {
@@ -309,7 +218,7 @@
   height: 100%;
   opacity: 0;
   cursor: ew-resize;
-  z-index: 3;
+  z-index: 5;
   appearance: none;
   -webkit-appearance: none;
   background: transparent;
@@ -318,33 +227,15 @@
   margin: 0;
 }
 
-.ba-slider::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 50px;
-  height: 100%;
-  background: transparent;
-  cursor: ew-resize;
-  border: none;
-}
-
-.ba-slider::-moz-range-thumb {
-  width: 50px;
-  height: 100%;
-  background: transparent;
-  cursor: ew-resize;
-  border: none;
-}
-
 .ba-line {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 3;
   pointer-events: none;
 }
 
@@ -353,55 +244,142 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   background: var(--accent);
-  border-radius: 999px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
-  z-index: 5;
+  z-index: 4;
   pointer-events: none;
 }
 
-.floating-tag {
+/* Sketch & Vector Canvas Designs */
+.sketch-canvas-inner {
   position: absolute;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 0.78rem;
-  font-weight: 500;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #fbfbf9;
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sketch-layout-guides {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border: 1px dashed rgba(59, 130, 246, 0.3);
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  justify-content: center;
 }
 
-.floating-tag-2 {
-  bottom: -16px;
-  left: -20px;
-  color: var(--accent2);
+.sketch-layout-guides::before,
+.sketch-layout-guides::after {
+  content: '';
+  position: absolute;
+  background: rgba(59, 130, 246, 0.2);
 }
 
-.ft-icon {
-  font-size: 1rem;
+.sketch-layout-guides::before { width: 200px; height: 1px; }
+.sketch-layout-guides::after { height: 200px; width: 1px; }
+
+.sketch-logo-symbol {
+  font-size: 4rem;
+  color: rgba(30, 64, 175, 0.4);
+  transform: rotate(-8deg);
+  font-weight: 300;
+  font-family: 'Courier New', monospace;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.sketch-brand-name {
+  margin-top: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: rgba(30, 64, 175, 0.5);
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
+.vector-canvas {
+  background: #0f172a;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vector-logo-glow {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.25);
+}
+
+/* Vector control points */
+.vector-anchor {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  z-index: 2;
+}
+.anchor-n { top: -5px; left: calc(50% - 4px); }
+.anchor-e { right: -5px; top: calc(50% - 4px); }
+.anchor-s { bottom: -5px; left: calc(50% - 4px); }
+.anchor-w { left: -5px; top: calc(50% - 4px); }
+
+.vector-logo-symbol {
+  font-size: 4.5rem;
+  color: #fff;
+  filter: drop-shadow(0 0 12px var(--accent));
+  animation: logoGlow 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes logoGlow {
+  0% { filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.6)); }
+  100% { filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.9)); transform: scale(1.03); }
+}
+
+.vector-brand-name {
+  margin-top: 24px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #fff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Trust Strip */
 .logos-strip {
   padding: 48px;
   border-top: 1px solid var(--border);
@@ -423,7 +401,7 @@
   display: flex;
   gap: 60px;
   align-items: center;
-  animation: scroll-logos 20s linear infinite;
+  animation: scroll-logos 25s linear infinite;
   width: max-content;
 }
 
@@ -432,18 +410,14 @@
 }
 
 @keyframes scroll-logos {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .logo-item {
   font-family: 'Sora', sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: rgba(26, 39, 68, 0.65);
   white-space: nowrap;
   letter-spacing: -0.02em;
@@ -451,9 +425,10 @@
 }
 
 .logo-item:hover {
-  color: rgba(26, 39, 68, 0.9);
+  color: rgba(26, 39, 68, 0.95);
 }
 
+/* Section styling */
 .section {
   padding: 100px 48px;
   max-width: 1200px;
@@ -479,7 +454,6 @@
   background: var(--accent);
 }
 
-.section h2,
 .section h2 {
   font-family: 'Sora', sans-serif;
   font-size: clamp(2rem, 3.5vw, 3rem);
@@ -491,1102 +465,722 @@
 
 .section-sub {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
-  max-width: 500px;
+  max-width: 560px;
   margin-bottom: 60px;
 }
 
-.svc-tabs-nav {
+/* Category Filter Tabs */
+.filter-tabs-container {
   display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 56px;
-  gap: 0;
+  padding-bottom: 1px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.svc-tab {
-  flex: 1;
-  padding: 16px 12px;
+.filter-btn {
   background: none;
   border: none;
-  border-bottom: 2px solid transparent;
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s;
-  text-align: center;
-  position: relative;
-  bottom: -1px;
-}
-
-.svc-tab:hover {
-  color: var(--text);
-}
-
-.svc-tab.active {
-  color: var(--text);
-  border-bottom: 2px solid var(--accent);
-}
-
-.svc-panel {
-  display: none;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  animation: fadeUp 0.45s ease both;
-}
-
-.svc-panel.active {
-  display: grid;
-}
-
-.svc-left h3 {
+  padding: 16px 28px;
   font-family: 'Sora', sans-serif;
-  font-size: 1.9rem;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-  color: var(--text);
-}
-
-.svc-left p {
-  color: var(--muted);
   font-size: 0.95rem;
-  line-height: 1.75;
-  margin-bottom: 28px;
-  max-width: 420px;
-}
-
-.svc-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 36px;
-}
-
-.svc-tag {
-  padding: 5px 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--muted);
-  transition: all 0.2s;
-}
-
-.svc-tag:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.svc-read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
-  color: var(--text);
-  font-size: 0.9rem;
-  font-weight: 500;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(8px);
   cursor: pointer;
-  text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
 }
 
-.svc-read-more:hover {
-  border-color: rgba(34, 197, 94, 0.5);
-  background: rgba(34, 197, 94, 0.1);
-  color: #166534;
-  transform: translateX(4px);
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.15);
+.filter-btn:hover {
+  color: var(--text);
 }
 
-.svc-visual {
+.filter-btn.active {
+  color: var(--accent2);
+  border-bottom-color: var(--accent);
+}
+
+/* Services Card Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.service-card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card-wrapper.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 20px;
-  aspect-ratio: 4 / 3;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  position: relative;
   overflow: hidden;
-}
-
-.vis-ba {
-  display: flex;
-  width: 100%;
   height: 100%;
-}
-
-.vis-ba-side {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(34, 197, 94, 0.3);
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.08);
+}
+
+/* Card Visual Mockups */
+.card-visual-container {
+  height: 180px;
+  background: #f7faf3;
+  position: relative;
+  overflow: hidden;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  position: relative;
+  border-bottom: 1px solid var(--border);
 }
 
-.vis-ba-lbl {
+.card-icon-tag {
   position: absolute;
   top: 16px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 100px;
+  left: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--accent2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  z-index: 3;
 }
 
-.vis-ba-lbl.b {
-  left: 14px;
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--muted);
-}
-
-.vis-ba-lbl.a {
-  right: 14px;
-  background: rgba(34, 197, 94, 0.15);
-  color: #166534;
-}
-
-.vis-ba-divider {
-  width: 1px;
-  background: rgba(255, 255, 255, 0.12);
+.card-visual-art {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  flex-shrink: 0;
+  transition: transform 0.4s ease;
 }
 
-.vis-ba-handle {
+.service-card:hover .card-visual-art {
+  transform: scale(1.05);
+}
+
+/* 1. Logo Visual */
+.vis-logo-grid {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
-  background: var(--accent);
+  width: 110px;
+  height: 110px;
+  border: 1px solid rgba(34, 197, 94, 0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  color: #fff;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
 }
-
-.vis-product-before,
-.vis-product-after {
-  width: 100%;
-  height: 130px;
-  border-radius: 10px;
+.vis-logo-grid::before {
+  content: '';
+  position: absolute;
+  width: 130px;
+  height: 1px;
+  background: rgba(34, 197, 94, 0.12);
+  transform: rotate(45deg);
+}
+.vis-logo-circle {
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  background: #fff;
+  font-size: 1.8rem;
+  color: var(--navy);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.15);
 }
 
-.vis-product-before {
-  background: linear-gradient(135deg, #eef9ef, #d8f0db);
-  filter: saturate(1) brightness(1);
+/* 2. Book Cover Visual */
+.vis-book-3d {
+  width: 90px;
+  height: 124px;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 4px 8px 8px 4px;
+  box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  transform: perspective(400px) rotateY(-15deg);
+  border-left: 3px solid #334155;
+  transition: transform 0.4s ease;
+}
+.service-card:hover .vis-book-3d {
+  transform: perspective(400px) rotateY(-8deg) translateY(-4px);
+}
+.vis-book-front-tag {
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.vis-book-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+}
+.vis-book-author {
+  font-size: 0.5rem;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 4px;
 }
 
-.vis-product-after {
-  background: linear-gradient(135deg, #f0f7f0, #dbeee1);
-  background-image: linear-gradient(rgba(34, 197, 94, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.08) 1px, transparent 1px);
-  background-size: 20px 20px;
+/* 3. Book Formatting Visual */
+.vis-format-spread {
+  display: flex;
+  gap: 12px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
+.vis-format-page {
+  width: 60px;
+  height: 85px;
+  border: 1px solid rgba(34, 197, 94, 0.1);
+  background: #fafaf9;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.vis-format-header {
+  height: 2px;
+  width: 100%;
+  background: rgba(34, 197, 94, 0.25);
+  margin-bottom: 4px;
+}
+.vis-format-dropcap {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  margin-right: 3px;
+}
+.vis-format-line {
+  height: 2px;
+  background: #e2e8f0;
+  width: 100%;
+}
+.vis-format-line.short { width: 70%; }
 
-.vis-export-pill {
-  display: inline-flex;
+/* 4. Book Uploading Visual */
+.vis-upload-cloud {
+  background: #fff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 160px;
+}
+.vis-upload-status {
+  display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--green);
-  color: #fff;
-  border-radius: 24px;
-  padding: 8px 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent2);
+}
+.vis-upload-progress {
+  height: 5px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.vis-upload-bar {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--accent);
+  width: 90%;
+  animation: uploadAnimate 3s infinite alternate ease-in-out;
+}
+@keyframes uploadAnimate {
+  0% { width: 40%; }
+  100% { width: 95%; }
+}
+.vis-upload-kdp {
+  font-size: 0.6rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
 }
 
-.vis-export-menu {
-  position: absolute;
-  top: 58px;
-  left: 20px;
-  background: rgba(255, 255, 255, 0.92);
+/* 5. Amazon A+ Visual */
+.vis-aplus-box {
+  width: 170px;
+  background: #fff;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 14px 20px;
-  min-width: 170px;
-  backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
 }
-
-.vis-export-menu div {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
-  padding: 5px 0;
+.vis-aplus-hero {
+  height: 48px;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: bold;
+  color: var(--green-dark);
 }
-
-.vis-img-grid {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+.vis-aplus-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6px;
-  width: 150px;
+}
+.vis-aplus-col {
+  height: 34px;
+  background: #f8fafc;
+  border-radius: 4px;
+  border: 1px solid #f1f5f9;
 }
 
-.vis-img-thumb {
-  height: 56px;
-  border-radius: 8px;
-}
-
-.vis-img-thumb:nth-child(1) {
-  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-}
-
-.vis-img-thumb:nth-child(2) {
-  background: linear-gradient(135deg, #e7f7ec, #c8eed1);
-}
-
-.vis-img-thumb:nth-child(3) {
-  background: linear-gradient(135deg, #d9f2df, #b6e6c0);
-}
-
-.vis-img-thumb:nth-child(4) {
-  background: linear-gradient(135deg, #ecf8f0, #d3f0d9);
-}
-
-.vis-retouch {
+/* 6. Social Media Poster Visual */
+.vis-social-card {
+  width: 140px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.04);
   display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
+  gap: 6px;
 }
-
-.vis-retouch-row {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-}
-
-.vis-bag {
-  width: 96px;
-  height: 120px;
-  border-radius: 12px;
+.vis-social-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 2.8rem;
+  gap: 6px;
 }
-
-.vis-bag.before {
-  background: linear-gradient(135deg, #e7f7ec, #d1edd8);
-  filter: saturate(1) brightness(1);
-}
-
-.vis-bag.after {
-  background: linear-gradient(135deg, #eef9f1, #dcf3e2);
-}
-
-.vis-arrow-icon,
-.vis-ghost-arrow {
-  font-size: 1.2rem;
-  color: var(--muted);
-}
-
-.vis-bars {
-  width: 100%;
-}
-
-.vis-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.vis-bar-label {
-  font-size: 0.72rem;
-  color: var(--muted);
-  width: 100px;
-  flex-shrink: 0;
-}
-
-.vis-bar-track {
-  flex: 1;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.vis-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-}
-
-.vis-clip {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  width: 100%;
-  height: 100%;
-}
-
-.vis-clip-shape {
-  width: 90px;
-  height: 130px;
-  border-radius: 10px;
-  background: rgba(34, 197, 94, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.vis-clip-shape::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border: 2px dashed rgba(34, 197, 94, 0.45);
-  border-radius: 13px;
-}
-
-.vis-clip-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
+.vis-social-avatar {
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  position: absolute;
-}
-
-.vis-code-block {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--navy);
-  line-height: 1.8;
-}
-
-.vis-code-kw {
-  color: var(--accent);
-}
-
-.vis-code-val {
-  color: var(--accent3);
-}
-
-.vis-ghost {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  width: 100%;
-  height: 100%;
-}
-
-.vis-shirt {
-  width: 90px;
-  height: 118px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.8rem;
-}
-
-.vis-shirt.filled {
-  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-}
-
-.vis-shirt.ghost {
-  border: 2px dashed rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.02);
-  position: relative;
-}
-
-.vis-shirt.ghost::after {
-  content: '3D';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  font-size: 0.6rem;
-  color: var(--accent3);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.vis-ghost-tag {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 229, 195, 0.12);
-  border: 1px solid rgba(0, 229, 195, 0.3);
-  border-radius: 100px;
-  padding: 5px 14px;
-  font-size: 0.7rem;
-  color: var(--accent3);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.how-it-works {
-  padding: 100px 48px;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.how-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  margin-top: 60px;
-  position: relative;
-}
-
-.steps-grid::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-
-.step-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  padding: 40px 32px;
-  position: relative;
-  transition: all 0.3s;
-}
-
-.step-card:first-child {
-  border-radius: 20px 0 0 20px;
-}
-
-.step-card:last-child {
-  border-radius: 0 20px 20px 0;
-}
-
-.step-card:hover {
-  background: var(--card);
-}
-
-.step-number {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-
-.step-num-circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(34, 197, 94, 0.4);
-  background: rgba(34, 197, 94, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 900;
-}
-
-.step-card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
-}
-
-.step-card p {
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.7;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 60px;
-}
-
-.pricing-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 40px;
-  position: relative;
-  transition: all 0.3s;
-}
-
-.pricing-card:hover {
-  transform: translateY(-4px);
-}
-
-.pricing-card.featured {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%);
-  border-color: rgba(34, 197, 94, 0.25);
-  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.1), 0 40px 80px rgba(34, 197, 94, 0.08);
-}
-
-.pricing-badge {
-  display: inline-block;
-  padding: 4px 12px;
   background: var(--accent);
+}
+.vis-social-dotname {
+  height: 4px;
+  width: 40px;
+  background: #e2e8f0;
+  border-radius: 2px;
+}
+.vis-social-post {
+  height: 70px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #10b981 100%);
+  border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  border-radius: 100px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.pricing-plan {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.pricing-desc {
-  color: var(--muted);
-  font-size: 0.875rem;
-  margin-bottom: 32px;
-}
-
-.pricing-price {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 32px;
-}
-
-.price-currency {
-  font-size: 1.2rem;
-  color: var(--muted);
-  font-weight: 300;
-}
-
-.price-amount {
-  font-size: 3rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-}
-
-.price-unit {
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.pricing-features {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 36px;
-}
-
-.pricing-features li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.pricing-features li::before {
-  content: '✓';
-  width: 20px;
-  height: 20px;
-  background: rgba(34, 197, 94, 0.15);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 0.65rem;
-  color: var(--accent);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
-.pricing-features li.disabled {
-  opacity: 0.35;
+/* 7. Business Card Visual */
+.vis-bcard-container {
+  position: relative;
+  width: 160px;
+  height: 100px;
 }
-
-.pricing-features li.disabled::before {
-  content: '✕';
-  background: rgba(255, 255, 255, 0.04);
+.vis-bcard {
+  width: 120px;
+  height: 68px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  position: absolute;
+  padding: 10px;
+}
+.vis-bcard.front {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.vis-bcard.back {
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background: #1e293b;
+  border-color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vis-bcard-title {
+  font-weight: 800;
+  font-size: 0.55rem;
+  color: var(--navy);
+}
+.vis-bcard-job {
+  font-size: 0.45rem;
   color: var(--muted);
 }
-
-.btn-pricing {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-}
-
-.btn-pricing.solid {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-.btn-pricing:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
-.testimonials-section {
-  padding: 100px 48px;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-}
-
-.testimonials-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 60px;
-}
-
-.testimonial-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px;
-  transition: all 0.3s;
-}
-
-.testimonial-card:hover {
-  border-color: rgba(34, 197, 94, 0.35);
-  transform: translateY(-3px);
-}
-
-.testimonial-stars {
+.vis-bcard-dots {
   display: flex;
   gap: 3px;
-  margin-bottom: 20px;
-  color: #ffd166;
-  font-size: 0.9rem;
 }
-
-.testimonial-text {
-  color: #475569;
-  font-size: 0.92rem;
-  line-height: 1.75;
-  margin-bottom: 28px;
-  font-style: italic;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.author-avatar {
-  width: 42px;
-  height: 42px;
+.vis-bcard-dots span {
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
-  font-size: 1rem;
+  background: var(--accent);
+}
+
+/* 8. Flyer Visual */
+.vis-flyer-paper {
+  width: 85px;
+  height: 120px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: rotate(-3deg);
+  transition: transform 0.3s ease;
+}
+.service-card:hover .vis-flyer-paper {
+  transform: rotate(0deg) translateY(-2px);
+}
+.vis-flyer-header {
+  font-weight: 900;
+  font-size: 0.55rem;
+  color: var(--accent2);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.vis-flyer-graphic {
+  height: 50px;
+  border-radius: 3px;
+  background: radial-gradient(circle, #d9f99d 0%, #22c55e 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+}
+.vis-flyer-footer {
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
 }
 
-.author-name {
-  font-weight: 500;
-  font-size: 0.9rem;
+/* 9. Brochure Visual */
+.vis-brochure-3d {
+  display: flex;
+  width: 140px;
+  height: 95px;
+  perspective: 400px;
+}
+.vis-brochure-panel {
+  flex: 1;
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  background: #fff;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.03);
+}
+.vis-brochure-panel.left {
+  transform: rotateY(25deg);
+  border-radius: 4px 0 0 4px;
+  transform-origin: right center;
+}
+.vis-brochure-panel.center {
+  z-index: 2;
+  background: #fafaf9;
+}
+.vis-brochure-panel.right {
+  transform: rotateY(-25deg);
+  border-radius: 0 4px 4px 0;
+  transform-origin: left center;
 }
 
-.author-role {
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-.cta-section {
-  padding: 100px 48px;
-  text-align: center;
+/* 10. Background Removal Visual */
+.vis-bgremove-container {
+  width: 140px;
+  height: 90px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
   position: relative;
   overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.cta-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.cta-inner h2 {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  margin-bottom: 20px;
-}
-
-.cta-inner p {
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 40px;
-}
-
-.cta-actions {
   display: flex;
-  gap: 16px;
+}
+.bgremove-side {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
 }
-
-.faq-section,
-.webapp-faq-section {
-  padding: 100px 48px;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
+.bgremove-side.left {
+  background: #f1f5f9;
+  border-right: 1px dashed rgba(34, 197, 94, 0.4);
 }
-
-.faq-inner,
-.faq-container {
-  max-width: 800px;
-  margin: 0 auto;
+.bgremove-side.right {
+  background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%), 
+                    linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #cbd5e1 75%), 
+                    linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
+  background-size: 8px 8px;
 }
-
-.faq-header {
-  display: grid;
-  gap: 14px;
-  text-align: center;
-  margin-bottom: 48px;
+.bgremove-item {
+  font-size: 1.8rem;
+  color: var(--navy);
 }
-
-.faq-header h2 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-}
-
-.faq-header h2 span {
-  color: var(--accent);
-}
-
-.faq-header p {
-  color: var(--muted);
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.faq-item {
-  border-bottom: 1px solid var(--border);
-}
-
-.faq-item:first-of-type {
-  border-top: 1px solid var(--border);
-}
-
-.faq-question {
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-align: left;
-  padding: 24px 0;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: color 0.2s;
-}
-
-.faq-question:hover {
-  color: var(--accent);
-}
-
-.faq-icon {
-  font-size: 1.5rem;
-  font-weight: 300;
-  transition: transform 0.3s ease;
-  color: var(--muted);
-}
-
-.faq-item.active .faq-icon {
-  transform: rotate(45deg);
+.bgremove-side.right .bgremove-item {
   color: var(--accent2);
 }
 
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding-bottom 0.3s ease;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  padding-bottom: 0;
-}
-
-.faq-item.active .faq-answer {
-  max-height: 800px;
-  padding-bottom: 24px;
-}
-
-.faq-answer p {
-  margin: 0;
-}
-
-.section-label.center {
-  justify-content: center;
-  display: flex;
-}
-
-.marquee-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.marquee-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-}
-
-.marquee-track.left {
-  animation: scroll-right 40s linear infinite;
-}
-
-.marquee-track.right {
-  animation: scroll-left 40s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 12px));
-  }
-}
-
-@keyframes scroll-right {
-  0% {
-    transform: translateX(calc(-50% - 12px));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.tc-card {
-  width: 360px;
-  background: var(--card);
+/* 11. Photo Retouching Visual */
+.vis-retouch-comparison {
+  width: 140px;
+  height: 90px;
+  border-radius: 8px;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  text-align: left;
-  transition: transform 0.3s, border-color 0.3s;
 }
-
-.tc-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(34, 197, 94, 0.4);
-}
-
-.tc-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.tc-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+.retouch-side {
+  flex: 1;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 1rem;
-  color: #fff;
+}
+.retouch-side.left {
+  background: #cbd5e1;
+}
+.retouch-side.right {
+  background: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 100%);
+}
+.retouch-icon {
+  font-size: 1.6rem;
+  color: #64748b;
+}
+.retouch-side.right .retouch-icon {
+  color: var(--accent2);
+  filter: drop-shadow(0 0 8px rgba(34,197,94,0.6));
 }
 
-.tc-name {
-  font-weight: 600;
-  font-size: 0.95rem;
+/* 12. Clipping Path Visual */
+.vis-clipping-path {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clipping-item {
+  font-size: 2.2rem;
+  color: #cbd5e1;
+}
+.clipping-vector-path {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border: 1.5px dashed var(--accent);
+  border-radius: 50%;
+}
+.clipping-pen {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--accent2);
+  font-size: 1.1rem;
+}
+
+/* 13. Ghost Mannequin Visual */
+.vis-ghost-mannequin {
+  position: relative;
+  width: 130px;
+  height: 90px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ghost-apparel {
+  font-size: 2.4rem;
+  color: rgba(34, 197, 94, 0.15);
+  position: relative;
+}
+.ghost-apparel::after {
+  content: '3D';
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  font-size: 0.55rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 800;
+}
+.ghost-hollow-dots {
+  position: absolute;
+  inset: 12px;
+  border: 1.5px dashed rgba(34, 197, 94, 0.45);
+  border-radius: 6px;
+}
+
+/* Card Body Content */
+.card-content-area {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.service-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 12px;
   color: var(--text);
 }
 
-.tc-role {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.tc-stars {
-  color: #f59e0b;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-}
-
-.tc-text {
-  font-size: 0.9rem;
-  color: #d1d5db;
+.service-card p {
+  font-size: 0.92rem;
   line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 24px;
+  flex-grow: 1;
 }
 
-.cta-section {
-  padding: 100px 48px;
-}
-
-.cta-inner {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.cta-actions {
+.card-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.section-sub.center {
-  margin: 0 auto 60px;
-  text-align: center;
-}
-
-.btn-ghost {
-  padding: 11px 26px;
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  border-radius: 50px;
-  background: #ffffff;
-  color: var(--navy);
-  font-size: 0.95rem;
+.card-features-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: 0.3s;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--text);
 }
 
-.btn-ghost:hover {
-  border-color: var(--green);
-  background: var(--green-light);
-  color: var(--green-dark);
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 11px 26px;
-  border: none;
-  border-radius: 50px;
-  background: var(--green);
-  color: #fff;
+.card-features-list li i {
+  color: var(--accent);
   font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: 0.3s;
-  text-decoration: none;
+}
+
+.btn-card-action {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(34, 197, 94, 0.03);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.btn-primary:hover {
-  background: var(--green-dark);
+.btn-card-action:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(34, 197, 94, 0.45);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.2);
 }
 
-.gallery-intro {
+/* Masonry Showcase Section */
+.masonry-showcase {
+  padding: 100px 48px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.masonry-intro {
   text-align: center;
   max-width: 600px;
   margin: 0 auto 60px;
 }
 
-.gallery-intro h2 {
+.masonry-intro h2 {
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--text);
@@ -1595,11 +1189,9 @@
   letter-spacing: -0.02em;
 }
 
-.gallery-intro p {
+.masonry-intro p {
   font-size: 0.95rem;
   color: var(--muted);
-  line-height: 1.5;
-  margin-bottom: 24px;
 }
 
 .masonry-grid {
@@ -1642,17 +1234,9 @@
   border: 1px solid var(--border);
 }
 
-.badge-studio {
-  color: var(--accent);
-}
-
-.badge-ai {
-  color: var(--accent3);
-}
-
-.badge-ugc {
-  color: var(--accent2);
-}
+.badge-studio { color: var(--accent); }
+.badge-ai { color: var(--accent3); }
+.badge-ugc { color: var(--accent2); }
 
 .masonry-blue-box {
   background: var(--accent);
@@ -1690,120 +1274,375 @@
   transform: rotate(-3deg);
 }
 
-.clock-section {
-  background: var(--bg);
-  color: var(--text);
+/* Benefits Section styling */
+.benefits-section {
   padding: 100px 48px;
-  position: relative;
-  overflow: hidden;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
-.clock-header {
-  text-align: center;
-  padding-top: 30px;
-  margin-bottom: 20px;
+.benefits-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.clock-header h2 {
+.benefits-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.benefit-card-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.benefit-card-box:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(34, 197, 94, 0.06);
+}
+
+.benefit-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--green-light);
+  color: var(--accent2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.benefit-card-box h3 {
   font-family: 'Sora', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 900;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
 }
 
-.clock-header p {
+.benefit-card-box p {
+  font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--muted);
 }
 
-.clock-wrapper {
+.benefits-interactive-wheel {
   position: relative;
-  width: 620px;
-  height: 620px;
-  margin: 50px auto;
-  font-family: 'Sora', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.center-circle {
+.benefits-circle-outline {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 240px;
-  height: 240px;
+  width: 80%;
+  height: 80%;
+  border: 1px dashed rgba(34, 197, 94, 0.25);
   border-radius: 50%;
-  background: var(--green);
+}
+
+.benefits-wheel-center {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
-  font-weight: 600;
   color: #fff;
-  box-shadow: 0 0 60px rgba(34, 197, 94, 0.35);
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(34, 197, 94, 0.4);
+  line-height: 1.4;
+  transition: all 0.3s ease;
 }
 
-.feature {
+.wheel-node {
   position: absolute;
-  width: 190px;
-  padding: 14px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 6;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wheel-node:hover {
+  transform: scale(1.18);
+  border-color: var(--accent);
+  background: var(--green-light);
+  color: var(--accent2);
+}
+
+/* Position nodes circularly */
+.wn-1 { top: 3%; left: 50%; transform: translate(-50%, 0); }
+.wn-2 { top: 17%; right: 15%; }
+.wn-3 { top: 50%; right: 3%; transform: translate(0, -50%); }
+.wn-4 { bottom: 17%; right: 15%; }
+.wn-5 { bottom: 3%; left: 50%; transform: translate(-50%, 0); }
+.wn-6 { bottom: 17%; left: 15%; }
+.wn-7 { top: 50%; left: 3%; transform: translate(0, -50%); }
+.wn-8 { top: 17%; left: 15%; }
+
+/* FAQ Accordion Styling */
+.faq-section {
+  padding: 100px 48px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-header {
   text-align: center;
-  font-size: 13px;
+  margin-bottom: 56px;
+}
+
+.faq-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-family: 'Sora', sans-serif;
+  font-weight: 900;
+}
+
+.faq-header h2 span {
+  color: var(--accent);
+}
+
+.faq-header p {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active {
+  border-color: rgba(34, 197, 94, 0.3);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.04);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 24px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  padding-right: 20px;
+  line-height: 1.4;
+}
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-icon {
+  background: var(--green-light);
+  color: var(--accent2);
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 400px;
+  padding: 0 24px 24px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 100px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cta-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-inner h2 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  margin-bottom: 20px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.cta-inner h2 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-inner p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 11px 26px;
+  border: none;
+  border-radius: 50px;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
   transition: 0.3s;
+  text-decoration: none;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
 }
 
-.feature:hover {
-  transform: scale(1.08);
-  border: 1px solid var(--green);
-  z-index: 10;
+.btn-primary:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(34, 197, 94, 0.45);
 }
 
-.f1 {
-  top: 9%;
-  left: 50%;
-  transform: translate(-50%, 0);
+.btn-ghost {
+  padding: 11px 26px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 50px;
+  background: #ffffff;
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.f2 {
-  top: 20%;
-  right: 5%;
+.btn-ghost:hover {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: var(--green-dark);
+  transform: translateY(-2px);
 }
 
-.f3 {
-  top: 50%;
-  right: -5%;
-  transform: translate(0, -50%);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.f4 {
-  bottom: 20%;
-  right: 5%;
-}
-
-.f5 {
-  bottom: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-.f6 {
-  bottom: 20%;
-  left: 5%;
-}
-
-.f7 {
-  top: 50%;
-  left: -5%;
-  transform: translate(0, -50%);
-}
-
-.f8 {
-  top: 20%;
-  left: 5%;
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1815,61 +1654,34 @@
     gap: 40px;
   }
   .section,
-  .how-it-works,
+  .masonry-showcase,
+  .benefits-section,
   .faq-section {
     padding: 60px 20px;
   }
-  .svc-panel.active {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .svc-tabs-nav {
-    overflow-x: auto;
-  }
-  .svc-tab {
-    font-size: 0.78rem;
-    padding: 12px 8px;
-    white-space: nowrap;
-  }
-  .steps-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .step-card:first-child {
-    border-radius: 20px 0 0 0;
-  }
-  .step-card:last-child {
-    border-radius: 0 0 20px 0;
-  }
-  .pricing-grid,
-  .testimonials-grid {
+  .services-grid {
     grid-template-columns: 1fr;
   }
-  .footer-top {
-    grid-template-columns: 1fr 1fr;
+  .benefits-layout {
+    grid-template-columns: 1fr;
     gap: 40px;
   }
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  .filter-btn {
+    padding: 12px 18px;
+    font-size: 0.85rem;
   }
   .cta-section {
     padding: 60px 20px;
   }
-  .faq-section {
-    padding: 60px 20px;
-  }
-}
-
-@media (max-width: 600px) {
   .masonry-grid {
     column-count: 2;
   }
-  .gallery-intro h2 {
-    font-size: 2rem;
-  }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .masonry-grid {
     column-count: 1;
   }
@@ -1877,183 +1689,457 @@
 </style>
 
 <div class="graphics-page">
+  <!-- Hero Section -->
   <section class="hero">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <div class="hero-inner">
       <div class="hero-content">
-
-        <h1>Your Images,<br><em>Perfected</em><br>at Scale.</h1>
-        <p class="hero-sub">Professional photo editing studio for e-commerce. Background removal, retouching, clipping path & more — delivered fast, with studio-grade quality.</p>
+        <h1 style="font-size: 60px !important;">Creative Graphics & <br><em>Brand identity</em> Studio.</h1>
+        <p class="hero-sub">Crowns IT delivers award-winning brand visuals, professional KDP book layouts, and high-volume e-commerce photo editing. From sketch draft to pixel-perfect vector finishing, we scale your creative assets.</p>
         <div class="hero-actions">
-          <a href="#" class="btn-primary btn-large">Start Free Trial</a>
-          <a href="#" class="btn-ghost btn-large">View Pricing</a>
+          <a href="{{ url('/') }}#contact" class="btn-primary btn-large">Start Your Project</a>
+          <a href="#services" class="btn-ghost btn-large">Explore Services</a>
         </div>
         <div class="hero-stats">
           <div class="stat-item"><strong>2M+</strong><span>Images Edited</span></div>
-          <div class="stat-item"><strong>24hr</strong><span>Turnaround</span></div>
-          <div class="stat-item"><strong>99.8%</strong><span>Satisfaction Rate</span></div>
+          <div class="stat-item"><strong>1k+</strong><span>Projects Delivered</span></div>
+          <div class="stat-item"><strong>24hr</strong><span>Draft Turnaround</span></div>
         </div>
       </div>
 
-
-          <div class="ba-box ba-container reveal">
-            <div class="ba-image-container">
-              <img class="image-after slider-image" src="{{ asset('images/webapp_ecommerce.png') }}" alt="Edited Product">
-              <img class="image-before slider-image" src="{{ asset('images/webapp_hero_bg.png') }}" alt="Raw Product">
+      <!-- Before After Sketch to Vector Slider -->
+      <div class="ba-box reveal">
+        <div class="ba-image-container">
+          <!-- After (Vector Canvas) -->
+          <div class="image-after vector-canvas">
+            <div class="vector-logo-glow">
+              <span class="vector-anchor anchor-n"></span>
+              <span class="vector-anchor anchor-e"></span>
+              <span class="vector-anchor anchor-s"></span>
+              <span class="vector-anchor anchor-w"></span>
+              <i class="fa-solid fa-gem vector-logo-symbol"></i>
             </div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider">
-            <div class="ba-line"></div>
-            <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
+            <div class="vector-brand-name">Crowns IT</div>
           </div>
-
-
+          <!-- Before (Sketch Canvas) -->
+          <div class="image-before">
+            <div class="sketch-canvas-inner">
+              <div class="sketch-layout-guides">
+                <i class="fa-regular fa-gem sketch-logo-symbol"></i>
+              </div>
+              <div class="sketch-brand-name">Draft Layout</div>
+            </div>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-slider">
+        <div class="ba-line"></div>
+        <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
+      </div>
     </div>
   </section>
 
+  <!-- Trusted Platforms Strip -->
   <div class="logos-strip">
-    <div class="logos-label">Trusted by leading e-commerce platforms & brands</div>
+    <div class="logos-label">Delivering Compliant & Industry-Standard Assets For</div>
     <div class="logos-track">
+      <div class="logo-item">Amazon KDP</div>
+      <div class="logo-item">IngramSpark</div>
       <div class="logo-item">Shopify</div>
-      <div class="logo-item">BigCommerce</div>
-      <div class="logo-item">WooCommerce</div>
-      <div class="logo-item">Amazon</div>
-      <div class="logo-item">Etsy</div>
-      <div class="logo-item">Magento</div>
-      <div class="logo-item">eBay</div>
-      <div class="logo-item">Wix</div>
+      <div class="logo-item">Facebook Ads</div>
+      <div class="logo-item">Instagram</div>
+      <div class="logo-item">Lulu Publishing</div>
+      <div class="logo-item">Google Merchants</div>
+      <div class="logo-item">Printful</div>
+      <div class="logo-item">Amazon KDP</div>
+      <div class="logo-item">IngramSpark</div>
       <div class="logo-item">Shopify</div>
-      <div class="logo-item">BigCommerce</div>
-      <div class="logo-item">WooCommerce</div>
-      <div class="logo-item">Amazon</div>
-      <div class="logo-item">Etsy</div>
-      <div class="logo-item">Magento</div>
-      <div class="logo-item">eBay</div>
-      <div class="logo-item">Wix</div>
+      <div class="logo-item">Facebook Ads</div>
+      <div class="logo-item">Instagram</div>
+      <div class="logo-item">Lulu Publishing</div>
+      <div class="logo-item">Google Merchants</div>
+      <div class="logo-item">Printful</div>
     </div>
   </div>
 
+  <!-- Services Showcase Section -->
   <section class="section" id="services">
-    <div class="section-label">What We Offer</div>
-    <h2>Studio-Grade Services<br>for E-commerce</h2>
-    <p class="section-sub">Every service is handled by expert editors with a quality guarantee — so your products always look their best.</p>
+    <div class="section-label">Our Creative Suite</div>
+    <h2>Bespoke Design & Image Editing</h2>
+    <p class="section-sub">From custom logos and book designs to bulk e-commerce photo retouching, explore our full design capabilities.</p>
 
-    <div class="svc-tabs-nav" role="tablist">
-      <button class="svc-tab active" onclick="switchSvcTab(0)" role="tab" aria-selected="true">Background Removal</button>
-      <button class="svc-tab" onclick="switchSvcTab(1)" role="tab" aria-selected="false">Photo Retouching</button>
-      <button class="svc-tab" onclick="switchSvcTab(2)" role="tab" aria-selected="false">Clipping Path</button>
-      <button class="svc-tab" onclick="switchSvcTab(3)" role="tab" aria-selected="false">Ghost Mannequin</button>
+    <!-- Category Filter Tabs -->
+    <div class="filter-tabs-container">
+      <button class="filter-btn active" onclick="filterServices('all', this)">All Services</button>
+      <button class="filter-btn" onclick="filterServices('brand', this)">Brand & Marketing</button>
+      <button class="filter-btn" onclick="filterServices('publishing', this)">Publishing & Amazon</button>
+      <button class="filter-btn" onclick="filterServices('ecommerce', this)">E-Commerce Image Editing</button>
     </div>
 
-    <div class="svc-panel active" id="svc-panel-0">
-      <div class="svc-left reveal">
-        <h3>Background Removal</h3>
-        <p>Precise, clean background removal for product images. Perfect for white backgrounds, custom scenes, or transparent PNG exports — delivered at any scale.</p>
-        <div class="svc-tags">
-          <span class="svc-tag">White Background</span>
-          <span class="svc-tag">Transparent PNG</span>
-          <span class="svc-tag">Custom BG</span>
-          <span class="svc-tag">Bulk Orders</span>
+    <!-- Services Cards Grid -->
+    <div class="services-grid">
+      <!-- 1. Logo Design -->
+      <div class="service-card-wrapper reveal" data-category="brand">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-pen-nib"></i></span>
+            <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+          </div>
+          <div class="card-content-area">
+            <h3>Logo Design</h3>
+            <p>Craft a powerful visual mark that anchors your brand. We design bespoke, memorable logos that reflect your core values and stand out across print and digital media.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> 100% Vector Source Files</li>
+              <li><i class="fa-solid fa-circle-check"></i> Complete Brand Style Guides</li>
+              <li><i class="fa-solid fa-circle-check"></i> High-Res Web & Print Formats</li>
+              <li><i class="fa-solid fa-circle-check"></i> Full Copyright Ownership</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Request Logo Concept</a>
+          </div>
         </div>
-        <a href="#" class="btn-primary" style="margin-top:20px;">Read More →</a>
       </div>
-      <div class="svc-visual reveal">
-          <div class="ba-box ba-container reveal">
-            <div class="ba-image-container">
-              <img class="image-after slider-image" src="{{ asset('images/webapp_ecommerce.png') }}" alt="Edited Product">
-              <img class="image-before slider-image" src="{{ asset('images/webapp_hero_bg.png') }}" alt="Raw Product">
+
+      <!-- 2. Book Cover Design -->
+      <div class="service-card-wrapper reveal" data-category="publishing">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-book"></i></span>
+            <div class="card-visual-art">
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
             </div>
-            <input type="range" min="0" max="100" value="50" class="ba-slider">
-            <div class="ba-line"></div>
-            <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
           </div>
+          <div class="card-content-area">
+            <h3>Book Cover Design</h3>
+            <p>They do judge a book by its cover. We craft stunning paperback, hardcover, and Kindle covers that capture your story's essence and drive readers to click.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> KDP & IngramSpark Ready</li>
+              <li><i class="fa-solid fa-circle-check"></i> Front, Spine, & Back Wraps</li>
+              <li><i class="fa-solid fa-circle-check"></i> High-Fidelity 3D Mockups</li>
+              <li><i class="fa-solid fa-circle-check"></i> Genre-aligned Typography</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Design My Cover</a>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="svc-panel" id="svc-panel-1">
-      <div class="svc-left reveal">
-        <h3>Photo Retouching</h3>
-        <p>Professional retouching to enhance product appeal — color correction, blemish removal, shadow enhancement, and high-end finishing for studio-quality results.</p>
-        <div class="svc-tags">
-          <span class="svc-tag">Color Grading</span>
-          <span class="svc-tag">Skin Retouching</span>
-          <span class="svc-tag">Shadow Add</span>
-          <span class="svc-tag">High-End Finish</span>
-        </div>
-        <a href="#" class="btn-primary" style="margin-top:20px;">Read More →</a>
-      </div>
-      <div class="svc-visual reveal">
-        <div class="ba-box ba-container reveal">
-          <div class="ba-image-container">
-            <img class="image-after slider-image" src="{{ asset('images/webapp_ecommerce.png') }}" alt="Edited Product">
-            <img class="image-before slider-image" src="{{ asset('images/webapp_hero_bg.png') }}" alt="Raw Product">
+      <!-- 3. Book Formatting -->
+      <div class="service-card-wrapper reveal" data-category="publishing">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-paragraph"></i></span>
+            <div class="card-visual-art">
+             <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+            </div>
           </div>
-          <input type="range" min="0" max="100" value="50" class="ba-slider">
-          <div class="ba-line"></div>
-          <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
+          <div class="card-content-area">
+            <h3>Book Formatting</h3>
+            <p>Ensure a flawless reading experience. We type-set and format book interiors for digital e-readers (EPUB) and physical printers with correct margins and gutter offsets.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Reflowable & Fixed EPUB layouts</li>
+              <li><i class="fa-solid fa-circle-check"></i> PDF Print Ready (with Bleed)</li>
+              <li><i class="fa-solid fa-circle-check"></i> Elegant drop-caps & headers</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dynamic Table of Contents</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Format My Manuscript</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="svc-panel" id="svc-panel-2">
-      <div class="svc-left reveal">
-        <h3>Clipping Path</h3>
-        <p>Pixel-perfect clipping paths for complex shapes, multi-layer products, and high-resolution imagery that demands precision and clean, sharp edges.</p>
-        <div class="svc-tags">
-          <span class="svc-tag">Complex Shapes</span>
-          <span class="svc-tag">Multi-layer</span>
-          <span class="svc-tag">High Resolution</span>
-          <span class="svc-tag">Illustrator Path</span>
-        </div>
-        <a href="#" class="btn-primary" style="margin-top:20px;">Read More →</a>
-      </div>
-      <div class="svc-visual reveal">
-        <div class="ba-box ba-container reveal">
-          <div class="ba-image-container">
-            <img class="image-after slider-image" src="{{ asset('images/webapp_ecommerce.png') }}" alt="Edited Product">
-            <img class="image-before slider-image" src="{{ asset('images/webapp_hero_bg.png') }}" alt="Raw Product">
+      <!-- 4. Book Uploading on Amazon -->
+      <div class="service-card-wrapper reveal" data-category="publishing">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+            <div class="card-visual-art">
+              <div class="vis-upload-cloud">
+                <div class="vis-upload-status"><i class="fa-solid fa-circle-notch fa-spin"></i> Uploading...</div>
+                <div class="vis-upload-progress">
+                  <div class="vis-upload-bar"></div>
+                </div>
+                <div class="vis-upload-kdp">
+                  <span>KDP Dashboard</span>
+                  <span>95%</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <input type="range" min="0" max="100" value="50" class="ba-slider">
-          <div class="ba-line"></div>
-          <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
+          <div class="card-content-area">
+            <h3>KDP Publishing Setup</h3>
+            <p>Skip the setup headache. We manage the entire publishing upload process on Amazon KDP, configuring tax setup, title metadata, keywords, and categories correctly.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Category & Keyword Optimization</li>
+              <li><i class="fa-solid fa-circle-check"></i> Pricing & Royalty Strategy</li>
+              <li><i class="fa-solid fa-circle-check"></i> Quality Check & Pre-review</li>
+              <li><i class="fa-solid fa-circle-check"></i> Print-On-Demand Integration</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Publish My Book</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="svc-panel" id="svc-panel-3">
-      <div class="svc-left reveal">
-        <h3>Ghost Mannequin</h3>
-        <p>Remove mannequins or models from clothing shots for a professional, consistent 3D hollow-man effect across your entire fashion catalog.</p>
-        <div class="svc-tags">
-          <span class="svc-tag">Hollow Man Effect</span>
-          <span class="svc-tag">Neck Joint</span>
-          <span class="svc-tag">Sleeve Join</span>
-          <span class="svc-tag">Fashion Ready</span>
-        </div>
-        <a href="#" class="btn-primary" style="margin-top:20px;">Read More →</a>
-      </div>
-      <div class="svc-visual reveal">
-        <div class="ba-box ba-container reveal">
-          <div class="ba-image-container">
-            <img class="image-after slider-image" src="{{ asset('images/webapp_ecommerce.png') }}" alt="Edited Product">
-            <img class="image-before slider-image" src="{{ asset('images/webapp_hero_bg.png') }}" alt="Raw Product">
+      <!-- 5. Amazon A+ Content Design -->
+      <div class="service-card-wrapper reveal" data-category="publishing">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-puzzle-piece"></i></span>
+            <div class="card-visual-art">
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+            </div>
           </div>
-          <input type="range" min="0" max="100" value="50" class="ba-slider">
-          <div class="ba-line"></div>
-          <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
+          <div class="card-content-area">
+            <h3>Amazon A+ Content</h3>
+            <p>Convert more casual browsers into book buyers. We design rich product descriptions with graphical banners, feature grids, and book comparison tables.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Professional Header Banners</li>
+              <li><i class="fa-solid fa-circle-check"></i> Product Comparison Charts</li>
+              <li><i class="fa-solid fa-circle-check"></i> Fully Compliant KDP Modules</li>
+              <li><i class="fa-solid fa-circle-check"></i> Conversion Rate Optimization</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Design A+ Layout</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Social Media Poster Design -->
+      <div class="service-card-wrapper reveal" data-category="brand">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-share-nodes"></i></span>
+            <div class="card-visual-art">
+             <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Social Media Poster</h3>
+            <p>Stop the scroll with high-impact visuals. We design brand-aligned templates, ad banners, and promotional posters tailored for Instagram, Facebook, and LinkedIn.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Platform-specific Dimensions</li>
+              <li><i class="fa-solid fa-circle-check"></i> Dynamic Ad Copy Integration</li>
+              <li><i class="fa-solid fa-circle-check"></i> Source Files Included</li>
+              <li><i class="fa-solid fa-circle-check"></i> Cohesive Brand Themes</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Get Social Assets</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Business Card Design -->
+      <div class="service-card-wrapper reveal" data-category="brand">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-address-card"></i></span>
+            <div class="card-visual-art">
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Business Card Design</h3>
+            <p>Leave a memorable connection at networking events. We design modern, executive-grade business cards that merge stunning typography with crisp layout balance.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Standard & Custom Trim Sizes</li>
+              <li><i class="fa-solid fa-circle-check"></i> CMYK Print-Ready Files</li>
+              <li><i class="fa-solid fa-circle-check"></i> Double-sided Layout Options</li>
+              <li><i class="fa-solid fa-circle-check"></i> Minimalist & Corporate Designs</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Design Business Card</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Flyer Design -->
+      <div class="service-card-wrapper reveal" data-category="brand">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-paperclip"></i></span>
+            <div class="card-visual-art">
+             <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Flyer Design</h3>
+            <p>Promote your events, services, or product launches with bold layouts. We craft high-contrast, easy-to-read flyers optimized for print distribution and email attachment.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> High-Resolution CMYK Exports</li>
+              <li><i class="fa-solid fa-circle-check"></i> Content Hierarchy Layouts</li>
+              <li><i class="fa-solid fa-circle-check"></i> Corporate, Event, & Retail Styles</li>
+              <li><i class="fa-solid fa-circle-check"></i> Commercial Use Licensing</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Design Flyer Promo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Brochure Design -->
+      <div class="service-card-wrapper reveal" data-category="brand">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-folder-open"></i></span>
+            <div class="card-visual-art">
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
+       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+</div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Brochure Design</h3>
+            <p>Tell your comprehensive brand story in a clean folding booklet. We design professional bi-fold and tri-fold brochures that break down complex solutions into digestible reading layouts.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Bi-fold & Tri-fold Panels</li>
+              <li><i class="fa-solid fa-circle-check"></i> Structured Information Design</li>
+              <li><i class="fa-solid fa-circle-check"></i> Pixel-Perfect Margins & Folds</li>
+              <li><i class="fa-solid fa-circle-check"></i> Web Digital PDF Distribution</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Request Brochure Layout</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Background Removal -->
+      <div class="service-card-wrapper reveal" data-category="ecommerce">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-scissors"></i></span>
+            <div class="card-visual-art">
+              <div class="vis-bgremove-container">
+                <div class="bgremove-side left">
+                  <i class="fa-solid fa-bag-shopping bgremove-item"></i>
+                </div>
+                <div class="bgremove-side right">
+                  <i class="fa-solid fa-bag-shopping bgremove-item"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Background Removal</h3>
+            <p>Clean, pixel-perfect background removal for product images. Ideal for white marketplace backgrounds, transparent PNG exports, or custom web compositions at high volumes.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Transparent PNG & JPEG exports</li>
+              <li><i class="fa-solid fa-circle-check"></i> Hand-drawn Vector Pen Paths</li>
+              <li><i class="fa-solid fa-circle-check"></i> Bulk Image Processing</li>
+              <li><i class="fa-solid fa-circle-check"></i> Soft Shadow/Reflection Options</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Request Free Trial</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Photo Retouching -->
+      <div class="service-card-wrapper reveal" data-category="ecommerce">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+            <div class="card-visual-art">
+              <div class="vis-retouch-comparison">
+                <div class="retouch-side left">
+                  <i class="fa-solid fa-shirt retouch-icon"></i>
+                </div>
+                <div class="retouch-side right">
+                  <i class="fa-solid fa-shirt retouch-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Photo Retouching</h3>
+            <p>Professional photo edits that enhance product appeal. We optimize color balance, remove blemishes, adjust brightness, and add natural drop shadows.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Color Correction & Grading</li>
+              <li><i class="fa-solid fa-circle-check"></i> Blemish & Dust Spot Removal</li>
+              <li><i class="fa-solid fa-circle-check"></i> Drop & Cast Shadow Additions</li>
+              <li><i class="fa-solid fa-circle-check"></i> E-Commerce Platform Ready</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Enhance My Photos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Clipping Path -->
+      <div class="service-card-wrapper reveal" data-category="ecommerce">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-bezier-curve"></i></span>
+            <div class="card-visual-art">
+              <div class="vis-clipping-path">
+                <i class="fa-solid fa-shoe-prints clipping-item"></i>
+                <div class="clipping-vector-path"></div>
+                <i class="fa-solid fa-pen-nib clipping-pen"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Clipping Path</h3>
+            <p>Precision vector clipping paths for highly complex outlines. Essential for clean cutouts, multi-layer designs, and high-resolution commercial publications.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Hand-Drawn Photoshop Paths</li>
+              <li><i class="fa-solid fa-circle-check"></i> Multi-Layer Clipping Tracks</li>
+              <li><i class="fa-solid fa-circle-check"></i> Complex Silhouette Mapping</li>
+              <li><i class="fa-solid fa-circle-check"></i> Layered TIFF/PSD Exports</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Order Precision Paths</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. Ghost Mannequin -->
+      <div class="service-card-wrapper reveal" data-category="ecommerce">
+        <div class="service-card">
+          <div class="card-visual-container">
+            <span class="card-icon-tag"><i class="fa-solid fa-shirt"></i></span>
+            <div class="card-visual-art">
+              <div class="vis-ghost-mannequin">
+                <i class="fa-solid fa-shirt ghost-apparel"></i>
+                <div class="ghost-hollow-dots"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content-area">
+            <h3>Ghost Mannequin</h3>
+            <p>Create a professional 3D hollow-man effect. We combine mannequin apparel photos with inside tag shots to build consistent clothing catalogs.</p>
+            <ul class="card-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> Invisible Mannequin Effect</li>
+              <li><i class="fa-solid fa-circle-check"></i> Neck Joint Compositions</li>
+              <li><i class="fa-solid fa-circle-check"></i> Sleeve & Lining Extensions</li>
+              <li><i class="fa-solid fa-circle-check"></i> High Volume Catalog Speed</li>
+            </ul>
+            <a href="{{ url('/') }}#contact" class="btn-card-action">Get Apparel Mockup</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="how-it-works" id="how">
-    <div class="gallery-intro reveal">
+  <!-- Masonry Portfolio Showcase -->
+  <section class="masonry-showcase" id="portfolio">
+    <div class="masonry-intro reveal">
       <h2>For whatever you sell,<br>wherever you sell</h2>
       <p>Content creation curated and built by experts to meet the needs of all the modern ecommerce and marketing platforms powering your business.</p>
-      <div class="cta-actions">
-        <a href="#" class="btn-primary btn-large">Talk to an expert</a>
-        <a href="#" class="btn-ghost btn-large">Get started</a>
+      <div class="cta-actions" style="margin-top: 30px;">
+        <a href="{{ url('/') }}#contact" class="btn-primary btn-large">Talk to an expert</a>
+        <a href="{{ url('/') }}#contact" class="btn-ghost btn-large">Get started</a>
       </div>
     </div>
 
@@ -2121,362 +2207,257 @@
     </div>
   </section>
 
-  <section class="clock-section" id="benefits">
-    <div class="clock-header reveal">
-      <h2>Virtual Image Editing Benefits</h2>
-      <p>Click any feature to see details in center</p>
-    </div>
-    <div class="clock-wrapper reveal">
-      <div class="center-circle" id="centerBox">Virtual Image<br>Editing Platform</div>
-      <div class="feature f1" onclick="showDetail(this)">💰 Cost-efficient outsourcing<div class="data" hidden>Cost-efficient outsourcing exceptional support and perfect results for thousands of images per day, delivered within 24 hours by highly trained professionals.</div></div>
-      <div class="feature f2" onclick="showDetail(this)">🎁 First 3 Photos Free<div class="data" hidden>We offer the first 3 photo edits completely free to help you start without any cost.</div></div>
-      <div class="feature f3" onclick="showDetail(this)">⚡ Super Easy Management<div class="data" hidden>Intuitive interface makes editing easy even for beginners and creators.</div></div>
-      <div class="feature f4" onclick="showDetail(this)">💳 Affordable Pricing<div class="data" hidden>Transparent pricing with simple and easy payment system.</div></div>
-      <div class="feature f5" onclick="showDetail(this)">🔒 Data Security<div class="data" hidden>End-to-end encryption ensures your data remains safe and protected.</div></div>
-      <div class="feature f6" onclick="showDetail(this)">🚀 Fast Delivery<div class="data" hidden>Ultra-fast delivery system with minutes turnaround time.</div></div>
-      <div class="feature f7" onclick="showDetail(this)">☁️ Unlimited Upload<div class="data" hidden>Upload unlimited photos with secure cloud storage system.</div></div>
-      <div class="feature f8" onclick="showDetail(this)">🎯 Pro Quality<div class="data" hidden>Highly trained professionals ensure perfect quality results.</div></div>
-    </div>
-  </section>
+  <!-- Benefits Section -->
+  <section class="benefits-section" id="benefits">
+    <div class="benefits-inner">
+      <div class="section-label">Why Partner With Us</div>
+      <h2>Engineered for Creative Success</h2>
+      <p class="section-sub">Discover the standards of design precision, commercial protection, and publishing compliance we build into every single project.</p>
+      
+      <div class="benefits-layout">
+        <!-- Interactive Wheel Visual -->
+        <div class="benefits-interactive-wheel reveal">
+          <div class="benefits-circle-outline"></div>
+          <div class="benefits-wheel-center" id="centerBox">Crowns IT<br>Design Standards</div>
+          <div class="wheel-node wn-1" onclick="showBenefitDetail('Unique Design Concepts', 'We craft custom visual solutions from scratch to guarantee your brand has an authentic and original identity.')">🎨</div>
+          <div class="wheel-node wn-2" onclick="showBenefitDetail('Vector Source Files', 'Receive fully organized source formats (Adobe Illustrator, Photoshop, PDF) for seamless future updates.')">📂</div>
+          <div class="wheel-node wn-3" onclick="showBenefitDetail('KDP Compliance Guarantee', 'Every book cover and interior format is tested to pass Amazon\'s strict layout constraints without rejection.')">📚</div>
+          <div class="wheel-node wn-4" onclick="showBenefitDetail('Print-Ready CMYK Formats', 'Documents are exported with precise bleeds, high-resolution CMYK profiles, and print-shop guidelines.')">🖨️</div>
+          <div class="wheel-node wn-5" onclick="showBenefitDetail('Full Commercial Rights', 'Once finalized, you own 100% of the intellectual property rights and copyrights to all assets.')">💼</div>
+          <div class="wheel-node wn-6" onclick="showBenefitDetail('Revision Guarantee', 'We work collaboratively with you, refining typography, colors, and layout structures until you are completely thrilled.')">🔄</div>
+          <div class="wheel-node wn-7" onclick="showBenefitDetail('Quick Draft Turnaround', 'Get initial layout concepts and drafts in as little as 24 to 48 hours for fast deployment.')">⚡</div>
+          <div class="wheel-node wn-8" onclick="showBenefitDetail('Dedicated Creative Director', 'Collaborate directly with a professional lead designer who guides your project from sketch to completion.')">🤝</div>
+        </div>
 
-  {{-- <section class="testimonials-section" id="reviews" style="overflow: hidden; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 100px 0;">
-    <div style="text-align: center; max-width: 600px; margin: 0 auto 50px; padding: 0 20px;">
-      <div class="section-label center" style="margin-bottom:16px;">Client Reviews</div>
-      <h2 style="font-family: 'Sora', sans-serif;">What Our Clients Say</h2>
-      <p class="section-sub center" style="margin: 0 auto;">Trusted by e-commerce brands around the world to make their products look exceptional.</p>
-    </div>
-    <div class="marquee-wrapper">
-      <div class="marquee-track left">
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:var(--green);">SM</div>
-            <div>
-              <div class="tc-name">Sarah Mitchell</div>
-              <div class="tc-role">Owner, StyleHouse Boutique</div>
-            </div>
+        <!-- Static details list -->
+        <div class="benefits-grid reveal">
+          <div class="benefit-card-box">
+            <div class="benefit-icon-wrapper"><i class="fa-solid fa-certificate"></i></div>
+            <h3>100% Original Artwork</h3>
+            <p>No templates or stock duplicates. We sketch, vector, and hand-craft custom layouts unique to your business profile.</p>
           </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"Infotecsourz completely transformed how we handle product photography. The turnaround is fast and the quality is consistently excellent. Our conversion rates improved noticeably after switching."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#ef4444;">JR</div>
-            <div>
-              <div class="tc-name">James Rodriguez</div>
-              <div class="tc-role">E-commerce Manager, GearPeak</div>
-            </div>
+          <div class="benefit-card-box">
+            <div class="benefit-icon-wrapper"><i class="fa-solid fa-check-double"></i></div>
+            <h3>Zero-Rejection Guarantee</h3>
+            <p>Our book designs strictly adhere to KDP and IngramSpark formatting constraints. We fix any formatting errors for free.</p>
           </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"We process over 1,000 images per month and Infotecsourz handles it seamlessly. The Shopify integration is a game changer — images go straight to our store without any manual work."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#10b981;">AL</div>
-            <div>
-              <div class="tc-name">Ayesha Lim</div>
-              <div class="tc-role">Creative Director, Lumière Fashion</div>
-            </div>
+          <div class="benefit-card-box">
+            <div class="benefit-icon-wrapper"><i class="fa-solid fa-images"></i></div>
+            <h3>Bulk Processing Scale</h3>
+            <p>Process thousands of photos daily. Our e-commerce clipping path and retouching scales seamlessly to any catalogue size.</p>
           </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"The ghost mannequin service is exceptional. Our fashion catalog looks incredibly professional now. Clients often comment on how polished our product images look compared to competitors."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:var(--green-dark);">DW</div>
-            <div>
-              <div class="tc-name">David Wang</div>
-              <div class="tc-role">Founder, Urban Kicks</div>
-            </div>
+          <div class="benefit-card-box">
+            <div class="benefit-icon-wrapper"><i class="fa-solid fa-scale-balanced"></i></div>
+            <h3>IP Transfer Included</h3>
+            <p>Full intellectual property transfer on project delivery. You retain complete commercial rights to sell or patent your logos and book assets.</p>
           </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"We needed clean cuts for complex sneaker shapes. Infotecsourz delivered pixel-perfect clipping paths within 12 hours. We've never looked back since using their clipping service!"</p>
         </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:var(--green);">SM</div>
-            <div>
-              <div class="tc-name">Sarah Mitchell</div>
-              <div class="tc-role">Owner, StyleHouse Boutique</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"Infotecsourz completely transformed how we handle product photography. The turnaround is fast and the quality is consistently excellent. Our conversion rates improved noticeably after switching."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#ef4444;">JR</div>
-            <div>
-              <div class="tc-name">James Rodriguez</div>
-              <div class="tc-role">E-commerce Manager, GearPeak</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"We process over 1,000 images per month and Infotecsourz handles it seamlessly. The Shopify integration is a game changer — images go straight to our store without any manual work."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#10b981;">AL</div>
-            <div>
-              <div class="tc-name">Ayesha Lim</div>
-              <div class="tc-role">Creative Director, Lumière Fashion</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"The ghost mannequin service is exceptional. Our fashion catalog looks incredibly professional now. Clients often comment on how polished our product images look compared to competitors."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:var(--green-dark);">DW</div>
-            <div>
-              <div class="tc-name">David Wang</div>
-              <div class="tc-role">Founder, Urban Kicks</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"We needed clean cuts for complex sneaker shapes. Infotecsourz delivered pixel-perfect clipping paths within 12 hours. We've never looked back since using their clipping service!"</p>
-        </div>
-      </div>
-      <div class="marquee-track right">
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#f59e0b;">TC</div>
-            <div>
-              <div class="tc-name">Thomas Chen</div>
-              <div class="tc-role">Marketing Lead, TechNova</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"Their background removal API saved us countless hours during our Q3 launch. It handles high-volume requests flawlessly and the quality output feels incredibly natural on dark mode."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#f43f5e;">EN</div>
-            <div>
-              <div class="tc-name">Elena Nunez</div>
-              <div class="tc-role">Brand Manager, GlowCosmetics</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"I love how they handle skin retouching! The edits always maintain the original texture without looking overly airbrushed. Our beauty products shine thanks to their amazing team."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#0ea5e9;">MK</div>
-            <div>
-              <div class="tc-name">Michael Knox</div>
-              <div class="tc-role">CEO, ActiveWear Co.</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"Switching to Infotecsourz for our sports apparel line changed everything. The delivery is extremely fast, and the ghost mannequin effects are spot-on every single time."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:var(--green-dark);">ST</div>
-            <div>
-              <div class="tc-name">Sarah Thompson</div>
-              <div class="tc-role">Dropshipper</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"As a solo dropshipper, I rely heavily on their service to polish bulk supplier photos. They always turn sub-par images into premium studio highlights with their color grading."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#f59e0b;">TC</div>
-            <div>
-              <div class="tc-name">Thomas Chen</div>
-              <div class="tc-role">Marketing Lead, TechNova</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"Their background removal API saved us countless hours during our Q3 launch. It handles high-volume requests flawlessly and the quality output feels incredibly natural on dark mode."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#f43f5e;">EN</div>
-            <div>
-              <div class="tc-name">Elena Nunez</div>
-              <div class="tc-role">Brand Manager, GlowCosmetics</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"I love how they handle skin retouching! The edits always maintain the original texture without looking overly airbrushed. Our beauty products shine thanks to their amazing team."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:#0ea5e9;">MK</div>
-            <div>
-              <div class="tc-name">Michael Knox</div>
-              <div class="tc-role">CEO, ActiveWear Co.</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"Switching to Infotecsourz for our sports apparel line changed everything. The delivery is extremely fast, and the ghost mannequin effects are spot-on every single time."</p>
-        </div>
-        <div class="tc-card">
-          <div class="tc-header">
-            <div class="tc-avatar" style="background:var(--green-dark);">ST</div>
-            <div>
-              <div class="tc-name">Sarah Thompson</div>
-              <div class="tc-role">Dropshipper</div>
-            </div>
-          </div>
-          <div class="tc-stars">★★★★★</div>
-          <p class="tc-text">"As a solo dropshipper, I rely heavily on their service to polish bulk supplier photos. They always turn sub-par images into premium studio highlights with their color grading."</p>
-        </div>
-      </div>
-    </div>
-  </section> --}}
-
-  <section class="cta-section">
-    <div class="cta-inner">
-      <div class="section-label" style="justify-content:center; display:flex;">Get Started Today</div>
-      <h2>Ready to Elevate Your<br><em>Product Images?</em></h2>
-      <p>Join 2,000+ e-commerce brands that trust Infotecsourz for studio-quality photo editing. Try it free — no credit card required.</p>
-      <div class="cta-actions">
-        <a href="#" class="btn-primary btn-large">Start Free Trial →</a>
-        <a href="#" class="btn-ghost btn-large">Request a Quote</a>
       </div>
     </div>
   </section>
 
-  <section class="webapp-faq-section">
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
     <div class="faq-container reveal">
       <div class="faq-header">
         <h2>Frequently Asked <span>Questions</span></h2>
-        <p>Everything you need to know about our image editing services and delivery process.</p>
+        <p>Answers to common queries regarding our custom graphic design, KDP publishing, and bulk photo editing workflows.</p>
       </div>
 
       <div class="faq-list">
         <div class="faq-item">
           <div class="faq-question">
-            <h3>What is your standard turnaround time?</h3>
+            <h3>Do I get full ownership and copyright of the final designs?</h3>
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Our standard delivery time is 24 hours. For enterprise clients and urgent requests, we also offer rush processing which can deliver your edits in as little as 6 to 12 hours.</p>
+            <p>Yes, absolutely. Once the design project is finalized and complete payment is settled, 100% of the copyrights and commercial intellectual property rights are transferred to you. We deliver all high-resolution source vector files for your brand's archives.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question">
-            <h3>Do you offer a free trial?</h3>
+            <h3>What is Amazon A+ Content, and how does it help book sales?</h3>
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Yes! We offer your first 3 image edits completely free. This allows you to evaluate our quality and workflow before deciding to commit to a larger batch or subscription plan.</p>
+            <p>Amazon A+ Content allows authors and publishers to add rich visual modules, banner graphics, comparison charts, and detailed branding to their book detail page on Amazon. This boosts visual storytelling, captures reader trust, and can increase book purchase conversion rates by up to 10% to 15%.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question">
-            <h3>How do I submit my images for editing?</h3>
+            <h3>What is the difference between E-book and Print formatting?</h3>
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>You can easily upload your images through our secure web portal, or simply integrate with our Shopify / BigCommerce apps to automatically sync and download images directly to your store's platform.</p>
+            <p>E-books (Kindle / EPUB formats) require reflowable HTML code, allowing text to automatically scale and adjust to different screens, fonts, and orientation. Print books require fixed, print-ready typesetting with strict margins, gutter offsets for binding, running headers, and page numbering. We specialize in formatting both formats flawlessly.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question">
-            <h3>Are my images kept secure?</h3>
+            <h3>Can you assist with uploading my book directly to Amazon KDP?</h3>
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Absolutely. We use end-to-end encryption for all transfers and guarantee high standard data security. Your files will never be shared or used anywhere else without your explicit permission.</p>
+            <p>Yes. We guide you through the entire Amazon KDP publishing process. This includes configuring your book pricing, optimizing KDP keyword strings, selecting matching categories for better rankings, uploading formatted files, and solving any layout warnings in the book previewer before publishing.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <div class="faq-question">
-            <h3>What types of edits do you specialize in?</h3>
+            <h3>What source files will I receive for print marketing assets?</h3>
             <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>We cover end-to-end e-commerce editing including precise clipping paths, background removal, ghost mannequin effects, high-end skin and product retouching, and expert color styling.</p>
+            <p>We deliver high-resolution, print-ready PDF files set in CMYK color mode with correct bleed margins. We also provide fully layered and organized design source files (Adobe Illustrator <code>.ai</code>, Photoshop <code>.psd</code>, or vector <code>.svg</code> formats) so you or your printers can make future adjustments easily.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>What is your standard turnaround time for e-commerce image editing?</h3>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Our standard turnaround time for bulk product background removal, retouching, and clipping path orders is 24 hours. For rush requirements, we offer express delivery within 6 to 12 hours depending on volume.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Do you offer a free trial for product photo editing?</h3>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We provide up to 3 free test image edits so you can evaluate our pixel precision, shadow rendering, and cutout accuracy before committing to a larger order or subscription.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How do we upload and submit bulk images to your team?</h3>
+            <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>You can upload assets securely through our central client dashboard, share links via Dropbox, Google Drive, or WeTransfer, or connect your Shopify/WooCommerce store to let our systems sync your product feeds directly.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <script>
-    function switchSvcTab(index) {
-      document.querySelectorAll('.svc-tab').forEach((t, i) => {
-        t.classList.toggle('active', i === index);
-        t.setAttribute('aria-selected', i === index);
-      });
-      document.querySelectorAll('.svc-panel').forEach((p, i) => {
-        p.classList.toggle('active', i === index);
-      });
-      document.querySelectorAll('#svc-panel-' + index + ' .reveal').forEach(el => {
-        el.classList.remove('in-view');
-        setTimeout(() => el.classList.add('in-view'), 60);
-      });
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center; display:flex;">Start Creating</div>
+      <h2>Ready to Elevate Your<br><em>Visuals & E-Commerce?</em></h2>
+      <p>Partner with Crowns IT to design professional branding assets, compliant book layouts, and high-volume e-commerce edits. Get a custom draft quote today.</p>
+      <div class="cta-actions">
+        <a href="{{ url('/') }}#contact" class="btn-primary btn-large">Get Started Now →</a>
+        <a href="{{ url('/') }}#contact" class="btn-ghost btn-large">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+@push('scripts')
+<script>
+  // Before-After Slider
+  function initBeforeAfterSlider() {
+    const container = document.querySelector('.ba-box');
+    if (!container) return;
+
+    const slider = container.querySelector('.ba-slider');
+    const imageBefore = container.querySelector('.image-before');
+    const line = container.querySelector('.ba-line');
+    const button = container.querySelector('.ba-button');
+    const inner = container.querySelector('.sketch-canvas-inner');
+
+    if (!slider || !imageBefore || !inner) return;
+
+    const updateSlider = (value) => {
+      imageBefore.style.width = value + '%';
+      line.style.left = value + '%';
+      button.style.left = value + '%';
+      inner.style.width = container.offsetWidth + 'px';
+    };
+
+    slider.addEventListener('input', (e) => {
+      updateSlider(e.target.value);
+    });
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      updateSlider(slider.value);
+    });
+
+    updateSlider(50);
+  }
+
+  // Filter Services Grid
+  function filterServices(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.service-card-wrapper');
+    cards.forEach(card => {
+      if (category === 'all' || card.getAttribute('data-category') === category) {
+        card.style.display = 'block';
+        card.classList.remove('in-view');
+        // Small delay to trigger animation
+        setTimeout(() => card.classList.add('in-view'), 40);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Benefits Detail Switch
+  function showBenefitDetail(title, description) {
+    const centerBox = document.getElementById('centerBox');
+    if (centerBox) {
+      centerBox.innerHTML = `<strong>${title}</strong><br><span style="font-size:0.75rem; font-weight:normal; display:block; margin-top:6px; line-height:1.3;">${description}</span>`;
+      centerBox.style.background = 'var(--navy)';
+      centerBox.style.fontSize = '0.85rem';
     }
+  }
 
-    function showDetail(el) {
-      const text = el.querySelector('.data').innerText;
-      document.getElementById('centerBox').innerHTML = text;
-    }
-
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('in-view'), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-
+  // FAQ Accordion
+  function initFaqAccordion() {
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
       const question = item.querySelector('.faq-question');
-      const icon = item.querySelector('.faq-icon i');
       question.addEventListener('click', () => {
         const activeItem = document.querySelector('.faq-item.active');
         if (activeItem && activeItem !== item) {
           activeItem.classList.remove('active');
-          activeItem.querySelector('.faq-icon i').className = 'fa-solid fa-plus';
         }
         item.classList.toggle('active');
-        if (item.classList.contains('active')) {
-          icon.className = 'fa-solid fa-minus';
-        } else {
-          icon.className = 'fa-solid fa-plus';
-        }
       });
     });
+  }
 
-    function initBeforeAfterSlider() {
-      const containers = document.querySelectorAll('.ba-container');
-      containers.forEach(container => {
-        const slider = container.querySelector('.ba-slider');
-        const imageBefore = container.querySelector('.image-before');
-        const line = container.querySelector('.ba-line');
-        const button = container.querySelector('.ba-button');
-
-        if (!slider || !imageBefore) return;
-
-        const updateSlider = (value) => {
-          imageBefore.style.width = value + '%';
-          line.style.left = value + '%';
-          button.style.left = value + '%';
-        };
-
-        slider.addEventListener('input', (e) => {
-          updateSlider(e.target.value);
-        });
-
-        updateSlider(50);
+  // Scroll Reveal Observer
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('in-view'), i * 60);
+          observer.unobserve(entry.target);
+        }
       });
-    }
+    }, { threshold: 0.05 });
+    reveals.forEach(el => observer.observe(el));
+  }
 
-    document.addEventListener('DOMContentLoaded', initBeforeAfterSlider);
-  </script>
-</div>
+  document.addEventListener('DOMContentLoaded', () => {
+    initBeforeAfterSlider();
+    initFaqAccordion();
+    initScrollReveal();
+  });
+</script>
+@endpush
 @endsection

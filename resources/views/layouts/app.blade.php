@@ -73,6 +73,13 @@
                             <span class="desc">Tailored enterprise software</span>
                         </div>
                     </a>
+                     <a href="{{ route('services.graphics') }}" class="dropdown-item item-graphics">
+                        <span class="icon-wrapper"><i class="fa-solid fa-palette"></i></span>
+                        <div class="dropdown-text">
+                            <span class="title">Graphics Design</span>
+                            <span class="desc">Stunning visuals & brand identity</span>
+                        </div>
+                    </a>
                     <a href="{{ route('services.marketing') }}" class="dropdown-item item-marketing">
                         <span class="icon-wrapper"><i class="fa-solid fa-bullhorn"></i></span>
                         <div class="dropdown-text">
@@ -80,13 +87,7 @@
                             <span class="desc">Grow your business & reach</span>
                         </div>
                     </a>
-                    <a href="{{ route('services.graphics') }}" class="dropdown-item item-graphics">
-                        <span class="icon-wrapper"><i class="fa-solid fa-palette"></i></span>
-                        <div class="dropdown-text">
-                            <span class="title">Graphics Design</span>
-                            <span class="desc">Stunning visuals & brand identity</span>
-                        </div>
-                    </a>
+                   
                     <a href="{{ route('services.ui-ux') }}" class="dropdown-item item-uiux">
                         <span class="icon-wrapper"><i class="fa-solid fa-crop-simple"></i></span>
                         <div class="dropdown-text">
@@ -163,6 +164,7 @@
                         <li><a href="#">Web Development</a></li>
                         <li><a href="#">Mobile Applications</a></li>
                         <li><a href="#">Custom Software</a></li>
+                        <li><a href="#">Graphics Design</a></li>
                         <li><a href="#">Digital Marketing</a></li>
                         <li><a href="#">UI/UX Design</a></li>
                     </ul>
@@ -178,7 +180,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fa-solid fa-phone"></i>
-                            <span>+880 1234 567 890</span>
+                            <span>+8801777494071</span>
                         </div>
                         <div class="contact-item">
                             <i class="fa-solid fa-envelope"></i>
