@@ -7,7 +7,9 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact.submit');
+Route::post('/get-started', [PageController::class, 'getStartedSubmit'])->name('get-started.submit');
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
+
 
 Route::prefix('services')->name('services.')->group(function () {
     Route::get('/web-application', [PageController::class, 'webApplication'])->name('web-app');
