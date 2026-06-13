@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\GetStartedMail;
+use App\Models\GraphicsDesignSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -103,7 +104,9 @@ class PageController extends Controller
 
     public function graphicsDesign()
     {
-        return view('services.graphics-design');
+        $sections = GraphicsDesignSection::orderBy('sort_order')->get()->keyBy('slug');
+
+        return view('services.graphics-design', compact('sections'));
     }
 
     public function uiUxDesign()

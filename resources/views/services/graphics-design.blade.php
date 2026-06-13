@@ -4,6 +4,38 @@
 @section('meta_description', 'Crowns IT delivers premium graphic design, logo design, book cover & formatting, KDP publishing uploads, Amazon A+ content, social media posters, and high-volume e-commerce photo editing.')
 
 @section('content')
+@php
+    $sections = $sections ?? collect();
+    $heroBackground = $sections->get('hero_background');
+    $serviceImages = [
+        'service_logo' => $sections->get('service_logo'),
+        'service_book_cover' => $sections->get('service_book_cover'),
+        'service_formatting' => $sections->get('service_formatting'),
+        'service_amazon_aplus' => $sections->get('service_amazon_aplus'),
+        'service_social' => $sections->get('service_social'),
+        'service_business_card' => $sections->get('service_business_card'),
+        'service_flyer' => $sections->get('service_flyer'),
+        'service_brochure' => $sections->get('service_brochure'),
+    ];
+    $portfolioImages = [
+        $sections->get('portfolio_1'),
+        $sections->get('portfolio_2'),
+        $sections->get('portfolio_3'),
+        $sections->get('portfolio_4'),
+        $sections->get('portfolio_5'),
+        $sections->get('portfolio_6'),
+        $sections->get('portfolio_7'),
+        $sections->get('portfolio_8'),
+        $sections->get('portfolio_9'),
+        $sections->get('portfolio_10'),
+        $sections->get('portfolio_11'),
+        $sections->get('portfolio_12'),
+        $sections->get('portfolio_13'),
+        $sections->get('portfolio_14'),
+    ];
+    $getImageUrl = fn ($slug, $fallback) => optional($sections->get($slug))->image_url ?? $fallback;
+    $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
+@endphp
 <style>
 .graphics-page {
   position: relative;
@@ -265,7 +297,7 @@
   left: 0;
   height: 100%;
   background: #fbfbf9;
-  background-image: 
+  background-image:
     linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
   background-size: 20px 20px;
@@ -316,7 +348,7 @@
 
 .vector-canvas {
   background: #0f172a;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
@@ -572,7 +604,7 @@
 }
 
 .card-visual-art {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   display: flex;
   align-items: center;
@@ -980,9 +1012,9 @@
   border-right: 1px dashed rgba(34, 197, 94, 0.4);
 }
 .bgremove-side.right {
-  background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%), 
-                    linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), 
-                    linear-gradient(45deg, transparent 75%, #cbd5e1 75%), 
+  background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%),
+                    linear-gradient(-45deg, #cbd5e1 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #cbd5e1 75%),
                     linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
   background-size: 8px 8px;
 }
@@ -1697,7 +1729,7 @@
     <div class="hero-inner">
       <div class="hero-content">
         <h1 style="font-size: 60px !important;">Creative Graphics & <br><em>Brand identity</em> Studio.</h1>
-        <p class="hero-sub">Crowns IT delivers award-winning brand visuals, professional KDP book layouts, and high-volume e-commerce photo editing. From sketch draft to pixel-perfect vector finishing, we scale your creative assets.</p>
+        <p class="hero-sub">{{ $heroBackground?->description ?? 'Crowns IT delivers award-winning brand visuals, professional KDP book layouts, and high-volume e-commerce photo editing. From sketch draft to pixel-perfect vector finishing, we scale your creative assets.' }}</p>
         <div class="hero-actions">
           <a href="{{ url('/') }}#contact" class="btn-primary btn-large">Start Your Project</a>
           <a href="#services" class="btn-ghost btn-large">Explore Services</a>
@@ -1785,9 +1817,8 @@
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-pen-nib"></i></span>
             <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+              <img src="{{ $getImageUrl('service_logo', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_logo', 'Logo Design') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+            </div>
           </div>
           <div class="card-content-area">
             <h3>Logo Design</h3>
@@ -1810,9 +1841,8 @@
             <span class="card-icon-tag"><i class="fa-solid fa-book"></i></span>
             <div class="card-visual-art">
               <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+                <img src="{{ $getImageUrl('service_book_cover', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_book_cover', 'Book Cover Design') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -1835,10 +1865,9 @@
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-paragraph"></i></span>
             <div class="card-visual-art">
-             <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+                <img src="{{ $getImageUrl('service_formatting', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_formatting', 'Book Formatting') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -1894,9 +1923,8 @@
             <span class="card-icon-tag"><i class="fa-solid fa-puzzle-piece"></i></span>
             <div class="card-visual-art">
               <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+                <img src="{{ $getImageUrl('service_amazon_aplus', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_amazon_aplus', 'Amazon A+ Content') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -1919,10 +1947,9 @@
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-share-nodes"></i></span>
             <div class="card-visual-art">
-             <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+                <img src="{{ $getImageUrl('service_social', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_social', 'Social Media Poster') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -1946,9 +1973,8 @@
             <span class="card-icon-tag"><i class="fa-solid fa-address-card"></i></span>
             <div class="card-visual-art">
               <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+                <img src="{{ $getImageUrl('service_business_card', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_business_card', 'Business Card Design') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -1971,10 +1997,9 @@
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-paperclip"></i></span>
             <div class="card-visual-art">
-             <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+              <div class="card-visual-art" style="padding:0; overflow:hidden;">
+                <img src="{{ $getImageUrl('service_flyer', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_flyer', 'Flyer Design') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -1998,9 +2023,8 @@
             <span class="card-icon-tag"><i class="fa-solid fa-folder-open"></i></span>
             <div class="card-visual-art">
               <div class="card-visual-art" style="padding:0; overflow:hidden;">
-  <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600" alt="Service Name" 
-       style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
-</div>
+                <img src="{{ $getImageUrl('service_brochure', 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_brochure', 'Brochure Design') }}" style="width:80%; height:80%; object-fit:cover; display:block; transition: transform 0.4s ease;" />
+              </div>
             </div>
           </div>
           <div class="card-content-area">
@@ -2145,39 +2169,39 @@
 
     <div class="masonry-grid">
       <div class="masonry-item reveal">
-        <img src="https://ix-marketing.imgix.net/focalpoint.png?auto=format,compress&w=1446" alt="Peaches" style="aspect-ratio: 1/1;" />
+        <img src="{{ $getImageUrl('portfolio_1', 'https://ix-marketing.imgix.net/focalpoint.png?auto=format,compress&w=1446') }}" alt="{{ $getAltText('portfolio_1', 'Portfolio Image 1') }}" style="aspect-ratio: 1/1;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400" alt="Cat" style="aspect-ratio: 4/3;" />
+        <img src="{{ $getImageUrl('portfolio_2', 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_2', 'Portfolio Image 2') }}" style="aspect-ratio: 4/3;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=400" alt="Living room" style="aspect-ratio: 1/1;" />
+        <img src="{{ $getImageUrl('portfolio_3', 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_3', 'Portfolio Image 3') }}" style="aspect-ratio: 1/1;" />
         <div class="masonry-badge badge-ai"><span>✨</span> AI</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400" alt="Outdoors" style="aspect-ratio: 4/5;" />
+        <img src="{{ $getImageUrl('portfolio_4', 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_4', 'Portfolio Image 4') }}" style="aspect-ratio: 4/5;" />
         <div class="masonry-badge badge-ugc"><span>📱</span> UGC</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?auto=format&fit=crop&q=80&w=400" alt="Coffee" style="aspect-ratio: 3/4;" />
+        <img src="{{ $getImageUrl('portfolio_5', 'https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_5', 'Portfolio Image 5') }}" style="aspect-ratio: 3/4;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400" alt="People" style="aspect-ratio: 16/9;" />
+        <img src="{{ $getImageUrl('portfolio_6', 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_6', 'Portfolio Image 6') }}" style="aspect-ratio: 16/9;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400" alt="Pool" style="aspect-ratio: 4/5;" />
+        <img src="{{ $getImageUrl('portfolio_7', 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_7', 'Portfolio Image 7') }}" style="aspect-ratio: 4/5;" />
         <div class="masonry-badge badge-ugc"><span>📱</span> UGC</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400" alt="Bottle" style="aspect-ratio: 1/1;" />
+        <img src="{{ $getImageUrl('portfolio_8', 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_8', 'Portfolio Image 8') }}" style="aspect-ratio: 1/1;" />
         <div class="masonry-badge badge-ai"><span>✨</span> AI</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=400" alt="Product" style="aspect-ratio: 1/1;" />
+        <img src="{{ $getImageUrl('portfolio_11', 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_11', 'Portfolio Image 11') }}" style="aspect-ratio: 1/1;" />
         <div class="masonry-badge badge-ai"><span>✨</span> AI</div>
       </div>
       <div class="masonry-blue-box reveal">
@@ -2185,23 +2209,23 @@
         <div class="year">SINCE 2019</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&q=80&w=400" alt="Men eating pill" style="aspect-ratio: 4/3;" />
+        <img src="{{ $getImageUrl('portfolio_9', 'https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_9', 'Portfolio Image 9') }}" style="aspect-ratio: 4/3;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400" alt="Tennis" style="aspect-ratio: 4/5;" />
+        <img src="{{ $getImageUrl('portfolio_10', 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_10', 'Portfolio Image 10') }}" style="aspect-ratio: 4/5;" />
         <div class="masonry-badge badge-ugc"><span>📱</span> UGC</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://ix-marketing.imgix.net/bg-remove_after.png?auto=format,compress&w=1446" alt="Pouch" style="aspect-ratio: 4/3;" />
+        <img src="{{ $getImageUrl('portfolio_12', 'https://ix-marketing.imgix.net/bg-remove_after.png?auto=format,compress&w=1446') }}" alt="{{ $getAltText('portfolio_12', 'Portfolio Image 12') }}" style="aspect-ratio: 4/3;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=400" alt="Baby" style="aspect-ratio: 1/1;" />
+        <img src="{{ $getImageUrl('portfolio_13', 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_13', 'Portfolio Image 13') }}" style="aspect-ratio: 1/1;" />
         <div class="masonry-badge badge-ugc"><span>📱</span> UGC</div>
       </div>
       <div class="masonry-item reveal">
-        <img src="https://images.unsplash.com/photo-1601288496920-b6154fe3626a?auto=format&fit=crop&q=80&w=400" alt="Swimwear" style="aspect-ratio: 4/5;" />
+        <img src="{{ $getImageUrl('portfolio_14', 'https://images.unsplash.com/photo-1601288496920-b6154fe3626a?auto=format&fit=crop&q=80&w=400') }}" alt="{{ $getAltText('portfolio_14', 'Portfolio Image 14') }}" style="aspect-ratio: 4/5;" />
         <div class="masonry-badge badge-studio"><span>📷</span> STUDIO</div>
       </div>
     </div>
@@ -2213,7 +2237,7 @@
       <div class="section-label">Why Partner With Us</div>
       <h2>Engineered for Creative Success</h2>
       <p class="section-sub">Discover the standards of design precision, commercial protection, and publishing compliance we build into every single project.</p>
-      
+
       <div class="benefits-layout">
         <!-- Interactive Wheel Visual -->
         <div class="benefits-interactive-wheel reveal">

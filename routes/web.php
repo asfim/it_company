@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\GraphicsDesignController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/graphics-design', [GraphicsDesignController::class, 'index'])->name('graphics-design.index');
+    Route::get('/graphics-design/{section}/edit', [GraphicsDesignController::class, 'edit'])->name('graphics-design.edit');
+    Route::put('/graphics-design/{section}', [GraphicsDesignController::class, 'update'])->name('graphics-design.update');
 });
 
 Route::prefix('services')->name('services.')->group(function () {
