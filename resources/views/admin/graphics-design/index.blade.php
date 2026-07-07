@@ -8,38 +8,7 @@
 </head>
 <body class="bg-gray-100">
     <div class="flex min-h-screen">
-        <aside class="w-72 bg-gray-800 text-white flex flex-col">
-            <div class="p-4 border-b border-gray-700">
-                <h2 class="text-xl font-bold">Admin Panel</h2>
-            </div>
-            <nav class="flex-1 p-4">
-                <ul class="space-y-2">
-                    <li>
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-2 rounded-md hover:bg-gray-700 transition">
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.homepage.settings.edit') }}" class="flex items-center px-4 py-2 rounded-md hover:bg-gray-700 transition">
-                            Homepage Manager
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.graphics-design.index') }}" class="flex items-center px-4 py-2 bg-gray-700 rounded-md hover:bg-gray-600 transition">
-                            Graphics Design
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="p-4 border-t border-gray-700">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="flex items-center w-full px-4 py-2 text-left hover:bg-gray-700 rounded-md transition">
-                        Logout
-                    </button>
-                </form>
-            </div>
-        </aside>
+        @include('admin.partials.sidebar')
 
         <main class="flex-1 p-8">
             <div class="mb-8">
