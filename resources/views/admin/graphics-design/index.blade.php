@@ -20,6 +20,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.homepage.settings.edit') }}" class="flex items-center px-4 py-2 rounded-md hover:bg-gray-700 transition">
+                            Homepage Manager
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.graphics-design.index') }}" class="flex items-center px-4 py-2 bg-gray-700 rounded-md hover:bg-gray-600 transition">
                             Graphics Design
                         </a>

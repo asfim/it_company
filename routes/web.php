@@ -22,6 +22,18 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/graphics-design', [GraphicsDesignController::class, 'index'])->name('graphics-design.index');
     Route::get('/graphics-design/{section}/edit', [GraphicsDesignController::class, 'edit'])->name('graphics-design.edit');
     Route::put('/graphics-design/{section}', [GraphicsDesignController::class, 'update'])->name('graphics-design.update');
+
+    // Homepage Manager
+    Route::get('/homepage/settings', [App\Http\Controllers\Admin\HomepageSettingsController::class, 'edit'])->name('homepage.settings.edit');
+    Route::put('/homepage/settings', [App\Http\Controllers\Admin\HomepageSettingsController::class, 'update'])->name('homepage.settings.update');
+
+    Route::resource('/homepage/services', App\Http\Controllers\Admin\HomepageServiceController::class)->except(['show'])->names('homepage.services');
+    Route::resource('/homepage/wcu', App\Http\Controllers\Admin\HomepageWcuController::class)->only(['index', 'edit', 'update'])->names('homepage.wcu');
+    Route::resource('/homepage/process', App\Http\Controllers\Admin\HomepageProcessController::class)->only(['index', 'edit', 'update'])->names('homepage.process');
+    Route::resource('/homepage/products', App\Http\Controllers\Admin\HomepageProductController::class)->except(['show'])->names('homepage.products');
+    Route::resource('/homepage/technologies', App\Http\Controllers\Admin\HomepageTechnologyController::class)->except(['show'])->names('homepage.technologies');
+    Route::resource('/homepage/team', App\Http\Controllers\Admin\HomepageTeamController::class)->except(['show'])->names('homepage.team');
+    Route::resource('/homepage/testimonials', App\Http\Controllers\Admin\HomepageTestimonialController::class)->except(['show'])->names('homepage.testimonials');
 });
 
 Route::prefix('services')->name('services.')->group(function () {

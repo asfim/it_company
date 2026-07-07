@@ -11,7 +11,23 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $services = \App\Models\HomepageService::orderBy('sort_order')->get();
+        $wcuCards = \App\Models\HomepageWcuCard::orderBy('sort_order')->get();
+        $processes = \App\Models\HomepageProcess::orderBy('sort_order')->get();
+        $products = \App\Models\HomepageProduct::orderBy('sort_order')->get();
+        $technologies = \App\Models\HomepageTechnology::orderBy('sort_order')->get();
+        $teamMembers = \App\Models\HomepageTeamMember::orderBy('sort_order')->get();
+        $testimonials = \App\Models\HomepageTestimonial::orderBy('sort_order')->get();
+
+        return view('welcome', compact(
+            'services',
+            'wcuCards',
+            'processes',
+            'products',
+            'technologies',
+            'teamMembers',
+            'testimonials'
+        ));
     }
 
     public function about()
