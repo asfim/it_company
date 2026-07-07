@@ -8,6 +8,25 @@
     @method('PUT')
 
     <div class="space-y-8">
+        <!-- Website Branding (Logo & Favicon) -->
+        <div>
+            <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-4">Website Branding (Logo & Favicon)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @foreach($settings->get('branding', []) as $setting)
+                    <div class="border border-gray-100 p-4 rounded bg-gray-50">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">{{ $setting->label }}</label>
+                        <input type="file" name="{{ $setting->key }}" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 mb-2" />
+                        @if(\App\Models\HomepageSetting::getValue($setting->key))
+                            <div class="mt-2">
+                                <span class="text-xs text-gray-400 block mb-1">Current File:</span>
+                                <img src="{{ \App\Models\HomepageSetting::getValue($setting->key) }}" class="h-16 w-auto object-contain rounded border border-gray-200 bg-white p-1" style="max-height: 80px;" />
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         <!-- Hero Section Settings -->
         <div>
             <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-4">Hero Section & Stats</h2>

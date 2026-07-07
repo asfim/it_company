@@ -6,6 +6,13 @@
     <title>@yield('title', 'Crowns IT') | Best Software Agency</title>
     <meta name="description" content="@yield('meta_description', 'Crowns IT is a premium software agency specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design. Build your digital future with Crowns IT.')">
     
+    <!-- Favicon -->
+    @if(\App\Models\HomepageSetting::getValue('site_favicon'))
+        <link rel="icon" type="image/x-icon" href="{{ \App\Models\HomepageSetting::getValue('site_favicon') }}">
+    @else
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    @endif
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,15 +39,19 @@
     <nav class="kastana-header">
         <div class="header-left">
             <a href="{{ url('/') }}" class="kastana-logo">
-                <div class="logo-dots">
-                    <span class="dot d1"></span>
-                    <span class="dot d2"></span>
-                    <span class="dot d3"></span>
-                    <span class="dot d4"></span>
-                </div>
-                <div class="logo-text">
-                    Crowns <span>IT</span>
-                </div>
+                @if(\App\Models\HomepageSetting::getValue('site_logo'))
+                    <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
+                @else
+                    <div class="logo-dots">
+                        <span class="dot d1"></span>
+                        <span class="dot d2"></span>
+                        <span class="dot d3"></span>
+                        <span class="dot d4"></span>
+                    </div>
+                    <div class="logo-text">
+                        Crowns <span>IT</span>
+                    </div>
+                @endif
             </a>
         </div>
 
@@ -126,15 +137,19 @@
                 <!-- Column 1: Brand -->
                 <div class="footer-col brand-col">
                     <a href="{{ url('/') }}" class="kastana-logo footer-logo">
-                        <div class="logo-dots">
-                            <span class="dot d1"></span>
-                            <span class="dot d2"></span>
-                            <span class="dot d3"></span>
-                            <span class="dot d4"></span>
-                        </div>
-                        <div class="logo-text">
-                            Crowns <span>IT</span>
-                        </div>
+                        @if(\App\Models\HomepageSetting::getValue('site_logo'))
+                            <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
+                        @else
+                            <div class="logo-dots">
+                                <span class="dot d1"></span>
+                                <span class="dot d2"></span>
+                                <span class="dot d3"></span>
+                                <span class="dot d4"></span>
+                            </div>
+                            <div class="logo-text">
+                                Crowns <span>IT</span>
+                            </div>
+                        @endif
                     </a>
                     <p class="footer-desc">Crafting high-performance digital experiences with precision and passion. Your partner in technological innovation.</p>
                     <div class="footer-socials">

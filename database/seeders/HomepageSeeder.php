@@ -16,6 +16,25 @@ class HomepageSeeder extends Seeder
 
         // 1. Seed homepage_settings
         $settings = [
+            // BRANDING
+            [
+                'key' => 'site_logo',
+                'value' => null,
+                'label' => 'Website Logo',
+                'type' => 'image',
+                'group' => 'branding',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'key' => 'site_favicon',
+                'value' => null,
+                'label' => 'Website Favicon',
+                'type' => 'image',
+                'group' => 'branding',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
             // HERO
             [
                 'key' => 'hero_tagline',
