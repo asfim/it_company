@@ -25,6 +25,7 @@
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -242,6 +243,12 @@
                     <label for="gs_name">Full Name <span class="gs-req">*</span></label>
                     <input type="text" id="gs_name" name="name" placeholder="Your full name" autocomplete="off">
                     <span class="gs-err" id="err_name"></span>
+                </div>
+
+                <div class="gs-field">
+                    <label for="gs_phone">Phone Number (with Country Code) <span class="gs-req">*</span></label>
+                    <input type="text" id="gs_phone" name="phone" placeholder="e.g. +88017XXXXXXXX" autocomplete="off">
+                    <span class="gs-err" id="err_phone"></span>
                 </div>
 
                 <div class="gs-field">
@@ -499,12 +506,44 @@
         .gs-modal-box { padding: 2rem 1.5rem 1.75rem; }
         .gs-modal-header h2 { font-size: 1.4rem; }
     }
+    
+    /* intl-tel-input overrides */
+    .iti {
+        width: 100% !important;
+        display: block !important;
+        color: black;
+    }
+    .iti__country-list {
+        z-index: 100000 !important;
+        color: #1f2937 !important;
+        max-width: 440px !important;
+    }
     </style>
 
+    <!-- intl-tel-input JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
     <script>
+    let iti;
+    document.addEventListener('DOMContentLoaded', () => {
+        const phoneInput = document.getElementById('gs_phone');
+        if (phoneInput) {
+            iti = window.intlTelInput(phoneInput, {
+                initialCountry: "bd",
+                separateDialCode: true,
+                preferredCountries: ["bd", "us", "gb", "ca"],
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+            });
+        }
+    });
+
     function openGetStartedModal() {
         document.getElementById('getStartedModal').classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Recalculate intl-tel-input width inside modal
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+        }, 100);
     }
     function closeGetStartedModal() {
         document.getElementById('getStartedModal').classList.remove('active');
@@ -523,6 +562,7 @@
         e.preventDefault();
 
         const name    = document.getElementById('gs_name');
+        const phone   = document.getElementById('gs_phone');
         const service = document.getElementById('gs_service');
         const message = document.getElementById('gs_message');
         const status  = document.getElementById('gs_status');
@@ -531,9 +571,9 @@
         const submitBtn = document.getElementById('gs_submit');
 
         // Reset errors
-        [name, message].forEach(el => el.classList.remove('gs-invalid'));
+        [name, phone, message].forEach(el => el.classList.remove('gs-invalid'));
         document.querySelector('.gs-select-wrapper').classList.remove('gs-invalid');
-        ['err_name','err_service','err_message'].forEach(id => document.getElementById(id).textContent = '');
+        ['err_name','err_phone','err_service','err_message'].forEach(id => document.getElementById(id).textContent = '');
         status.style.display = 'none';
         status.className = 'gs-status';
 
@@ -542,6 +582,15 @@
         if (!name.value.trim()) {
             name.classList.add('gs-invalid');
             document.getElementById('err_name').textContent = 'Please enter your full name.';
+            valid = false;
+        }
+        if (!phone.value.trim()) {
+            phone.classList.add('gs-invalid');
+            document.getElementById('err_phone').textContent = 'Please enter your phone number.';
+            valid = false;
+        } else if (iti && !iti.isValidNumber()) {
+            phone.classList.add('gs-invalid');
+            document.getElementById('err_phone').textContent = 'Please enter a valid phone number with country code.';
             valid = false;
         }
         if (!service.value) {
@@ -564,6 +613,7 @@
         try {
             const formData = new FormData();
             formData.append('name',    name.value.trim());
+            formData.append('phone',   iti ? iti.getNumber() : phone.value.trim());
             formData.append('service', service.value);
             formData.append('message', message.value.trim());
             formData.append('_token',  document.querySelector('input[name=_token]').value);

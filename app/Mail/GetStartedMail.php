@@ -13,15 +13,17 @@ class GetStartedMail extends Mailable
     use Queueable, SerializesModels;
 
     public string $senderName;
+    public string $senderPhone;
     public string $selectedService;
     public string $senderMessage;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(string $name, string $service, string $message)
+    public function __construct(string $name, string $phone, string $service, string $message)
     {
         $this->senderName    = $name;
+        $this->senderPhone   = $phone;
         $this->selectedService = $service;
         $this->senderMessage = $message;
     }

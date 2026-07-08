@@ -39,6 +39,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/homepage/technologies', App\Http\Controllers\Admin\HomepageTechnologyController::class)->except(['show'])->names('homepage.technologies');
     Route::resource('/homepage/team', App\Http\Controllers\Admin\HomepageTeamController::class)->except(['show'])->names('homepage.team');
     Route::resource('/homepage/testimonials', App\Http\Controllers\Admin\HomepageTestimonialController::class)->except(['show'])->names('homepage.testimonials');
+
+    // Get Started Submissions
+    Route::get('/get-started', [App\Http\Controllers\Admin\GetStartedSubmissionController::class, 'index'])->name('get-started.index');
+    Route::delete('/get-started/{id}', [App\Http\Controllers\Admin\GetStartedSubmissionController::class, 'destroy'])->name('get-started.destroy');
 });
 
 Route::prefix('services')->name('services.')->group(function () {

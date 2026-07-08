@@ -50,6 +50,15 @@
 
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
                 <tr>
+                  <td style="background:#f8faf9;border:1px solid rgba(34,197,94,0.15);border-radius:12px;padding:18px 20px;margin-bottom:12px;display:block;">
+                    <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#22c55e;letter-spacing:1px;text-transform:uppercase;">Phone Number</p>
+                    <p style="margin:0;font-size:17px;font-weight:600;color:#1a2744;">{{ $senderPhone }}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+                <tr>
                   <td style="background:#f8faf9;border:1px solid rgba(34,197,94,0.15);border-radius:12px;padding:18px 20px;">
                     <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#22c55e;letter-spacing:1px;text-transform:uppercase;">Interested Service</p>
                     <p style="margin:0;font-size:17px;font-weight:600;color:#1a2744;">{{ $selectedService }}</p>

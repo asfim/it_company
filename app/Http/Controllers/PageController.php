@@ -62,6 +62,7 @@ class PageController extends Controller
     {
         $validated = $request->validate([
             'name'    => 'required|string|max:100',
+            'phone'   => 'required|string|max:30',
             'service' => 'required|string|max:150',
             'message' => 'required|string|max:3000',
         ]);
@@ -69,6 +70,7 @@ class PageController extends Controller
         // Always save to database first — no submission is ever lost
         $submission = \DB::table('get_started_submissions')->insertGetId([
             'name'       => $validated['name'],
+            'phone'      => $validated['phone'],
             'service'    => $validated['service'],
             'message'    => $validated['message'],
             'mail_sent'  => false,
@@ -81,6 +83,7 @@ class PageController extends Controller
             Mail::to('info@crownsit.com')->send(
                 new GetStartedMail(
                     $validated['name'],
+                    $validated['phone'],
                     $validated['service'],
                     $validated['message']
                 )
