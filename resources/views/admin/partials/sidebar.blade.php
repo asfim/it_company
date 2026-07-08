@@ -1,6 +1,11 @@
-<aside class="w-64 bg-gray-800 text-white flex flex-col shadow-lg h-screen sticky top-0 overflow-y-auto">
-    <div class="p-4 border-b border-gray-700">
+<aside id="sidebar-menu" class="w-64 bg-gray-800 text-white flex flex-col shadow-lg h-screen fixed md:sticky top-0 left-0 z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+    <div class="p-4 border-b border-gray-700 flex items-center justify-between">
         <h2 class="text-xl font-bold">Admin Panel</h2>
+        <button onclick="toggleSidebar()" class="md:hidden text-gray-400 hover:text-white p-1 cursor-pointer focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
     </div>
     <nav class="flex-1 p-4">
         <ul class="space-y-2">
