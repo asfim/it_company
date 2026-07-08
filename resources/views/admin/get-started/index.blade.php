@@ -16,7 +16,7 @@
     <div class="flex min-h-screen">
         @include('admin.partials.sidebar')
 
-        <main class="flex-1 p-8">
+        <main class="flex-1">
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-800">Get Started Submissions</h1>
                 <p class="text-gray-600 mt-2">View and manage requests submitted from the "Get Started" header popup modal.</p>

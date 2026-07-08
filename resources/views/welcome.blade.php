@@ -138,7 +138,7 @@
             <div class="clock-center">
                 <h3>SERVICES</h3>
                 <br>
-                <button class="btn-read-more">More Services</button>
+                <button class="btn-read-more" onclick="openGetStartedModal()">Get Started</button>
 
 
             </div>
