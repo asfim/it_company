@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    $sections = $sections ?? collect();
+    $getImageUrl = fn ($slug, $fallback) => optional($sections->get($slug))->image_url ?? $fallback;
+    $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
+@endphp
+
 @section('title', 'Custom Software Solutions & Engineering | Crowns IT')
 @section('meta_description', 'Crowns IT designs and builds enterprise-grade custom software, ERP platforms, bespoke CRM panels, API pipelines, and system automation solutions.')
 
@@ -30,7 +36,7 @@
         </div>
         <div class="split-image reveal">
             <div class="tab-image">
-                <img src="{{ asset('images/webapp_side_img.png') }}" alt="Enterprise Custom Software Development UI Dashboard" loading="lazy">
+                <img src="{{ $getImageUrl('split_image', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('split_image', 'Enterprise Custom Software Development UI Dashboard') }}" loading="lazy">
             </div>
         </div>
     </div>
@@ -56,7 +62,7 @@
 
             <!-- Capsule Center (Developer Coding) -->
             <div class="stats-capsule stats-developer-img">
-                <img src="{{ asset('images/webapp_side_img.png') }}" alt="Crowns IT Developer working on custom web development" loading="lazy">
+                <img src="{{ $getImageUrl('stats_center_image', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('stats_center_image', 'Crowns IT Developer working on custom web development') }}" loading="lazy">
             </div>
 
             <!-- Arch Blue (50+ Products Stats) -->
@@ -99,7 +105,7 @@
             <div class="tab-pane active" id="tab-erp">
                 <div class="tab-split">
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_erp.png') }}" alt="Custom Enterprise Resource Planning ERP Software System" loading="lazy">
+                        <img src="{{ $getImageUrl('service_erp', asset('images/webapp_erp.png')) }}" alt="{{ $getAltText('service_erp', 'Custom Enterprise Resource Planning ERP Software System') }}" loading="lazy">
                     </div>
                     <div class="tab-text">
                         <h3>Enterprise Resource Planning (ERP)</h3>
@@ -118,7 +124,7 @@
                         <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Learn more about Custom CRMs">Request a Demo</a>
                     </div>
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_ecommerce.png') }}" alt="Bespoke Customer Relationship Management CRM Panel" loading="lazy">
+                        <img src="{{ $getImageUrl('service_crm', asset('images/webapp_ecommerce.png')) }}" alt="{{ $getAltText('service_crm', 'Bespoke Customer Relationship Management CRM Panel') }}" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -127,7 +133,7 @@
             <div class="tab-pane" id="tab-automation">
                 <div class="tab-split">
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_pos.png') }}" alt="Custom Scripting and Process Automation" loading="lazy">
+                        <img src="{{ $getImageUrl('service_pos', asset('images/webapp_pos.png')) }}" alt="{{ $getAltText('service_pos', 'Custom Scripting and Process Automation') }}" loading="lazy">
                     </div>
                     <div class="tab-text">
                         <h3>Process Automation & Scripting</h3>
@@ -146,7 +152,7 @@
                         <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Learn more about Desktop Applications">Request a Quote</a>
                     </div>
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_side_img.png') }}" alt="Cross Platform Desktop App Development Interface" loading="lazy">
+                        <img src="{{ $getImageUrl('service_desktop', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('service_desktop', 'Cross Platform Desktop App Development Interface') }}" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -155,7 +161,7 @@
             <div class="tab-pane" id="tab-api">
                 <div class="tab-split">
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_lc.png') }}" alt="Custom REST and GraphQL API Engineering" loading="lazy">
+                        <img src="{{ $getImageUrl('service_api', asset('images/webapp_lc.png')) }}" alt="{{ $getAltText('service_api', 'Custom REST and GraphQL API Engineering') }}" loading="lazy">
                     </div>
                     <div class="tab-text">
                         <h3>Fast & Secure API Pipelines</h3>
@@ -174,7 +180,7 @@
                         <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Learn more about Database Design">Request a Quote</a>
                     </div>
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_side_img.png') }}" alt="High Availability Database System Design and Support" loading="lazy">
+                        <img src="{{ $getImageUrl('service_db', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('service_db', 'High Availability Database System Design and Support') }}" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -183,7 +189,7 @@
             <div class="tab-pane" id="tab-integration">
                 <div class="tab-split">
                     <div class="tab-image">
-                        <img src="{{ asset('images/webapp_side_img.png') }}" alt="Legacy Systems Integration Solutions" loading="lazy">
+                        <img src="{{ $getImageUrl('service_legacy', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('service_legacy', 'Legacy Systems Integration Solutions') }}" loading="lazy">
                     </div>
                     <div class="tab-text">
                         <h3>Legacy & Modern Systems Integration</h3>

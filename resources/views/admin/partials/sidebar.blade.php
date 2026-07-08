@@ -29,6 +29,52 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.homepage.settings.edit') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->routeIs('admin.homepage.*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Homepage Manager
+                </a>
+            </li>
+            
+            <!-- Services Manager -->
+            <li class="px-4 py-2 mt-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Services
+            </li>
+            <li>
+                <a href="{{ route('admin.services.index', 'web-app') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->is('admin/services/web-app*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Web Application
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.services.index', 'web-dev') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->is('admin/services/web-dev*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                    Web Development
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.services.index', 'software') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->is('admin/services/software*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    Custom Software
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.services.index', 'marketing') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->is('admin/services/marketing*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                    </svg>
+                    Digital Marketing
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.graphics-design.index') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->routeIs('admin.graphics-design.*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -37,11 +83,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.homepage.settings.edit') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->routeIs('admin.homepage.*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                <a href="{{ route('admin.services.index', 'ui-ux') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->is('admin/services/ui-ux*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
-                    Homepage Manager
+                    UI/UX Design
                 </a>
             </li>
             <li>

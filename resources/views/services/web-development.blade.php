@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    $sections = $sections ?? collect();
+    $getImageUrl = fn ($slug, $fallback) => optional($sections->get($slug))->image_url ?? $fallback;
+    $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
+@endphp
+
 @section('title', 'Custom Web Development Services | Crowns IT')
 @section('meta_description', 'Crowns IT delivers premium web development services. We build responsive, lightning-fast, and SEO-optimized corporate websites, landing pages, blogs, and portals.')
 
@@ -38,8 +44,8 @@
             </div>
             <div class="split-image reveal">
                 <div class="tab-image">
-                    <img src="{{ asset('images/webapp_side_img.png') }}"
-                        alt="Custom Web Development Project Interface on a Laptop Mockup" loading="lazy">
+                    <img src="{{ $getImageUrl('split_image', asset('images/webapp_side_img.png')) }}"
+                        alt="{{ $getAltText('split_image', 'Custom Web Development Project Interface on a Laptop Mockup') }}" loading="lazy">
                 </div>
             </div>
         </div>
@@ -70,8 +76,8 @@
                 <div class="tab-pane active" id="tab-corporate">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_systems.png') }}"
-                                alt="Professional Corporate Web Development Design" loading="lazy">
+                            <img src="{{ $getImageUrl('card_corporate', asset('images/uiux_systems.png')) }}"
+                                alt="{{ $getAltText('card_corporate', 'Professional Corporate Web Development Design') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Corporate Websites</h3>
@@ -98,7 +104,7 @@
                                 aria-label="Learn more about Landing Pages">Request a Quote</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_visual.png') }}" alt="High Converting Landing Page Web Design UI"
+                            <img src="{{ $getImageUrl('card_landing', asset('images/uiux_visual.png')) }}" alt="{{ $getAltText('card_landing', 'High Converting Landing Page Web Design UI') }}"
                                 loading="lazy">
                         </div>
                     </div>
@@ -108,8 +114,8 @@
                 <div class="tab-pane" id="tab-blog">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_research.png') }}"
-                                alt="News Portal and Editorial Blog Web Development" loading="lazy">
+                            <img src="{{ $getImageUrl('card_blog', asset('images/uiux_research.png')) }}"
+                                alt="{{ $getAltText('card_blog', 'News Portal and Editorial Blog Web Development') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Blogs & News Portals</h3>
@@ -136,8 +142,8 @@
                                 aria-label="Learn more about Portfolio Sites">Request a Quote</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_visual.png') }}"
-                                alt="Creative Agency Portfolio Web Development Showcase" loading="lazy">
+                            <img src="{{ $getImageUrl('card_portfolio', asset('images/uiux_visual.png')) }}"
+                                alt="{{ $getAltText('card_portfolio', 'Creative Agency Portfolio Web Development Showcase') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -146,7 +152,7 @@
                 <div class="tab-pane" id="tab-realestate">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_wireframes.png') }}" alt="Real Estate Property Directory Web Design"
+                            <img src="{{ $getImageUrl('card_realestate', asset('images/uiux_wireframes.png')) }}" alt="{{ $getAltText('card_realestate', 'Real Estate Property Directory Web Design') }}"
                                 loading="lazy">
                         </div>
                         <div class="tab-text">
@@ -174,8 +180,8 @@
                                 aria-label="Learn more about Educational Portals">Request a Quote</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_systems.png') }}"
-                                alt="Educational University Web Portal Design" loading="lazy">
+                            <img src="{{ $getImageUrl('card_education', asset('images/uiux_systems.png')) }}"
+                                alt="{{ $getAltText('card_education', 'Educational University Web Portal Design') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -184,8 +190,8 @@
                 <div class="tab-pane" id="tab-nonprofit">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_research.png') }}"
-                                alt="Non Profit NGO Community Web Development" loading="lazy">
+                            <img src="{{ $getImageUrl('card_nonprofit', asset('images/uiux_research.png')) }}"
+                                alt="{{ $getAltText('card_nonprofit', 'Non Profit NGO Community Web Development') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>NGO & Non-Profit Websites</h3>

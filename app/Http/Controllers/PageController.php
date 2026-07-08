@@ -100,22 +100,26 @@ class PageController extends Controller
 
     public function webApplication()
     {
-        return view('services.web-application');
+        $sections = \App\Models\ServiceSection::where('service_key', 'web-app')->orderBy('sort_order')->get()->keyBy('slug');
+        return view('services.web-application', compact('sections'));
     }
 
     public function webDevelopment()
     {
-        return view('services.web-development');
+        $sections = \App\Models\ServiceSection::where('service_key', 'web-dev')->orderBy('sort_order')->get()->keyBy('slug');
+        return view('services.web-development', compact('sections'));
     }
 
     public function software()
     {
-        return view('services.software');
+        $sections = \App\Models\ServiceSection::where('service_key', 'software')->orderBy('sort_order')->get()->keyBy('slug');
+        return view('services.software', compact('sections'));
     }
 
     public function digitalMarketing()
     {
-        return view('services.digital-marketing');
+        $sections = \App\Models\ServiceSection::where('service_key', 'marketing')->orderBy('sort_order')->get()->keyBy('slug');
+        return view('services.digital-marketing', compact('sections'));
     }
 
     public function graphicsDesign()
@@ -127,7 +131,8 @@ class PageController extends Controller
 
     public function uiUxDesign()
     {
-        return view('services.ui-ux-design');
+        $sections = \App\Models\ServiceSection::where('service_key', 'ui-ux')->orderBy('sort_order')->get()->keyBy('slug');
+        return view('services.ui-ux-design', compact('sections'));
     }
 
     public function blog()

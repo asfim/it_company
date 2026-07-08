@@ -23,6 +23,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/graphics-design/{section}/edit', [GraphicsDesignController::class, 'edit'])->name('graphics-design.edit');
     Route::put('/graphics-design/{section}', [GraphicsDesignController::class, 'update'])->name('graphics-design.update');
 
+    // Generic Services Manager
+    Route::get('/services/{service_key}', [App\Http\Controllers\Admin\ServiceSectionController::class, 'index'])->name('services.index');
+    Route::get('/services/{service_key}/{section}/edit', [App\Http\Controllers\Admin\ServiceSectionController::class, 'edit'])->name('services.edit');
+    Route::put('/services/{service_key}/{section}', [App\Http\Controllers\Admin\ServiceSectionController::class, 'update'])->name('services.update');
+
     // Homepage Manager
     Route::get('/homepage/settings', [App\Http\Controllers\Admin\HomepageSettingsController::class, 'edit'])->name('homepage.settings.edit');
     Route::put('/homepage/settings', [App\Http\Controllers\Admin\HomepageSettingsController::class, 'update'])->name('homepage.settings.update');

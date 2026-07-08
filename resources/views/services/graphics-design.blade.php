@@ -243,6 +243,24 @@
   border-right: 2px solid rgba(255, 255, 255, 0.7);
 }
 
+.image-after img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.before-uploaded-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+}
+
 .ba-slider {
   position: absolute;
   inset: 0;
@@ -284,10 +302,31 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 1rem;
-  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
-  z-index: 4;
   pointer-events: none;
+}
+
+/* Card Visual Before-After Override */
+.card-visual-art .ba-box {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  aspect-ratio: auto;
+  animation: none;
+}
+.card-visual-art .ba-button {
+  width: 32px;
+  height: 32px;
+  font-size: 0.8rem;
+}
+.card-visual-art .clipping-overlay-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
 }
 
 /* Sketch & Vector Canvas Designs */
@@ -1744,25 +1783,33 @@
       <!-- Before After Sketch to Vector Slider -->
       <div class="ba-box reveal">
         <div class="ba-image-container">
-          <!-- After (Vector Canvas) -->
-          <div class="image-after vector-canvas">
-            <div class="vector-logo-glow">
-              <span class="vector-anchor anchor-n"></span>
-              <span class="vector-anchor anchor-e"></span>
-              <span class="vector-anchor anchor-s"></span>
-              <span class="vector-anchor anchor-w"></span>
-              <i class="fa-solid fa-gem vector-logo-symbol"></i>
-            </div>
-            <div class="vector-brand-name">Crowns IT</div>
-          </div>
-          <!-- Before (Sketch Canvas) -->
-          <div class="image-before">
-            <div class="sketch-canvas-inner">
-              <div class="sketch-layout-guides">
-                <i class="fa-regular fa-gem sketch-logo-symbol"></i>
+          <!-- After (Vector Canvas / Custom Image) -->
+          <div class="image-after @if(!$getImageUrl('hero_after_image', null)) vector-canvas @endif">
+            @if($getImageUrl('hero_after_image', null))
+              <img src="{{ $getImageUrl('hero_after_image', null) }}" alt="{{ $getAltText('hero_after_image', 'Finished Graphic') }}" />
+            @else
+              <div class="vector-logo-glow">
+                <span class="vector-anchor anchor-n"></span>
+                <span class="vector-anchor anchor-e"></span>
+                <span class="vector-anchor anchor-s"></span>
+                <span class="vector-anchor anchor-w"></span>
+                <i class="fa-solid fa-gem vector-logo-symbol"></i>
               </div>
-              <div class="sketch-brand-name">Draft Layout</div>
-            </div>
+              <div class="vector-brand-name">Crowns IT</div>
+            @endif
+          </div>
+          <!-- Before (Sketch Canvas / Custom Image) -->
+          <div class="image-before">
+            @if($getImageUrl('hero_before_image', null))
+              <img src="{{ $getImageUrl('hero_before_image', null) }}" alt="{{ $getAltText('hero_before_image', 'Original Sketch') }}" class="before-uploaded-img" />
+            @else
+              <div class="sketch-canvas-inner">
+                <div class="sketch-layout-guides">
+                  <i class="fa-regular fa-gem sketch-logo-symbol"></i>
+                </div>
+                <div class="sketch-brand-name">Draft Layout</div>
+              </div>
+            @endif
           </div>
         </div>
         <input type="range" min="0" max="100" value="50" class="ba-slider">
@@ -2046,14 +2093,21 @@
         <div class="service-card">
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-scissors"></i></span>
-            <div class="card-visual-art">
-              <div class="vis-bgremove-container">
-                <div class="bgremove-side left">
-                  <i class="fa-solid fa-bag-shopping bgremove-item"></i>
+            <div class="card-visual-art" style="padding:0; overflow:hidden; width:100%; height:100%;">
+              <div class="ba-box">
+                <div class="ba-image-container">
+                  <!-- After Image -->
+                  <div class="image-after">
+                    <img src="{{ $getImageUrl('service_bgremove_after', 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_bgremove_after', 'Background Removal After') }}" />
+                  </div>
+                  <!-- Before Image -->
+                  <div class="image-before">
+                    <img src="{{ $getImageUrl('service_bgremove_before', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_bgremove_before', 'Background Removal Before') }}" class="before-uploaded-img" />
+                  </div>
                 </div>
-                <div class="bgremove-side right">
-                  <i class="fa-solid fa-bag-shopping bgremove-item"></i>
-                </div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-line"></div>
+                <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
               </div>
             </div>
           </div>
@@ -2076,14 +2130,21 @@
         <div class="service-card">
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-            <div class="card-visual-art">
-              <div class="vis-retouch-comparison">
-                <div class="retouch-side left">
-                  <i class="fa-solid fa-shirt retouch-icon"></i>
+            <div class="card-visual-art" style="padding:0; overflow:hidden; width:100%; height:100%;">
+              <div class="ba-box">
+                <div class="ba-image-container">
+                  <!-- After Image -->
+                  <div class="image-after">
+                    <img src="{{ $getImageUrl('service_retouch_after', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_retouch_after', 'Photo Retouching After') }}" />
+                  </div>
+                  <!-- Before Image -->
+                  <div class="image-before">
+                    <img src="{{ $getImageUrl('service_retouch_before', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600&sat=-40&con=-10') }}" alt="{{ $getAltText('service_retouch_before', 'Photo Retouching Before') }}" class="before-uploaded-img" />
+                  </div>
                 </div>
-                <div class="retouch-side right">
-                  <i class="fa-solid fa-shirt retouch-icon"></i>
-                </div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-line"></div>
+                <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
               </div>
             </div>
           </div>
@@ -2106,11 +2167,28 @@
         <div class="service-card">
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-bezier-curve"></i></span>
-            <div class="card-visual-art">
-              <div class="vis-clipping-path">
-                <i class="fa-solid fa-shoe-prints clipping-item"></i>
-                <div class="clipping-vector-path"></div>
-                <i class="fa-solid fa-pen-nib clipping-pen"></i>
+            <div class="card-visual-art" style="padding:0; overflow:hidden; width:100%; height:100%;">
+              <div class="ba-box">
+                <div class="ba-image-container">
+                  <!-- After Image -->
+                  <div class="image-after">
+                    <img src="{{ $getImageUrl('service_clipping_after', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_clipping_after', 'Clipping Path After') }}" />
+                    <svg class="clipping-overlay-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <path d="M15,50 C15,25 35,15 50,15 C65,15 85,25 85,50 C85,75 65,85 50,85 C35,85 15,75 15,50 Z" stroke="var(--accent)" stroke-width="2" fill="none" stroke-dasharray="4,4" />
+                      <circle cx="50" cy="15" r="2" fill="#fff" stroke="var(--accent2)" stroke-width="1" />
+                      <circle cx="85" cy="50" r="2" fill="#fff" stroke="var(--accent2)" stroke-width="1" />
+                      <circle cx="50" cy="85" r="2" fill="#fff" stroke="var(--accent2)" stroke-width="1" />
+                      <circle cx="15" cy="50" r="2" fill="#fff" stroke="var(--accent2)" stroke-width="1" />
+                    </svg>
+                  </div>
+                  <!-- Before Image -->
+                  <div class="image-before">
+                    <img src="{{ $getImageUrl('service_clipping_before', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600&con=-20') }}" alt="{{ $getAltText('service_clipping_before', 'Clipping Path Before') }}" class="before-uploaded-img" />
+                  </div>
+                </div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-line"></div>
+                <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
               </div>
             </div>
           </div>
@@ -2133,10 +2211,21 @@
         <div class="service-card">
           <div class="card-visual-container">
             <span class="card-icon-tag"><i class="fa-solid fa-shirt"></i></span>
-            <div class="card-visual-art">
-              <div class="vis-ghost-mannequin">
-                <i class="fa-solid fa-shirt ghost-apparel"></i>
-                <div class="ghost-hollow-dots"></div>
+            <div class="card-visual-art" style="padding:0; overflow:hidden; width:100%; height:100%;">
+              <div class="ba-box">
+                <div class="ba-image-container">
+                  <!-- After Image -->
+                  <div class="image-after">
+                    <img src="{{ $getImageUrl('service_ghost_after', 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_ghost_after', 'Ghost Mannequin After') }}" />
+                  </div>
+                  <!-- Before Image -->
+                  <div class="image-before">
+                    <img src="{{ $getImageUrl('service_ghost_before', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600') }}" alt="{{ $getAltText('service_ghost_before', 'Ghost Mannequin Before') }}" class="before-uploaded-img" />
+                  </div>
+                </div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-line"></div>
+                <div class="ba-button"><i class="fa-solid fa-left-right"></i></div>
               </div>
             </div>
           </div>
@@ -2388,36 +2477,54 @@
 
 @push('scripts')
 <script>
-  // Before-After Slider
-  function initBeforeAfterSlider() {
-    const container = document.querySelector('.ba-box');
-    if (!container) return;
+  // Before-After Sliders
+  function initBeforeAfterSliders() {
+    const containers = document.querySelectorAll('.ba-box');
+    containers.forEach(container => {
+      const slider = container.querySelector('.ba-slider');
+      const imageBefore = container.querySelector('.image-before');
+      const line = container.querySelector('.ba-line');
+      const button = container.querySelector('.ba-button');
+      const inner = container.querySelector('.sketch-canvas-inner');
+      const uploadedImg = container.querySelector('.before-uploaded-img');
 
-    const slider = container.querySelector('.ba-slider');
-    const imageBefore = container.querySelector('.image-before');
-    const line = container.querySelector('.ba-line');
-    const button = container.querySelector('.ba-button');
-    const inner = container.querySelector('.sketch-canvas-inner');
+      if (!slider || !imageBefore) return;
 
-    if (!slider || !imageBefore || !inner) return;
+      const updateSlider = (value) => {
+        imageBefore.style.width = value + '%';
+        if (line) line.style.left = value + '%';
+        if (button) button.style.left = value + '%';
+        
+        const currentWidth = container.offsetWidth;
+        if (inner) {
+          inner.style.width = currentWidth + 'px';
+        }
+        if (uploadedImg) {
+          uploadedImg.style.width = currentWidth + 'px';
+        }
+      };
 
-    const updateSlider = (value) => {
-      imageBefore.style.width = value + '%';
-      line.style.left = value + '%';
-      button.style.left = value + '%';
-      inner.style.width = container.offsetWidth + 'px';
-    };
+      slider.addEventListener('input', (e) => {
+        updateSlider(e.target.value);
+      });
 
-    slider.addEventListener('input', (e) => {
-      updateSlider(e.target.value);
+      // Handle resize
+      window.addEventListener('resize', () => {
+        updateSlider(slider.value);
+      });
+
+      // Recalculate slider width when visibility changes (tab filter display change)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateSlider(slider.value);
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(container);
+
+      updateSlider(50);
     });
-
-    // Handle resize
-    window.addEventListener('resize', () => {
-      updateSlider(slider.value);
-    });
-
-    updateSlider(50);
   }
 
   // Filter Services Grid
@@ -2436,6 +2543,11 @@
         card.style.display = 'none';
       }
     });
+
+    // Trigger window resize event after cards animate in to update slider layout widths
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 150);
   }
 
   // Benefits Detail Switch
@@ -2478,7 +2590,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    initBeforeAfterSlider();
+    initBeforeAfterSliders();
     initFaqAccordion();
     initScrollReveal();
   });

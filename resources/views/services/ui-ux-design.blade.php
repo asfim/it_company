@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    $sections = $sections ?? collect();
+    $getImageUrl = fn ($slug, $fallback) => optional($sections->get($slug))->image_url ?? $fallback;
+    $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
+@endphp
+
 @section('title', 'Modern UI/UX Design & Clickable Prototypes | Crowns IT')
 @section('meta_description', 'Crowns IT delivers premium, user-centric UI/UX design. We design highly intuitive web interfaces, mobile application layouts, Figma wireframes, interactive prototypes, and scalable brand design systems.')
 
@@ -59,7 +65,7 @@
             </div>
             <div class="split-image reveal">
                 <div class="tab-image">
-                    <img src="{{ asset('images/webapp_side_img.png') }}" alt="UI/UX Design High-Fidelity App Wireframe and Design Tokens" loading="lazy">
+                    <img src="{{ $getImageUrl('split_image', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('split_image', 'UI/UX Design High-Fidelity App Wireframe and Design Tokens') }}" loading="lazy">
                 </div>
             </div>
         </div>
@@ -89,7 +95,7 @@
 
                 <!-- Center Capsule: Design tool illustration -->
                 <div class="stats-capsule stats-developer-img">
-                    <img src="{{ asset('images/webapp_ecommerce.png') }}" alt="Premium interactive E-Commerce design interface mockup" loading="lazy">
+                    <img src="{{ $getImageUrl('stats_center_image', asset('images/webapp_ecommerce.png')) }}" alt="{{ $getAltText('stats_center_image', 'Premium interactive E-Commerce design interface mockup') }}" loading="lazy">
                 </div>
 
                 <!-- Arch 2: Mockups Stats -->
@@ -130,7 +136,7 @@
                 <div class="tab-pane active" id="tab-research">
                     <div class="tab-split">
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_research.png') }}" alt="User Persona Research and Empathy Mapping Stage" loading="lazy">
+                          <img src="{{ $getImageUrl('service_user_research', asset('images/uiux_research.png')) }}" alt="{{ $getAltText('service_user_research', 'User Persona Research and Empathy Mapping Stage') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>User Research & Brand Strategy</h3>
@@ -149,7 +155,7 @@
                             <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Learn about wireframes">Explore UX Blueprinting</a>
                         </div>
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_wireframes.png') }}" alt="Interactive UX Wireframe blueprints and structure mockups" loading="lazy">
+                          <img src="{{ $getImageUrl('service_wireframing', asset('images/uiux_wireframes.png')) }}" alt="{{ $getAltText('service_wireframing', 'Interactive UX Wireframe blueprints and structure mockups') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -158,7 +164,7 @@
                 <div class="tab-pane" id="tab-ui">
                     <div class="tab-split">
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_visual.png') }}" alt="Stunning High-Fidelity UI and Visual System" loading="lazy">
+                          <img src="{{ $getImageUrl('service_ui_design', asset('images/uiux_visual.png')) }}" alt="{{ $getAltText('service_ui_design', 'Stunning High-Fidelity UI and Visual System') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>High-Fidelity UI & Visual Craftsmanship</h3>
@@ -177,7 +183,7 @@
                             <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Setup Design Systems">Create Design System</a>
                         </div>
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_systems.png') }}" alt="Figma scalable component library and style tokens guide" loading="lazy">
+                          <img src="{{ $getImageUrl('service_design_system', asset('images/uiux_systems.png')) }}" alt="{{ $getAltText('service_design_system', 'Figma scalable component library and style tokens guide') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -186,7 +192,7 @@
                 <div class="tab-pane" id="tab-testing">
                     <div class="tab-split">
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_testing.png') }}" alt="Usability testing and live user session mapping" loading="lazy">
+                          <img src="{{ $getImageUrl('service_usability_testing', asset('images/uiux_testing.png')) }}" alt="{{ $getAltText('service_usability_testing', 'Usability testing and live user session mapping') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Usability Testing & Accessibility Audits</h3>

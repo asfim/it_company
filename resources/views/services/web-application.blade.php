@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    $sections = $sections ?? collect();
+    $getImageUrl = fn ($slug, $fallback) => optional($sections->get($slug))->image_url ?? $fallback;
+    $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
+@endphp
+
 @section('title', 'Custom Web Application Development Services | Crowns IT')
 @section('meta_description', 'Crowns IT offers premier custom web application development services. We build scalable, secure, and robust web apps, E-Commerce platforms, ERP, POS, and industry-specific software solutions.')
 
@@ -40,8 +46,8 @@
             </div>
             <div class="split-image reveal">
                 <div class="tab-image">
-                    <img src="{{ asset('images/webapp_side_img.png') }}"
-                        alt="Custom Web Application Development Dashboard UI Interface by Crowns IT" loading="lazy">
+                    <img src="{{ $getImageUrl('split_image', asset('images/webapp_side_img.png')) }}"
+                        alt="{{ $getAltText('split_image', 'Custom Web Application Development Dashboard UI Interface by Crowns IT') }}" loading="lazy">
                 </div>
             </div>
         </div>
@@ -74,8 +80,8 @@
 
                 <!-- Capsule Center (Developer Coding) -->
                 <div class="stats-capsule stats-developer-img">
-                    <img src="{{ asset('images/webapp_side_img.png') }}"
-                        alt="Crowns IT Developer working on custom web development" loading="lazy">
+                    <img src="{{ $getImageUrl('stats_center_image', asset('images/webapp_side_img.png')) }}"
+                        alt="{{ $getAltText('stats_center_image', 'Crowns IT Developer working on custom web development') }}" loading="lazy">
                 </div>
 
                 <!-- Arch Blue (50+ Products Stats) -->
@@ -120,8 +126,8 @@
                 <div class="tab-pane active" id="tab-ecommerce">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_visual.png') }}"
-                                alt="Custom E-Commerce Web Application Platform Design" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_ecom', asset('images/uiux_visual.png')) }}"
+                                alt="{{ $getAltText('tab_ecom', 'Custom E-Commerce Web Application Platform Design') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>E-Commerce Web Platforms</h3>
@@ -150,8 +156,8 @@
                                 aria-label="Learn more about POS Systems">Request a Demo</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_systems.png') }}"
-                                alt="Modern Cloud-Based Point of Sale POS Software Dashboard" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_pos', asset('images/uiux_systems.png')) }}"
+                                alt="{{ $getAltText('tab_pos', 'Modern Cloud-Based Point of Sale POS Software Dashboard') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -160,8 +166,8 @@
                 <div class="tab-pane" id="tab-lc">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_wireframes.png') }}"
-                                alt="Letter of Credit LC Management Trade Finance Software Interface" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_lc', asset('images/uiux_wireframes.png')) }}"
+                                alt="{{ $getAltText('tab_lc', 'Letter of Credit LC Management Trade Finance Software Interface') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Letter of Credit (LC) Management Software</h3>
@@ -190,8 +196,8 @@
                                 aria-label="Learn more about ISP Systems">Request a Demo</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_testing.png') }}"
-                                alt="Internet Service Provider ISP Network Management Web App" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_isp', asset('images/uiux_testing.png')) }}"
+                                alt="{{ $getAltText('tab_isp', 'Internet Service Provider ISP Network Management Web App') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -200,8 +206,8 @@
                 <div class="tab-pane" id="tab-erp">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_systems.png') }}"
-                                alt="Custom Enterprise Resource Planning ERP Software Dashboard" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_erp', asset('images/uiux_systems.png')) }}"
+                                alt="{{ $getAltText('tab_erp', 'Custom Enterprise Resource Planning ERP Software Dashboard') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Enterprise Resource Planning (ERP)</h3>
@@ -230,8 +236,8 @@
                                 aria-label="Learn more about Pharmacy Management">Request a Demo</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_research.png') }}"
-                                alt="Healthcare Pharmacy Management System Web Application" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_pharmacy', asset('images/uiux_research.png')) }}"
+                                alt="{{ $getAltText('tab_pharmacy', 'Healthcare Pharmacy Management System Web Application') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -240,8 +246,8 @@
                 <div class="tab-pane" id="tab-reunion">
                     <div class="tab-split">
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_visual.png') }}"
-                                alt="Alumni Reunion and Community Networking Web Portal" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_reunion', asset('images/uiux_visual.png')) }}"
+                                alt="{{ $getAltText('tab_reunion', 'Alumni Reunion and Community Networking Web Portal') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Reunion & Community Networking Portals</h3>
@@ -270,8 +276,8 @@
                                 aria-label="Learn more about Restaurant Management">Request a Demo</a>
                         </div>
                         <div class="tab-image">
-                            <img src="{{ asset('images/uiux_systems.png') }}"
-                                alt="Cloud Restaurant Management POS System and Software" loading="lazy">
+                            <img src="{{ $getImageUrl('tab_restaurant', asset('images/uiux_systems.png')) }}"
+                                alt="{{ $getAltText('tab_restaurant', 'Cloud Restaurant Management POS System and Software') }}" loading="lazy">
                         </div>
                     </div>
                 </div>

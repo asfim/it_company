@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@php
+    $sections = $sections ?? collect();
+    $getImageUrl = fn ($slug, $fallback) => optional($sections->get($slug))->image_url ?? $fallback;
+    $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
+@endphp
+
 @section('title', 'Modern Digital Marketing & Brand Growth | Crowns IT')
 @section('meta_description', 'Crowns IT delivers data-driven digital marketing solutions. Scale your business, boost organic search traffic with SEO, run hyper-targeted PPC campaigns, and automate your lead nurturing funnels.')
 
@@ -30,7 +36,7 @@
             </div>
             <div class="split-image reveal">
                 <div class="tab-image">
-                    <img src="{{ asset('images/webapp_side_img.png') }}" alt="Digital Marketing Campaign Management Dashboard and Performance Analytics" loading="lazy">
+                    <img src="{{ $getImageUrl('split_image', asset('images/webapp_side_img.png')) }}" alt="{{ $getAltText('split_image', 'Digital Marketing Campaign Management Dashboard and Performance Analytics') }}" loading="lazy">
                 </div>
             </div>
         </div>
@@ -60,7 +66,7 @@
 
                 <!-- Center Capsule: Performance dashboard visual -->
                 <div class="stats-capsule stats-developer-img">
-                    <img src="{{ asset('images/webapp_pos.png') }}" alt="Realtime advertising cost and conversion analytics dashboard" loading="lazy">
+                    <img src="{{ $getImageUrl('stats_center_image', asset('images/webapp_pos.png')) }}" alt="{{ $getAltText('stats_center_image', 'Realtime advertising cost and conversion analytics dashboard') }}" loading="lazy">
                 </div>
 
                 <!-- Arch 2: Global Reach Stats -->
@@ -101,7 +107,7 @@
                 <div class="tab-pane active" id="tab-seo">
                     <div class="tab-split">
                         <div class="tab-image">
-                          <img src="{{ asset('images/marketing_seo.png') }}" alt="Organic Search Engine Optimization and Keyword Rankings" loading="lazy">
+                          <img src="{{ $getImageUrl('service_seo', asset('images/marketing_seo.png')) }}" alt="{{ $getAltText('service_seo', 'Organic Search Engine Optimization and Keyword Rankings') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Search Engine Optimization (SEO)</h3>
@@ -120,7 +126,7 @@
                             <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Learn about SMM systems">Boost Social Reach</a>
                         </div>
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_visual.png') }}" alt="Social Media Growth Strategy and Brand Campaign" loading="lazy">
+                          <img src="{{ $getImageUrl('service_social', asset('images/uiux_visual.png')) }}" alt="{{ $getAltText('service_social', 'Social Media Growth Strategy and Brand Campaign') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -129,7 +135,7 @@
                 <div class="tab-pane" id="tab-ppc">
                     <div class="tab-split">
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_testing.png') }}" alt="Google Ads and Meta PPC Campaign Optimization" loading="lazy">
+                          <img src="{{ $getImageUrl('service_ppc', asset('images/uiux_testing.png')) }}" alt="{{ $getAltText('service_ppc', 'Google Ads and Meta PPC Campaign Optimization') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Paid Advertising (Google & Meta Ads)</h3>
@@ -148,7 +154,7 @@
                             <a href="{{ url('/') }}#contact" class="btn-read-more" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem; font-size: 0.85rem;" aria-label="Setup Marketing Automation">Setup Automated Flows</a>
                         </div>
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_wireframes.png') }}" alt="Email Campaign Flow and Lead Generation Funnel" loading="lazy">
+                          <img src="{{ $getImageUrl('service_email', asset('images/uiux_wireframes.png')) }}" alt="{{ $getAltText('service_email', 'Email Campaign Flow and Lead Generation Funnel') }}" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -157,7 +163,7 @@
                 <div class="tab-pane" id="tab-cro">
                     <div class="tab-split">
                         <div class="tab-image">
-                          <img src="{{ asset('images/uiux_research.png') }}" alt="Conversion Rate Optimization CRO and Google Analytics Tracking" loading="lazy">
+                          <img src="{{ $getImageUrl('service_cro', asset('images/uiux_research.png')) }}" alt="{{ $getAltText('service_cro', 'Conversion Rate Optimization CRO and Google Analytics Tracking') }}" loading="lazy">
                         </div>
                         <div class="tab-text">
                             <h3>Web Analytics & Conversion Rate Optimization (CRO)</h3>
