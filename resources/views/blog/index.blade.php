@@ -557,29 +557,41 @@
   </section>
 
   <!-- Featured Post Section -->
+  @if($featured)
   <section class="featured-section reveal">
     <div class="featured-card">
       <div class="featured-img-wrapper">
         <span class="featured-tag">Featured Article</span>
-        <img class="featured-img" src="{{ asset('images/webapp_side_img.png') }}" alt="Code lines representing custom Web Application Development">
+        <img class="featured-img" src="{{ asset($featured->image_url) }}" alt="{{ $featured->title }}">
       </div>
       <div class="featured-content">
         <div class="post-meta">
-          <span class="post-cat" style="color:var(--accent2); font-weight:700;"><i class="fa-solid fa-code"></i> DEVELOPMENT</span>
-          <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+          <span class="post-cat" style="color:var(--accent2); font-weight:700;">
+            @if($featured->category == 'dev')
+              <i class="fa-solid fa-code"></i> DEVELOPMENT
+            @elseif($featured->category == 'design')
+              <i class="fa-solid fa-palette"></i> DESIGN & UX
+            @elseif($featured->category == 'publishing')
+              <i class="fa-solid fa-book"></i> AMAZON PUBLISHING
+            @else
+              <i class="fa-solid fa-bullhorn"></i> GROWTH MARKETING
+            @endif
+          </span>
+          <span><i class="fa-regular fa-clock"></i> {{ $featured->read_time }}</span>
         </div>
-        <h2><a href="#">The Future of Custom Web Applications: Scaling in 2026</a></h2>
-        <p>How modern cloud architectures, microservices, and serverless edge databases are transforming software scalability and performance standards for global enterprises.</p>
+        <h2><a href="{{ route('blog.show', $featured->slug) }}">{{ $featured->title }}</a></h2>
+        <p>{{ $featured->excerpt }}</p>
         <div class="author-info">
-          <div class="author-avatar">MS</div>
+          <div class="author-avatar">{{ $featured->author_avatar_text }}</div>
           <div class="author-details">
-            <div class="name">Mahmud Sabuj</div>
-            <div class="role">Chief Technology Officer</div>
+            <div class="name">{{ $featured->author_name }}</div>
+            <div class="role">{{ $featured->author_role }}</div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  @endif
 
   <!-- Categories Filters Menu -->
   <section class="blog-filters-section">
@@ -595,130 +607,41 @@
   <!-- Blog Cards Grid Section -->
   <section class="posts-grid-section">
     <div class="blog-grid">
-      <!-- Post 2: Design Systems -->
-      <div class="blog-card-wrapper" data-category="design">
+      @foreach($posts as $post)
+      <div class="blog-card-wrapper" data-category="{{ $post->category }}">
         <div class="blog-card">
           <div class="card-img-wrapper">
-            <span class="card-tag">DESIGN</span>
-            <img class="card-img" src="{{ asset('images/uiux_systems.png') }}" alt="Atomic UI Design System Figma mockup">
+            <span class="card-tag">
+              @if($post->category == 'dev')
+                DEVELOPMENT
+              @elseif($post->category == 'design')
+                DESIGN & UX
+              @elseif($post->category == 'publishing')
+                AMAZON PUBLISHING
+              @else
+                GROWTH MARKETING
+              @endif
+            </span>
+            <img class="card-img" src="{{ asset($post->image_url) }}" alt="{{ $post->title }}">
           </div>
           <div class="card-body-content">
             <div class="post-meta">
-              <span><i class="fa-regular fa-calendar"></i> May 28, 2026</span>
-              <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+              <span><i class="fa-regular fa-calendar"></i> {{ $post->created_at->format('M d, Y') }}</span>
+              <span><i class="fa-regular fa-clock"></i> {{ $post->read_time }}</span>
             </div>
-            <h3><a href="#">Why Atomic Design Systems Are Essential for Enterprise UX</a></h3>
-            <p>Discover how reusable design token libraries speed up product development handoff by 200% while maintaining absolute consistency.</p>
+            <h3><a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a></h3>
+            <p>{{ $post->excerpt }}</p>
             <div class="author-info">
-              <div class="author-avatar" style="background:#ef4444;">AM</div>
+              <div class="author-avatar" style="background:var(--accent);">{{ $post->author_avatar_text }}</div>
               <div class="author-details">
-                <div class="name">Alex Mercer</div>
-                <div class="role">Principal UI/UX Designer</div>
+                <div class="name">{{ $post->author_name }}</div>
+                <div class="role">{{ $post->author_role }}</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Post 3: Amazon KDP -->
-      <div class="blog-card-wrapper" data-category="publishing">
-        <div class="blog-card">
-          <div class="card-img-wrapper">
-            <span class="card-tag">PUBLISHING</span>
-            <img class="card-img" src="{{ asset('images/logo_design.png') }}" alt="Amazon Kindle book on desk">
-          </div>
-          <div class="card-body-content">
-            <div class="post-meta">
-              <span><i class="fa-regular fa-calendar"></i> May 15, 2026</span>
-              <span><i class="fa-regular fa-clock"></i> 6 min read</span>
-            </div>
-            <h3><a href="#">Optimizing Amazon KDP Listings for Maximum Sales</a></h3>
-            <p>An expert KDP handbook explaining category selection formulas, metadata settings, and how A+ modular grids double conversions.</p>
-            <div class="author-info">
-              <div class="author-avatar" style="background:#f59e0b;">TC</div>
-              <div class="author-details">
-                <div class="name">Thomas Chen</div>
-                <div class="role">Self-Publishing Director</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Post 4: Marketing -->
-      <div class="blog-card-wrapper" data-category="marketing">
-        <div class="blog-card">
-          <div class="card-img-wrapper">
-            <span class="card-tag">MARKETING</span>
-            <img class="card-img" src="{{ asset('images/marketing_seo.png') }}" alt="SEO conversion dashboard graphs">
-          </div>
-          <div class="card-body-content">
-            <div class="post-meta">
-              <span><i class="fa-regular fa-calendar"></i> Apr 30, 2026</span>
-              <span><i class="fa-regular fa-clock"></i> 7 min read</span>
-            </div>
-            <h3><a href="#">Demystifying GA4: Creating High-Converting Funnels</a></h3>
-            <p>Learn to configure custom event triggers in Google Tag Manager and analyze user heatmaps to optimize landing page bounce rates.</p>
-            <div class="author-info">
-              <div class="author-avatar" style="background:#8b5cf6;">EL</div>
-              <div class="author-details">
-                <div class="name">Elena Lim</div>
-                <div class="role">Growth Architect</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Post 5: Logo Design -->
-      <div class="blog-card-wrapper" data-category="design">
-        <div class="blog-card">
-          <div class="card-img-wrapper">
-            <span class="card-tag">DESIGN</span>
-            <img class="card-img" src="{{ asset('images/uiux_visual.png') }}" alt="Draft vector logo outlines on grid canvas">
-          </div>
-          <div class="card-body-content">
-            <div class="post-meta">
-              <span><i class="fa-regular fa-calendar"></i> Apr 12, 2026</span>
-              <span><i class="fa-regular fa-clock"></i> 4 min read</span>
-            </div>
-            <h3><a href="#">The Creative Workflow: Sketching Memorable Logos</a></h3>
-            <p>From visual brainstorming and geometry overlays to vector bezier paths, explore the lifecycle of a modern corporate icon.</p>
-            <div class="author-info">
-              <div class="author-avatar" style="background:#10b981;">DW</div>
-              <div class="author-details">
-                <div class="name">David Wang</div>
-                <div class="role">Brand strategist</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Post 6: E-commerce Image Editing -->
-      <div class="blog-card-wrapper" data-category="dev">
-        <div class="blog-card">
-          <div class="card-img-wrapper">
-            <span class="card-tag">DEVELOPMENT</span>
-            <img class="card-img" src="{{ asset('images/webapp_pos.png') }}" alt="Apparel clothing hollow effect photography editing">
-          </div>
-          <div class="card-body-content">
-            <div class="post-meta">
-              <span><i class="fa-regular fa-calendar"></i> Mar 22, 2026</span>
-              <span><i class="fa-regular fa-clock"></i> 5 min read</span>
-            </div>
-            <h3><a href="#">Automating Bulk Image Retouching for E-Commerce Pipelines</a></h3>
-            <p>How we leverage cloud APIs and precise cropping paths to edit and synchronize thousands of product listings instantly.</p>
-            <div class="author-info">
-              <div class="author-avatar" style="background:#ef4444;">MS</div>
-              <div class="author-details">
-                <div class="name">Mahmud Sabuj</div>
-                <div class="role">Chief Technology Officer</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </section>
 

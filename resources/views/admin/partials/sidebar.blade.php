@@ -44,6 +44,14 @@
                     Homepage Manager
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.blogs.index') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->routeIs('admin.blogs.*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 4a2 2 0 00-2-2m2 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6a2 2 0 012-2h3m7 11h-1.5M9 8h.01M9 12h5m-5 4h5"></path>
+                    </svg>
+                    Blogs Manager
+                </a>
+            </li>
             
             <!-- Services Manager -->
             <li class="px-4 py-2 mt-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">

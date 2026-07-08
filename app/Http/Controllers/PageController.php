@@ -140,6 +140,37 @@ class PageController extends Controller
 
     public function blog()
     {
-        return view('blog.index');
+        $featured = \App\Models\Blog::where('is_featured', true)->first();
+        if (!$featured) {
+            $featured = \App\Models\Blog::orderBy('created_at', 'desc')->first();
+        }
+
+        $featuredId = $featured ? $featured->id : null;
+        $posts = \App\Models\Blog::where('id', '!=', $featuredId)->orderBy('created_at', 'desc')->get();
+
+        return view('blog.index', compact('featured', 'posts'));
+    }
+
+    public function blogShow($slug)
+    {
+        $post = \App\Models\Blog::where('slug', $slug)->firstOrFail();
+        
+        $relatedPosts = \App\Models\Blog::where('category', $post->category)
+            ->where('id', '!=', $post->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get();
+            
+        if ($relatedPosts->count() < 3) {
+            $fillCount = 3 - $relatedPosts->count();
+            $excludeIds = $relatedPosts->pluck('id')->push($post->id)->toArray();
+            $fillPosts = \App\Models\Blog::whereNotIn('id', $excludeIds)
+                ->orderBy('created_at', 'desc')
+                ->limit($fillCount)
+                ->get();
+            $relatedPosts = $relatedPosts->merge($fillPosts);
+        }
+
+        return view('blog.show', compact('post', 'relatedPosts'));
     }
 }

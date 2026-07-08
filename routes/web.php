@@ -12,6 +12,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact.submit');
 Route::post('/get-started', [PageController::class, 'getStartedSubmit'])->name('get-started.submit');
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [PageController::class, 'blogShow'])->name('blog.show');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
@@ -43,6 +44,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Get Started Submissions
     Route::get('/get-started', [App\Http\Controllers\Admin\GetStartedSubmissionController::class, 'index'])->name('get-started.index');
     Route::delete('/get-started/{id}', [App\Http\Controllers\Admin\GetStartedSubmissionController::class, 'destroy'])->name('get-started.destroy');
+
+    // Dynamic Blog CRUD
+    Route::resource('/blogs', \App\Http\Controllers\Admin\BlogController::class)->except(['show'])->names('blogs');
 });
 
 Route::prefix('services')->name('services.')->group(function () {
