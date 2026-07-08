@@ -1,6 +1,7 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
-@section('title', 'Innovating for the Future')
+@section('title', 'Crowns IT | Best Software Company & Software Agency')
+@section('meta_description', 'Crowns IT (Crown IT) is the best software company and software agency specializing in custom web applications, web development, UI/UX, and growth marketing.')
 
 @section('content')
     <!-- HERO -->

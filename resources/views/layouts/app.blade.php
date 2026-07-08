@@ -3,8 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Crowns IT') | Best Software Agency</title>
-    <meta name="description" content="@yield('meta_description', 'Crowns IT is a premium software agency specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design. Build your digital future with Crowns IT.')">
+    <title>@yield('title', 'Crowns IT | Best Software Company & Software Agency')</title>
+    <meta name="description" content="@yield('meta_description', 'Crowns IT is a premium software agency and best software company specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design.')">
+    <meta name="keywords" content="Crowns IT, Crown IT, software company, software agency, best software company, custom software development, web development agency, mobile application development, UI/UX design agency, growth marketing agency, graphic design services">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Crowns IT | Best Software Company & Software Agency')">
+    <meta property="og:description" content="@yield('meta_description', 'Crowns IT is a premium software agency and best software company specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design.')">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'Crowns IT | Best Software Company & Software Agency')">
+    <meta property="twitter:description" content="@yield('meta_description', 'Crowns IT is a premium software agency and best software company specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design.')">
+    <meta property="twitter:image" content="{{ asset('images/logo.png') }}">
     
     <!-- Favicon -->
     @if(\App\Models\HomepageSetting::getValue('site_favicon'))

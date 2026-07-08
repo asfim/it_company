@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Insights, Tech Guides & Creative Stories | Crowns IT Blog')
-@section('meta_description', 'Discover expert opinions, guides, and stories on web development, custom software engineering, graphic design, Amazon KDP publishing, and data-driven marketing.')
+@section('title', 'Crowns IT Blog | Technology, Code & Design Insights from the Best Software Company')
+@section('meta_description', 'Explore tech, design, and growth marketing guides from Crowns IT (Crown IT) - a premier software agency and custom software development company.')
 
 @section('content')
 <style>

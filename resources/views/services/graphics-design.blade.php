@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Professional Graphic Design, Publishing & Image Editing | Crowns IT')
-@section('meta_description', 'Crowns IT delivers premium graphic design, logo design, book cover & formatting, KDP publishing uploads, Amazon A+ content, social media posters, and high-volume e-commerce photo editing.')
+@section('title', 'Professional Graphic Design & Publishing | Crowns IT Software Company')
+@section('meta_description', 'Get custom graphic design, KDP publishing uploads, book cover illustrations, and bulk image editing from Crowns IT (Crown IT) - the best software company.')
 
 @section('content')
 @php

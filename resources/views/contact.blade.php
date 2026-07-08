@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us')
-@section('meta_description', 'Get in touch with Crowns IT for web development, custom software, digital marketing, and design services. Request a free consultation or quote today.')
+@section('title', 'Contact Crowns IT | Connect with Our Software Agency')
+@section('meta_description', 'Get in touch with Crowns IT (Crown IT) - the best software company and development agency. Request a free quote for web development and software engineering.')
 
 @section('content')
     <!-- Hero -->

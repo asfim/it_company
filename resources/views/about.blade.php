@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'About Us')
-@section('meta_description', 'Learn about Crowns IT — a premium software agency delivering web applications, custom software, digital marketing, graphics design, and UI/UX solutions with transparent pricing and secure payment options.')
+@section('title', 'About Crowns IT | Top Software Company & Development Agency')
+@section('meta_description', 'Learn about Crowns IT (Crown IT) — a premium software company and best software agency delivering bespoke custom web applications, web development, UI/UX, and marketing solutions.')
 
 @section('content')
     <!-- Hero -->
