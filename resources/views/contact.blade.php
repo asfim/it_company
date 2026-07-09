@@ -26,28 +26,28 @@
                         <div class="contact-info-icon"><i data-lucide="map-pin"></i></div>
                         <div>
                             <h4>Office Address</h4>
-                            <p>123 Tech Avenue, Dhaka, Bangladesh</p>
+                            <p>{{ \App\Models\HomepageSetting::getValue('contact_address', '123 Tech Avenue, Dhaka, Bangladesh') }}</p>
                         </div>
                     </div>
                     <div class="contact-info-card">
                         <div class="contact-info-icon"><i data-lucide="phone"></i></div>
                         <div>
                             <h4>Phone</h4>
-                            <p><a href="tel:+8801234567890">+880 1234 567 890</a></p>
+                            <p><a href="tel:{{ \App\Models\HomepageSetting::getValue('contact_phone', '+8801234567890') }}">{{ \App\Models\HomepageSetting::getValue('contact_phone', '+880 1234 567 890') }}</a></p>
                         </div>
                     </div>
                     <div class="contact-info-card">
                         <div class="contact-info-icon"><i data-lucide="mail"></i></div>
                         <div>
                             <h4>Email</h4>
-                            <p><a href="mailto:info@crownsit.com">info@crownsit.com</a></p>
+                            <p><a href="mailto:{{ \App\Models\HomepageSetting::getValue('contact_email', 'info@crownsit.com') }}">{{ \App\Models\HomepageSetting::getValue('contact_email', 'info@crownsit.com') }}</a></p>
                         </div>
                     </div>
                     <div class="contact-info-card">
                         <div class="contact-info-icon"><i data-lucide="clock"></i></div>
                         <div>
                             <h4>Working Hours</h4>
-                            <p>Sat – Thu: 9:00 AM – 6:00 PM<br>Friday: Closed</p>
+                            <p>{!! nl2br(e(\App\Models\HomepageSetting::getValue('contact_working_hours', "Sat – Thu: 9:00 AM – 6:00 PM\nFriday: Closed"))) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -55,10 +55,23 @@
                 <div class="contact-social-block">
                     <h4>Follow Us</h4>
                     <div class="contact-socials">
-                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        @foreach(\App\Models\SocialLink::orderBy('sort_order')->get() as $link)
+                            @php
+                                $iconClass = match($link->platform) {
+                                    'facebook' => 'fa-brands fa-facebook-f',
+                                    'twitter', 'x' => 'fa-brands fa-x-twitter',
+                                    'instagram' => 'fa-brands fa-instagram',
+                                    'linkedin' => 'fa-brands fa-linkedin-in',
+                                    'youtube' => 'fa-brands fa-youtube',
+                                    'github' => 'fa-brands fa-github',
+                                    'tiktok' => 'fa-brands fa-tiktok',
+                                    'pinterest' => 'fa-brands fa-pinterest-p',
+                                    'whatsapp' => 'fa-brands fa-whatsapp',
+                                    default => 'fa-solid fa-globe',
+                                };
+                            @endphp
+                            <a href="{{ $link->url }}" target="_blank" aria-label="{{ $link->platform }}"><i class="{{ $iconClass }}"></i></a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -142,13 +155,13 @@
                 <span class="about-eyebrow">Our Office</span>
                 <h2>Visit Our <span style="color: var(--green);">Dhaka Branch</span></h2>
                 <p>Located in the heart of Dhaka's tech district, our office is open for in-person meetings by appointment. Schedule a visit and let's discuss your project face to face.</p>
-                <a href="https://maps.google.com/?q=Dhaka,Bangladesh" target="_blank" rel="noopener" class="btn-read-more" style="margin-top: 1rem;">
+                <a href="{{ \App\Models\HomepageSetting::getValue('contact_map_link', 'https://maps.google.com/?q=Dhaka,Bangladesh') }}" target="_blank" rel="noopener" class="btn-read-more" style="margin-top: 1rem;">
                     Open in Google Maps <i data-lucide="external-link"></i>
                 </a>
             </div>
             <div class="contact-map-embed">
                 <iframe
-                    src="https://maps.google.com/maps?q=Dhaka%2C%20Bangladesh&z=13&output=embed"
+                    src="{{ \App\Models\HomepageSetting::getValue('contact_map_embed', 'https://maps.google.com/maps?q=Dhaka%2C%20Bangladesh&z=13&output=embed') }}"
                     width="100%"
                     height="100%"
                     style="border:0;"

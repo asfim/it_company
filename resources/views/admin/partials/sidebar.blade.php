@@ -57,6 +57,22 @@
                     Blogs Manager
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.footer.settings.edit') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->routeIs('admin.footer.settings.*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Footer Settings
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.contact.settings.edit') }}" class="flex items-center px-4 py-2 rounded-md transition {{ request()->routeIs('admin.contact.settings.*') ? 'bg-blue-600 text-white font-semibold hover:bg-blue-700' : 'hover:bg-gray-700 text-gray-300 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    Contact Settings
+                </a>
+            </li>
             
             <!-- Services Manager -->
             <li class="px-4 py-2 mt-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">

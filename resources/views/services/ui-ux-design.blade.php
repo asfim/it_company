@@ -12,7 +12,7 @@
 @section('content')
     <!-- Hero Section -->
     <section class="uiux-hero">
-        <div class="uiux-hero-content reveal">
+        <div class="uiux-hero-content reveal" style="color: black;">
             <span class="uiux-hero-tag">UI/UX Design Studio</span>
             <h1>Intuitive & Beautiful <span>UI/UX Design</span></h1>
             <p>We craft high-fidelity user experiences and stunning visual interfaces that captivate users, simplify complex workflows, and dramatically accelerate product engagement. Turn your ideas into beautiful, interactive realities.</p>

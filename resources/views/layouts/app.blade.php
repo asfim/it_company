@@ -153,7 +153,9 @@
                 <!-- Column 1: Brand -->
                 <div class="footer-col brand-col">
                     <a href="{{ url('/') }}" class="kastana-logo footer-logo">
-                        @if(\App\Models\HomepageSetting::getValue('site_logo'))
+                        @if(\App\Models\HomepageSetting::getValue('footer_logo'))
+                            <img src="{{ \App\Models\HomepageSetting::getValue('footer_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
+                        @elseif(\App\Models\HomepageSetting::getValue('site_logo'))
                             <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
                         @else
                             <div class="logo-dots">
@@ -167,12 +169,25 @@
                             </div>
                         @endif
                     </a>
-                    <p class="footer-desc">Crafting high-performance digital experiences with precision and passion. Your partner in technological innovation.</p>
+                    <p class="footer-desc">{{ \App\Models\HomepageSetting::getValue('footer_description', 'Crafting high-performance digital experiences with precision and passion. Your partner in technological innovation.') }}</p>
                     <div class="footer-socials">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        @foreach(\App\Models\SocialLink::orderBy('sort_order')->get() as $link)
+                            @php
+                                $iconClass = match($link->platform) {
+                                    'facebook' => 'fa-brands fa-facebook-f',
+                                    'twitter', 'x' => 'fa-brands fa-x-twitter',
+                                    'instagram' => 'fa-brands fa-instagram',
+                                    'linkedin' => 'fa-brands fa-linkedin-in',
+                                    'youtube' => 'fa-brands fa-youtube',
+                                    'github' => 'fa-brands fa-github',
+                                    'tiktok' => 'fa-brands fa-tiktok',
+                                    'pinterest' => 'fa-brands fa-pinterest-p',
+                                    'whatsapp' => 'fa-brands fa-whatsapp',
+                                    default => 'fa-solid fa-globe',
+                                };
+                            @endphp
+                            <a href="{{ $link->url }}" target="_blank"><i class="{{ $iconClass }}"></i></a>
+                        @endforeach
                     </div>
                 </div>
 
@@ -180,10 +195,10 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('about') }}">About Us</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="{{ route('home') }}#services">Our Services</a></li>
+                        <li><a href="{{ route('blog') }}">Blog & Insights</a></li>
                         <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </div>
@@ -192,12 +207,12 @@
                 <div class="footer-col">
                     <h3>Our Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Mobile Applications</a></li>
-                        <li><a href="#">Custom Software</a></li>
-                        <li><a href="#">Graphics Design</a></li>
-                        <li><a href="#">Digital Marketing</a></li>
-                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="{{ route('services.web-dev') }}">Web Development</a></li>
+                        <li><a href="{{ route('services.web-app') }}">Mobile Applications</a></li>
+                        <li><a href="{{ route('services.software') }}">Custom Software</a></li>
+                        <li><a href="{{ route('services.graphics') }}">Graphics Design</a></li>
+                        <li><a href="{{ route('services.marketing') }}">Digital Marketing</a></li>
+                        <li><a href="{{ route('services.ui-ux') }}">UI/UX Design</a></li>
                     </ul>
                 </div>
 
@@ -207,15 +222,15 @@
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fa-solid fa-location-dot"></i>
-                            <span>123 Tech Avenue, Dhaka, Bangladesh</span>
+                            <span>{{ \App\Models\HomepageSetting::getValue('contact_address', '123 Tech Avenue, Dhaka, Bangladesh') }}</span>
                         </div>
                         <div class="contact-item">
                             <i class="fa-solid fa-phone"></i>
-                            <span>+8801777494071</span>
+                            <span>{{ \App\Models\HomepageSetting::getValue('contact_phone', '+8801777494071') }}</span>
                         </div>
                         <div class="contact-item">
                             <i class="fa-solid fa-envelope"></i>
-                            <span>info@crownsit.com</span>
+                            <span>{{ \App\Models\HomepageSetting::getValue('contact_email', 'info@crownsit.com') }}</span>
                         </div>
                     </div>
                 </div>

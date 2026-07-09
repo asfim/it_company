@@ -33,6 +33,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/homepage/settings', [App\Http\Controllers\Admin\HomepageSettingsController::class, 'edit'])->name('homepage.settings.edit');
     Route::put('/homepage/settings', [App\Http\Controllers\Admin\HomepageSettingsController::class, 'update'])->name('homepage.settings.update');
 
+    // Footer Settings
+    Route::get('/footer/settings', [App\Http\Controllers\Admin\FooterSettingsController::class, 'editFooter'])->name('footer.settings.edit');
+    Route::put('/footer/settings', [App\Http\Controllers\Admin\FooterSettingsController::class, 'updateFooter'])->name('footer.settings.update');
+    Route::post('/footer/social-links', [App\Http\Controllers\Admin\FooterSettingsController::class, 'storeSocialLink'])->name('footer.social-links.store');
+    Route::delete('/footer/social-links/{id}', [App\Http\Controllers\Admin\FooterSettingsController::class, 'destroySocialLink'])->name('footer.social-links.destroy');
+
+    // Contact Settings
+    Route::get('/contact/settings', [App\Http\Controllers\Admin\FooterSettingsController::class, 'editContact'])->name('contact.settings.edit');
+    Route::put('/contact/settings', [App\Http\Controllers\Admin\FooterSettingsController::class, 'updateContact'])->name('contact.settings.update');
+
     Route::resource('/homepage/services', App\Http\Controllers\Admin\HomepageServiceController::class)->except(['show'])->names('homepage.services');
     Route::resource('/homepage/wcu', App\Http\Controllers\Admin\HomepageWcuController::class)->only(['index', 'edit', 'update'])->names('homepage.wcu');
     Route::resource('/homepage/process', App\Http\Controllers\Admin\HomepageProcessController::class)->only(['index', 'edit', 'update'])->names('homepage.process');

@@ -2252,7 +2252,7 @@
       <p>Content creation curated and built by experts to meet the needs of all the modern ecommerce and marketing platforms powering your business.</p>
       <div class="cta-actions" style="margin-top: 30px;">
         <a href="{{ url('/') }}#contact" class="btn-primary btn-large">Talk to an expert</a>
-        <a href="{{ url('/') }}#contact" class="btn-ghost btn-large">Get started</a>
+        <a href="{{ url('/') }}#contact" class="btn-ghost btn-large"oncl>Get started</a>
       </div>
     </div>
 
@@ -2331,15 +2331,8 @@
         <!-- Interactive Wheel Visual -->
         <div class="benefits-interactive-wheel reveal">
           <div class="benefits-circle-outline"></div>
-          <div class="benefits-wheel-center" id="centerBox">Crowns IT<br>Design Standards</div>
-          <div class="wheel-node wn-1" onclick="showBenefitDetail('Unique Design Concepts', 'We craft custom visual solutions from scratch to guarantee your brand has an authentic and original identity.')">🎨</div>
-          <div class="wheel-node wn-2" onclick="showBenefitDetail('Vector Source Files', 'Receive fully organized source formats (Adobe Illustrator, Photoshop, PDF) for seamless future updates.')">📂</div>
-          <div class="wheel-node wn-3" onclick="showBenefitDetail('KDP Compliance Guarantee', 'Every book cover and interior format is tested to pass Amazon\'s strict layout constraints without rejection.')">📚</div>
-          <div class="wheel-node wn-4" onclick="showBenefitDetail('Print-Ready CMYK Formats', 'Documents are exported with precise bleeds, high-resolution CMYK profiles, and print-shop guidelines.')">🖨️</div>
-          <div class="wheel-node wn-5" onclick="showBenefitDetail('Full Commercial Rights', 'Once finalized, you own 100% of the intellectual property rights and copyrights to all assets.')">💼</div>
-          <div class="wheel-node wn-6" onclick="showBenefitDetail('Revision Guarantee', 'We work collaboratively with you, refining typography, colors, and layout structures until you are completely thrilled.')">🔄</div>
-          <div class="wheel-node wn-7" onclick="showBenefitDetail('Quick Draft Turnaround', 'Get initial layout concepts and drafts in as little as 24 to 48 hours for fast deployment.')">⚡</div>
-          <div class="wheel-node wn-8" onclick="showBenefitDetail('Dedicated Creative Director', 'Collaborate directly with a professional lead designer who guides your project from sketch to completion.')">🤝</div>
+          <div><img src="" alt=""></div>
+          
         </div>
 
         <!-- Static details list -->

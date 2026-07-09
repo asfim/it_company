@@ -234,7 +234,6 @@
             <p>Let's discuss your ideas and build something extraordinary together. Get a free consultation and transparent quote today.</p>
             <div class="hero-actions" style="justify-content: center; margin-top: 1.5rem;">
                 <a href="mailto:info@crownsit.com" class="btn-read-more">Get Free Quote <i data-lucide="arrow-right"></i></a>
-                <a href="tel:+8801234567890" class="btn-read-more" style="background: transparent; color: var(--navy); box-shadow: none; border: 2px solid var(--green);">+880 1234 567 890</a>
             </div>
         </div>
     </section>
