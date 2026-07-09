@@ -171,7 +171,7 @@
                     </a>
                     <p class="footer-desc">{{ \App\Models\HomepageSetting::getValue('footer_description', 'Crafting high-performance digital experiences with precision and passion. Your partner in technological innovation.') }}</p>
                     <div class="footer-socials">
-                        @foreach(\App\Models\SocialLink::orderBy('sort_order')->get() as $link)
+                        @foreach(\App\Models\SocialLink::getAllCached() as $link)
                             @php
                                 $iconClass = match($link->platform) {
                                     'facebook' => 'fa-brands fa-facebook-f',

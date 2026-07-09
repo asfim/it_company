@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class HomepageSetting extends Model
 {
@@ -14,12 +15,27 @@ class HomepageSetting extends Model
         'group',
     ];
 
+    protected static function booted()
+    {
+        static::saved(function () {
+            Cache::forget('homepage_settings_all');
+        });
+
+        static::deleted(function () {
+            Cache::forget('homepage_settings_all');
+        });
+    }
+
     /**
      * Helper to get setting value by key.
      */
     public static function getValue(string $key, $default = null)
     {
-        $setting = self::where('key', $key)->first();
+        $settings = Cache::rememberForever('homepage_settings_all', function () {
+            return self::all()->keyBy('key');
+        });
+
+        $setting = $settings->get($key);
         if (!$setting) {
             return $default;
         }

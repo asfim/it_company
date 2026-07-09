@@ -55,7 +55,7 @@
                 <div class="contact-social-block">
                     <h4>Follow Us</h4>
                     <div class="contact-socials">
-                        @foreach(\App\Models\SocialLink::orderBy('sort_order')->get() as $link)
+                        @foreach(\App\Models\SocialLink::getAllCached() as $link)
                             @php
                                 $iconClass = match($link->platform) {
                                     'facebook' => 'fa-brands fa-facebook-f',
