@@ -60,6 +60,23 @@
                             'name' => 'Bangladesh',
                         ],
                     ],
+                    'founder' => [
+                        '@type' => 'Person',
+                        '@id' => $seoSiteUrl . '/#founder',
+                        'name' => 'Md Miskatul Asfim Preetom',
+                        'alternateName' => ['Miskatul Asfim', 'Asfim Preetom'],
+                        'jobTitle' => 'CEO & Founder',
+                        'description' => 'CEO & Founder of Crowns IT, leading the development of innovative software solutions, web applications, e-commerce platforms, and business management systems.',
+                    ],
+                ],
+                [
+                    '@type' => 'Person',
+                    '@id' => $seoSiteUrl . '/#founder',
+                    'name' => 'Md Miskatul Asfim Preetom',
+                    'alternateName' => ['Miskatul Asfim', 'Asfim Preetom', 'Md Miskatul Asfim'],
+                    'jobTitle' => 'CEO & Founder',
+                    'worksFor' => ['@id' => $seoSiteUrl . '/#organization'],
+                    'description' => 'CEO & Founder of Crowns IT, leading the development of innovative software solutions, web applications, e-commerce platforms, and business management systems.',
                 ],
                 [
                     '@type' => 'WebSite',
@@ -76,7 +93,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $seoTitle }}</title>
     <meta name="description" content="{{ $seoDescription }}">
-    <meta name="keywords" content="best software company in dhaka, best software company in bangladesh, software company in dhaka, software company in bangladesh, top software company in dhaka, custom software development bangladesh, best web development company in bangladesh, Crown IT, Crowns IT, IT company dhaka">
+    <meta name="keywords" content="best software company in dhaka, best software company in bangladesh, software company in dhaka, software company in bangladesh, top software company in dhaka, custom software development bangladesh, best web development company in bangladesh, Crown IT, Crowns IT, IT company dhaka, Md Miskatul Asfim Preetom, Asfim Preetom, Crowns IT CEO, Crowns IT Founder">
     <link rel="canonical" href="{{ $seoCanonicalUrl }}">
     
     <!-- Open Graph / Facebook -->
