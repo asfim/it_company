@@ -91,7 +91,27 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"></noscript>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @php
+        $manifestPath = public_path('build/manifest.json');
+        $isLocalDev = app()->isLocal() && file_exists(public_path('hot')) && in_array(request()->getHost(), ['localhost', '127.0.0.1'], true);
+    @endphp
+    @if($isLocalDev)
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @elseif(file_exists($manifestPath))
+        @php
+            $manifestData = json_decode(file_get_contents($manifestPath), true) ?? [];
+            $manifestCss = $manifestData['resources/css/app.css']['file'] ?? null;
+            $manifestJs = $manifestData['resources/js/app.js']['file'] ?? null;
+        @endphp
+        @if($manifestCss)
+            <link rel="stylesheet" href="{{ asset('build/' . $manifestCss) }}">
+        @endif
+        @if($manifestJs)
+            <script type="module" src="{{ asset('build/' . $manifestJs) }}"></script>
+        @endif
+    @else
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
 </head>
 <body>
     <div class="bg-glow">

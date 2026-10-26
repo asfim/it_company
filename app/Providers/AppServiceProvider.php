@@ -19,8 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // On live domains, prevent public/hot from forcing browser to load assets from localhost [::1]:5173
         if (!app()->runningInConsole() && !in_array(request()->getHost(), ['localhost', '127.0.0.1'], true)) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+
+            // On live domains, prevent public/hot from forcing browser to load assets from localhost [::1]:5173
             if (file_exists(public_path('hot'))) {
                 @unlink(public_path('hot'));
             }
