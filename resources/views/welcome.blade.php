@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Crowns IT | Web Development & Custom Software')
-@section('meta_description', 'Crowns IT builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.')
+@section('title', 'Crowns IT (Crown IT) | Web Development & Custom Software')
+@section('meta_description', 'Crowns IT (Crown IT) builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.')
 
 @section('hero_preload')
     @php

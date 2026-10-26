@@ -3,8 +3,8 @@
 <head>
     @php
         $seoSiteUrl = rtrim(config('app.url', 'https://crownsit.com'), '/');
-        $seoDefaultTitle = 'Crowns IT | Web Development & Custom Software';
-        $seoDefaultDescription = 'Crowns IT builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.';
+        $seoDefaultTitle = 'Crowns IT (Crown IT) | Web Development & Custom Software';
+        $seoDefaultDescription = 'Crowns IT (Crown IT) builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.';
         $seoTitle = trim($__env->yieldContent('title', $seoDefaultTitle)) ?: $seoDefaultTitle;
         $seoDescriptionSource = $__env->yieldContent('meta_description', $seoDefaultDescription) ?: $seoDefaultDescription;
         $seoDescription = \Illuminate\Support\Str::of(html_entity_decode(strip_tags($seoDescriptionSource), ENT_QUOTES | ENT_HTML5, 'UTF-8'))
@@ -29,12 +29,15 @@
                     '@type' => 'Organization',
                     '@id' => $seoSiteUrl . '/#organization',
                     'name' => 'Crowns IT',
+                    'alternateName' => ['Crown IT', 'CrownsIT', 'Crown IT Bangladesh', 'Crown IT BD', 'Crowns IT Agency'],
                     'url' => $seoSiteUrl . '/',
+                    'logo' => $seoImageUrl,
                 ],
                 [
                     '@type' => 'WebSite',
                     '@id' => $seoSiteUrl . '/#website',
                     'name' => 'Crowns IT',
+                    'alternateName' => ['Crown IT', 'CrownsIT', 'Crown IT Bangladesh'],
                     'url' => $seoSiteUrl . '/',
                     'publisher' => ['@id' => $seoSiteUrl . '/#organization'],
                 ],
@@ -45,6 +48,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $seoTitle }}</title>
     <meta name="description" content="{{ $seoDescription }}">
+    <meta name="keywords" content="Crown IT, Crowns IT, Crown IT Bangladesh, CrownsIT, Crown IT BD, Web Development Bangladesh, Custom Software Agency, IT Company Bangladesh">
     <link rel="canonical" href="{{ $seoCanonicalUrl }}">
     
     <!-- Open Graph / Facebook -->

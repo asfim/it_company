@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'About Crowns IT | Our Team & Approach')
-@section('meta_description', 'Learn about Crowns IT, our approach to building web applications and custom software, and the services we provide to businesses in Bangladesh and beyond.')
+@section('title', 'About Crowns IT (Crown IT) | Our Team & Approach')
+@section('meta_description', 'Learn about Crowns IT (Crown IT), our approach to building web applications and custom software, and the services we provide to businesses in Bangladesh and beyond.')
 
 @section('content')
     <!-- Hero -->
@@ -9,7 +9,7 @@
         <div class="about-hero-inner reveal">
             <span class="about-eyebrow">About Crowns IT</span>
             <h1>Building Digital Solutions That <span>Drive Real Growth</span></h1>
-            <p>Crowns IT is a full-service software agency committed to excellence, innovation, and long-term partnerships. We design and build technology that helps businesses scale with confidence — from startups to established enterprises across Bangladesh and beyond.</p>
+            <p>Crowns IT (also known as Crown IT) is a full-service software agency committed to excellence, innovation, and long-term partnerships. We design and build technology that helps businesses scale with confidence — from startups to established enterprises across Bangladesh and beyond.</p>
             <div class="hero-actions" style="margin-top: 2rem; justify-content: center;">
                 <a href="{{ url('/') }}#services" class="btn-read-more">Explore Services <i data-lucide="arrow-right"></i></a>
                 <a href="mailto:info@crownsit.com" class="btn-read-more" style="background: #fff; color: var(--navy); box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid rgba(34,197,94,0.2);">Contact Us</a>
