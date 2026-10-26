@@ -6,8 +6,8 @@
     $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
 @endphp
 
-@section('title', 'Premium UI/UX Design & Wireframing | Crowns IT Software Agency')
-@section('meta_description', 'Get expert UI/UX design services from Crowns IT (Crown IT) - the best software company and product design agency. We create user-centric wireframes and Figma prototypes.')
+@section('title', 'UI/UX Design Services | Crowns IT')
+@section('meta_description', 'Crowns IT creates user research, wireframes, prototypes, and intuitive interfaces for web and mobile products.')
 
 @section('content')
     <!-- Hero Section -->

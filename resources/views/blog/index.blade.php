@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Crowns IT Blog | Technology, Code & Design Insights from the Best Software Company')
-@section('meta_description', 'Explore tech, design, and growth marketing guides from Crowns IT (Crown IT) - a premier software agency and custom software development company.')
+@section('title', 'Crowns IT Blog | Technology, Design & Business')
+@section('meta_description', 'Read Crowns IT articles about web development, software, design, publishing, and digital marketing.')
 
 @section('content')
 <style>
@@ -562,7 +562,9 @@
     <div class="featured-card">
       <div class="featured-img-wrapper">
         <span class="featured-tag">Featured Article</span>
-        <img class="featured-img" src="{{ asset($featured->image_url) }}" alt="{{ $featured->title }}">
+        @if($featured->public_image_url)
+          <img class="featured-img" src="{{ $featured->public_image_url }}" alt="{{ $featured->title }}" loading="lazy">
+        @endif
       </div>
       <div class="featured-content">
         <div class="post-meta">
@@ -622,7 +624,9 @@
                 GROWTH MARKETING
               @endif
             </span>
-            <img class="card-img" src="{{ asset($post->image_url) }}" alt="{{ $post->title }}">
+            @if($post->public_image_url)
+              <img class="card-img" src="{{ $post->public_image_url }}" alt="{{ $post->title }}" loading="lazy">
+            @endif
           </div>
           <div class="card-body-content">
             <div class="post-meta">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Crowns IT | Best Software Company & Software Agency')
-@section('meta_description', 'Crowns IT (Crown IT) is the best software company and software agency specializing in custom web applications, web development, UI/UX, and growth marketing.')
+@section('title', 'Crowns IT | Web Development & Custom Software')
+@section('meta_description', 'Crowns IT builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.')
 
 @section('content')
     <!-- HERO -->
@@ -57,10 +57,10 @@
         <!-- LEFT -->
         <div class="hero-left">
             <p class="hero-tagline">{{ \App\Models\HomepageSetting::getValue('hero_tagline') }}</p>
-            <div class="hero-bold">
+            <h1 class="hero-bold">
                 {{ \App\Models\HomepageSetting::getValue('hero_title') }}
                 <span class="underline-bar"></span>
-            </div>
+            </h1>
 
             <p class="hero-desc">
                 {{ \App\Models\HomepageSetting::getValue('hero_description') }}

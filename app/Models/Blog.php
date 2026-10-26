@@ -26,4 +26,20 @@ class Blog extends Model
     protected $casts = [
         'is_featured' => 'boolean',
     ];
+
+    public function getPublicImageUrlAttribute(): ?string
+    {
+        if (!filled($this->image_url)) {
+            return null;
+        }
+
+        $scheme = parse_url($this->image_url, PHP_URL_SCHEME);
+
+        if (filter_var($this->image_url, FILTER_VALIDATE_URL)
+            && in_array(strtolower((string) $scheme), ['http', 'https'], true)) {
+            return $this->image_url;
+        }
+
+        return rtrim(config('app.url', 'https://crownsit.com'), '/') . '/' . ltrim($this->image_url, '/');
+    }
 }

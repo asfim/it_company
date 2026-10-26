@@ -6,8 +6,8 @@
     $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
 @endphp
 
-@section('title', 'Digital Marketing & Growth SEO Services | Crowns IT Software Agency')
-@section('meta_description', 'Scale your search visibility and brand growth with Crowns IT (Crown IT) - the best software company and marketing agency for result-oriented organic growth SEO.')
+@section('title', 'Digital Marketing Services | Crowns IT')
+@section('meta_description', 'Crowns IT provides SEO, paid campaigns, and conversion optimization to help businesses reach and convert more customers.')
 
 @section('content')
     <!-- Hero Section -->

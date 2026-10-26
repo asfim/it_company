@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Crowns IT | Connect with Our Software Agency')
-@section('meta_description', 'Get in touch with Crowns IT (Crown IT) - the best software company and development agency. Request a free quote for web development and software engineering.')
+@section('title', 'Contact Crowns IT | Discuss Your Project')
+@section('meta_description', 'Contact Crowns IT to discuss a website, custom software, digital marketing, or design project. Get in touch with our team about your requirements.')
 
 @section('content')
+    @php
+        $contactAddress = \App\Models\HomepageSetting::getValue('contact_address');
+        $contactPhone = \App\Models\HomepageSetting::getValue('contact_phone');
+        $contactWorkingHours = \App\Models\HomepageSetting::getValue('contact_working_hours');
+    @endphp
+
     <!-- Hero -->
     <section class="about-hero">
         <div class="about-hero-inner reveal">
@@ -22,20 +28,24 @@
                 <p>Whether you need a new website, custom software, marketing support, or creative design — our team is ready to help you move forward with confidence.</p>
 
                 <div class="contact-info-cards">
-                    <div class="contact-info-card">
-                        <div class="contact-info-icon"><i data-lucide="map-pin"></i></div>
-                        <div>
-                            <h4>Office Address</h4>
-                            <p>{{ \App\Models\HomepageSetting::getValue('contact_address', '123 Tech Avenue, Dhaka, Bangladesh') }}</p>
+                    @if($contactAddress)
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <h4>Office Address</h4>
+                                <p>{{ $contactAddress }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-info-card">
-                        <div class="contact-info-icon"><i data-lucide="phone"></i></div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p><a href="tel:{{ \App\Models\HomepageSetting::getValue('contact_phone', '+8801234567890') }}">{{ \App\Models\HomepageSetting::getValue('contact_phone', '+880 1234 567 890') }}</a></p>
+                    @endif
+                    @if($contactPhone)
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon"><i data-lucide="phone"></i></div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:{{ $contactPhone }}">{{ $contactPhone }}</a></p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="contact-info-card">
                         <div class="contact-info-icon"><i data-lucide="mail"></i></div>
                         <div>
@@ -43,13 +53,15 @@
                             <p><a href="mailto:{{ \App\Models\HomepageSetting::getValue('contact_email', 'info@crownsit.com') }}">{{ \App\Models\HomepageSetting::getValue('contact_email', 'info@crownsit.com') }}</a></p>
                         </div>
                     </div>
-                    <div class="contact-info-card">
-                        <div class="contact-info-icon"><i data-lucide="clock"></i></div>
-                        <div>
-                            <h4>Working Hours</h4>
-                            <p>{!! nl2br(e(\App\Models\HomepageSetting::getValue('contact_working_hours', "Sat – Thu: 9:00 AM – 6:00 PM\nFriday: Closed"))) !!}</p>
+                    @if($contactWorkingHours)
+                        <div class="contact-info-card">
+                            <div class="contact-info-icon"><i data-lucide="clock"></i></div>
+                            <div>
+                                <h4>Working Hours</h4>
+                                <p>{!! nl2br(e($contactWorkingHours)) !!}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
                 <div class="contact-social-block">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Professional Graphic Design & Publishing | Crowns IT Software Company')
-@section('meta_description', 'Get custom graphic design, KDP publishing uploads, book cover illustrations, and bulk image editing from Crowns IT (Crown IT) - the best software company.')
+@section('title', 'Graphic Design & Publishing | Crowns IT')
+@section('meta_description', 'Explore Crowns IT graphic design, book cover design, publishing support, image editing, and brand design services.')
 
 @section('content')
 @php
@@ -2331,8 +2331,6 @@
         <!-- Interactive Wheel Visual -->
         <div class="benefits-interactive-wheel reveal">
           <div class="benefits-circle-outline"></div>
-          <div><img src="" alt=""></div>
-          
         </div>
 
         <!-- Static details list -->

@@ -1,25 +1,68 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @php
+        $seoSiteUrl = rtrim(config('app.url', 'https://crownsit.com'), '/');
+        $seoDefaultTitle = 'Crowns IT | Web Development & Custom Software';
+        $seoDefaultDescription = 'Crowns IT builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.';
+        $seoTitle = trim($__env->yieldContent('title', $seoDefaultTitle)) ?: $seoDefaultTitle;
+        $seoDescriptionSource = $__env->yieldContent('meta_description', $seoDefaultDescription) ?: $seoDefaultDescription;
+        $seoDescription = \Illuminate\Support\Str::of(html_entity_decode(strip_tags($seoDescriptionSource), ENT_QUOTES | ENT_HTML5, 'UTF-8'))
+            ->squish()
+            ->limit(160, '')
+            ->toString();
+        $seoPath = trim(request()->path(), '/');
+        $seoCanonicalUrl = $seoSiteUrl . ($seoPath === '' ? '/' : '/' . $seoPath);
+        $seoImageCandidate = $__env->yieldContent('og_image')
+            ?: \App\Models\HomepageSetting::getValue('site_logo')
+            ?: $seoSiteUrl . '/favicon.ico';
+        $seoImageScheme = parse_url($seoImageCandidate, PHP_URL_SCHEME);
+        $seoImageUrl = filter_var($seoImageCandidate, FILTER_VALIDATE_URL)
+            && in_array(strtolower((string) $seoImageScheme), ['http', 'https'], true)
+                ? $seoImageCandidate
+                : $seoSiteUrl . '/' . ltrim($seoImageCandidate, '/');
+        $seoType = $__env->yieldContent('og_type', 'website') ?: 'website';
+        $siteSchema = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'Organization',
+                    '@id' => $seoSiteUrl . '/#organization',
+                    'name' => 'Crowns IT',
+                    'url' => $seoSiteUrl . '/',
+                ],
+                [
+                    '@type' => 'WebSite',
+                    '@id' => $seoSiteUrl . '/#website',
+                    'name' => 'Crowns IT',
+                    'url' => $seoSiteUrl . '/',
+                    'publisher' => ['@id' => $seoSiteUrl . '/#organization'],
+                ],
+            ],
+        ];
+    @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Crowns IT | Best Software Company & Software Agency')</title>
-    <meta name="description" content="@yield('meta_description', 'Crowns IT is a premium software agency and best software company specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design.')">
-    <meta name="keywords" content="Crowns IT, Crown IT, software company, software agency, best software company, custom software development, web development agency, mobile application development, UI/UX design agency, growth marketing agency, graphic design services">
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
+    <link rel="canonical" href="{{ $seoCanonicalUrl }}">
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'Crowns IT | Best Software Company & Software Agency')">
-    <meta property="og:description" content="@yield('meta_description', 'Crowns IT is a premium software agency and best software company specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design.')">
-    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+    <meta property="og:type" content="{{ $seoType }}">
+    <meta property="og:url" content="{{ $seoCanonicalUrl }}">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:image" content="{{ $seoImageUrl }}">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', 'Crowns IT | Best Software Company & Software Agency')">
-    <meta property="twitter:description" content="@yield('meta_description', 'Crowns IT is a premium software agency and best software company specializing in Web Applications, Web Development, Custom Software, Digital Marketing, Graphics Design, and UI/UX Design.')">
-    <meta property="twitter:image" content="{{ asset('images/logo.png') }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ $seoCanonicalUrl }}">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
+    <meta name="twitter:image" content="{{ $seoImageUrl }}">
+
+    <script type="application/ld+json">@json($siteSchema, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT)</script>
+    @yield('structured_data')
     
     <!-- Favicon -->
     @if(\App\Models\HomepageSetting::getValue('site_favicon'))

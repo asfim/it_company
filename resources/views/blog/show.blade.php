@@ -1,7 +1,59 @@
 @extends('layouts.app')
 
 @section('title', $post->title . ' | Crowns IT Blog')
-@section('meta_description', $post->excerpt)
+@section('meta_description', $post->excerpt ?: $post->content)
+@section('og_type', 'article')
+
+@php
+    $siteUrl = rtrim(config('app.url', 'https://crownsit.com'), '/');
+    $postImageUrl = $post->public_image_url;
+    $articleDescription = \Illuminate\Support\Str::of(strip_tags($post->excerpt ?: $post->content))
+        ->squish()
+        ->limit(300, '')
+        ->toString();
+
+    $articleSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BlogPosting',
+        'headline' => $post->title,
+        'description' => $articleDescription,
+        'author' => [
+            '@type' => 'Person',
+            'name' => $post->author_name,
+        ],
+        'datePublished' => $post->created_at->toIso8601String(),
+        'dateModified' => $post->updated_at->toIso8601String(),
+        'mainEntityOfPage' => rtrim(config('app.url', 'https://crownsit.com'), '/') . '/' . trim(request()->path(), '/'),
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'Crowns IT',
+            'url' => $siteUrl . '/',
+        ],
+    ];
+
+    if ($postImageUrl) {
+        $articleSchema['image'] = [$postImageUrl];
+    }
+
+    $breadcrumbSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $siteUrl . '/'],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Blog', 'item' => $siteUrl . route('blog', [], false)],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $post->title, 'item' => $siteUrl . route('blog.show', $post->slug, false)],
+        ],
+    ];
+@endphp
+
+@if($postImageUrl)
+    @section('og_image', $postImageUrl)
+@endif
+
+@section('structured_data')
+    <script type="application/ld+json">@json($articleSchema, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT)</script>
+    <script type="application/ld+json">@json($breadcrumbSchema, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT)</script>
+@endsection
 
 @section('content')
 <style>
@@ -348,7 +400,7 @@
 
       @if($post->image_url)
         <div class="post-cover-wrapper animate__animated animate__fadeIn">
-          <img class="post-cover-img" src="{{ asset($post->image_url) }}" alt="{{ $post->title }}">
+          <img class="post-cover-img" src="{{ $postImageUrl }}" alt="{{ $post->title }}">
         </div>
       @endif
 
@@ -377,7 +429,9 @@
                   GROWTH MARKETING
                 @endif
               </span>
-              <img class="card-img" src="{{ asset($related->image_url) }}" alt="{{ $related->title }}">
+              @if($related->public_image_url)
+                <img class="card-img" src="{{ $related->public_image_url }}" alt="{{ $related->title }}" loading="lazy">
+              @endif
             </div>
             <div class="card-body-content">
               <h3><a href="{{ route('blog.show', $related->slug) }}">{{ $related->title }}</a></h3>

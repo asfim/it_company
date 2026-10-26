@@ -6,8 +6,8 @@
     $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
 @endphp
 
-@section('title', 'Custom Web Application Development | Crowns IT Software Agency')
-@section('meta_description', 'Build scalable, secure web solutions with Crowns IT (Crown IT) - the best software company and development agency for high-performing enterprise apps and SaaS.')
+@section('title', 'Web Application Development | Crowns IT')
+@section('meta_description', 'Crowns IT designs and develops secure, scalable web applications for business workflows, including SaaS platforms and enterprise systems.')
 
 @section('content')
     <!-- Hero Section with Light Background Image -->
@@ -56,8 +56,8 @@
     <!-- Stats Showcase Banner Section -->
     <section class="webapp-stats-showcase">
         <div class="stats-header reveal" style="text-align: center; margin-bottom: 3.5rem;">
-            <h1 style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: #1e293b; margin-bottom: 1rem;">Proven
-                Expertise & <span>Product Engineering</span></h1>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: #1e293b; margin-bottom: 1rem;">Proven
+                Expertise & <span>Product Engineering</span></h2>
             <p style="color: #64748b; font-size: 1.1rem; max-width: 800px; margin: 0 auto; line-height: 1.6;">Our dedicated
                 software development agency builds robust, secure, and production-grade applications that scale seamlessly
                 with your business operations.</p>

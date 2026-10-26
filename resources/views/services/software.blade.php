@@ -6,8 +6,8 @@
     $getAltText = fn ($slug, $fallback) => optional($sections->get($slug))->alt_text ?? $fallback;
 @endphp
 
-@section('title', 'Custom Software Solutions & Engineering | Crowns IT Software Agency')
-@section('meta_description', 'Discover enterprise-grade custom software engineering by Crowns IT (Crown IT) - the best software company. We develop ERP systems, bespoke CRMs, and system automations.')
+@section('title', 'Custom Software Development | Crowns IT')
+@section('meta_description', 'Crowns IT develops custom software, ERP and CRM systems, integrations, and workflow automation for business operations.')
 
 @section('content')
 <!-- Hero Section with Light Background Image -->
