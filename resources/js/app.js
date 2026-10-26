@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mark services dropdown trigger as active when on a services sub-page
     const dropdownTrigger = document.querySelector('.kastana-header .dropdown-trigger');
-    if (dropdownTrigger && currentPath.startsWith('/services')) {
+    if (dropdownTrigger && window.location.pathname.startsWith('/services')) {
         dropdownTrigger.classList.add('nav-active');
     }
 

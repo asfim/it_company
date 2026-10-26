@@ -15,7 +15,7 @@
 @section('content')
     <!-- HERO -->
     <section class="hero-new" id="hero">
-        <div class="code-bg-container">
+        <div class="code-bg-container" aria-hidden="true">
             <div class="code-snippet-float p1">
                 <pre>
     <span class="code-comment">// (a + b)^2</span>
@@ -76,9 +76,9 @@
             </p>
 
             <div class="hero-actions">
-                <button class="btn-read-more">
-                    Read More
-                    <span class="arrow-icon">
+                <button class="btn-read-more" aria-label="Read more about Crowns IT software services">
+                    <span>Read More</span>
+                    <span class="arrow-icon" aria-hidden="true" style="display: inline-flex; width: 14px; height: 14px; align-items: center; justify-content: center; flex-shrink: 0;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -96,6 +96,8 @@
                      src="{{ \App\Models\HomepageSetting::getValue('hero_slider_image_1') }}"
                      alt="Crowns IT Software Agency - Hero Portfolio"
                      fetchpriority="high"
+                     loading="eager"
+                     decoding="async"
                      width="340"
                      height="380"
                      style="transition: opacity 0.8s ease-in-out; width: 100%; height: 100%; object-fit: cover;">
@@ -467,6 +469,7 @@
 
     <script>
         function drawWcuConnectors() {
+            if (window.innerWidth <= 992) return;
             const wrapper = document.getElementById('wcuGridWrapper');
             const svg = document.getElementById('wcuConnectorSvg');
             const circle = document.getElementById('wcuCenterImg');

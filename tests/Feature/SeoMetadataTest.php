@@ -143,7 +143,7 @@ class SeoMetadataTest extends TestCase
             ->assertDontSee('swiper-bundle.min.css', false)
             ->assertDontSee('<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input', false)
             ->assertSee('media="print" onload="this.media=\'all\'"', false)
-            ->assertSee('lucide@latest" defer', false);
+            ->assertSee('lucide.min.js" defer', false);
 
         $clearCacheRes = $this->get('/clear-cache');
         $clearCacheRes->assertOk()->assertSee('All Caches Cleared Successfully');
