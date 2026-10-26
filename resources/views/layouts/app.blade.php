@@ -109,71 +109,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     </noscript>
 
-    <!-- Critical Above-the-fold CSS (Eliminates render blocking & FOIT) -->
-    <style id="critical-hero-css">
-    :root {
-      --bg-dark: #0a0a0c;
-      --navy: #1a2744;
-      --green: #22c55e;
-      --green-dark: #16a34a;
-      --green-text: #15803d;
-      --gray-text: #4b5563;
-      --accent-blue: #3b82f6;
-      --accent-purple: #8b5cf6;
-      --glow-blue: rgba(59, 130, 246, 0.5);
-      --glow-purple: rgba(139, 92, 246, 0.5);
-    }
-    *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', system-ui, -apple-system, sans-serif; }
-    body { background-color: var(--bg-dark); color: #fff; overflow-x: hidden; line-height: 1.6; }
-    a { text-decoration: none !important; }
-    .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-    .glow-1 { position: absolute; top: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--glow-blue) 0%, transparent 70%); filter: blur(100px); opacity: 0.4; }
-    .glow-2 { position: absolute; bottom: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--glow-purple) 0%, transparent 70%); filter: blur(100px); opacity: 0.3; }
-    .kastana-header {
-      position: fixed; top: 0; width: 100%; padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    }
-    .header-left, .header-right { flex: 1; display: flex; align-items: center; }
-    .header-right { justify-content: flex-end; }
-    .nav-links { flex: 2; display: flex; justify-content: center; gap: 3rem; }
-    .kastana-logo { display: flex; align-items: center; gap: 12px; }
-    .kastana-header .nav-links > a, .kastana-header .nav-links .dropdown-trigger {
-      color: #4b5563; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.4rem;
-    }
-    .btn-get-started {
-      padding: 0.8rem 1.8rem; background: var(--green); color: white; border-radius: 50px; font-weight: 700; display: flex; align-items: center; gap: 0.8rem; border: 0; cursor: pointer;
-    }
-    .hero-new {
-      display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; padding: 8rem 6% 4rem; min-height: 100vh; position: relative; overflow: hidden; background: #f0f0ee; color: var(--navy);
-    }
-    .hero-left { position: relative; z-index: 2; }
-    .hero-tagline {
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 0.2rem; letter-spacing: -1px; font-family: 'Sora', system-ui, -apple-system, sans-serif;
-    }
-    .hero-bold {
-      font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800; color: var(--navy); line-height: 1.1; letter-spacing: -2px; position: relative; display: inline-block; margin-bottom: 1.8rem; font-family: 'Sora', system-ui, -apple-system, sans-serif;
-    }
-    .hero-bold .underline-bar { display: block; height: 6px; background: var(--green); border-radius: 3px; margin-top: 6px; width: 100%; }
-    .hero-desc {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 0.95rem; color: var(--gray-text); line-height: 1.85; max-width: 480px; margin-bottom: 2.5rem;
-    }
-    .hero-actions { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; }
-    .btn-read-more {
-      display: inline-flex; align-items: center; gap: 0.7rem; background: var(--green); color: white; padding: 0.85rem 1.8rem; border-radius: 50px; font-size: 0.92rem; font-weight: 600; font-family: 'Sora', system-ui, -apple-system, sans-serif; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
-    }
-    .hero-right { position: relative; height: 580px; display: flex; align-items: center; justify-content: center; }
-    .photo-card { position: absolute; width: 340px; height: 380px; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.18); background: #ffffff; }
-    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    @media (max-width: 991px) {
-      .hero-new { grid-template-columns: 1fr; padding: 7rem 5% 3rem; gap: 2.5rem; min-height: auto; }
-      .hero-right { height: 440px; width: 100%; max-width: 480px; margin: 0 auto; }
-      .photo-card { width: 220px; height: 240px; border-radius: 16px; }
-      .hero-tagline { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-      .hero-bold { font-size: clamp(2rem, 6vw, 3rem); }
-      .hero-desc { font-size: 0.88rem; margin-bottom: 1.8rem; max-width: 100%; }
-      .nav-links { display: none; }
-      .code-bg-container { display: none !important; }
-    }
+    <style>
+    body { background-color: #0a0a0c; color: #ffffff; }
     #gs_phone, .iti input, .iti input[type=tel] { transition: border-color 0.2s ease, box-shadow 0.2s ease !important; }
     </style>
 
@@ -191,8 +128,7 @@
         @endphp
         @if($manifestCss)
             <link rel="preload" href="{{ asset('build/' . $manifestCss) }}" as="style">
-            <link rel="stylesheet" href="{{ asset('build/' . $manifestCss) }}" media="print" onload="this.media='all'">
-            <noscript><link rel="stylesheet" href="{{ asset('build/' . $manifestCss) }}"></noscript>
+            <link rel="stylesheet" href="{{ asset('build/' . $manifestCss) }}">
         @endif
         @if($manifestJs)
             <script type="module" src="{{ asset('build/' . $manifestJs) }}" defer></script>

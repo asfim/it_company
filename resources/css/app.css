@@ -2831,19 +2831,25 @@ body {
 }
 
 .footer-bottom p {
-  color: #4c4c4d;
-  font-size: 13px;
+  color: #1e293b;
+  font-size: 14px;
 }
 
 .footer-bottom-links {
   display: flex;
-  gap: 20px;
+  gap: 16px;
+  align-items: center;
 }
 
 .footer-bottom-links a {
-  color: #464646;
+  color: #1e293b;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   transition: color 0.3s ease;
 }
 
