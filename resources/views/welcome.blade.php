@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Crowns IT (Crown IT) | Web Development & Custom Software')
-@section('meta_description', 'Crowns IT (Crown IT) builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.')
+@section('title', 'Crowns IT (Crown IT) | Best Software Company in Dhaka, Bangladesh')
+@section('meta_description', 'Crowns IT (Crown IT) is recognized as the best software company in Dhaka, Bangladesh, delivering world-class custom software development, web applications, and enterprise IT solutions.')
 
 @section('hero_preload')
     @php
@@ -65,6 +65,9 @@
 
         <!-- LEFT -->
         <div class="hero-left">
+            <div class="hero-seo-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: 50px; padding: 6px 14px; margin-bottom: 0.9rem; font-size: 0.8rem; font-weight: 700; color: var(--green-text); letter-spacing: 0.5px; text-transform: uppercase;">
+                <i class="fa-solid fa-award" style="color: var(--green);"></i> Best Software Company in Dhaka, Bangladesh
+            </div>
             <p class="hero-tagline">{{ \App\Models\HomepageSetting::getValue('hero_tagline') }}</p>
             <h1 class="hero-bold">
                 {{ \App\Models\HomepageSetting::getValue('hero_title') }}

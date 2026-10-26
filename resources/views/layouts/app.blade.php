@@ -3,8 +3,8 @@
 <head>
     @php
         $seoSiteUrl = rtrim(config('app.url', 'https://crownsit.com'), '/');
-        $seoDefaultTitle = 'Crowns IT (Crown IT) | Web Development & Custom Software';
-        $seoDefaultDescription = 'Crowns IT (Crown IT) builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.';
+        $seoDefaultTitle = 'Crowns IT (Crown IT) | Best Software Company in Dhaka, Bangladesh';
+        $seoDefaultDescription = 'Crowns IT (Crown IT) is the best software company in Dhaka, Bangladesh, offering premier custom software development, web applications, and enterprise digital solutions.';
         $seoTitle = trim($__env->yieldContent('title', $seoDefaultTitle)) ?: $seoDefaultTitle;
         $seoDescriptionSource = $__env->yieldContent('meta_description', $seoDefaultDescription) ?: $seoDefaultDescription;
         $seoDescription = \Illuminate\Support\Str::of(html_entity_decode(strip_tags($seoDescriptionSource), ENT_QUOTES | ENT_HTML5, 'UTF-8'))
@@ -26,18 +26,46 @@
             '@context' => 'https://schema.org',
             '@graph' => [
                 [
-                    '@type' => 'Organization',
+                    '@type' => ['Organization', 'LocalBusiness', 'ProfessionalService'],
                     '@id' => $seoSiteUrl . '/#organization',
                     'name' => 'Crowns IT',
                     'alternateName' => ['Crown IT', 'CrownsIT', 'Crown IT Bangladesh', 'Crown IT BD', 'Crowns IT Agency'],
                     'url' => $seoSiteUrl . '/',
                     'logo' => $seoImageUrl,
+                    'image' => $seoImageUrl,
+                    'description' => 'Crowns IT is recognized as the best software company in Dhaka, Bangladesh, specializing in custom software development, modern web applications, and enterprise digital solutions.',
+                    'telephone' => '+8801777494071',
+                    'email' => 'info@crownsit.com',
+                    'priceRange' => '$$',
+                    'address' => [
+                        '@type' => 'PostalAddress',
+                        'streetAddress' => 'Dhaka',
+                        'addressLocality' => 'Dhaka',
+                        'addressRegion' => 'Dhaka Division',
+                        'addressCountry' => 'BD',
+                        'postalCode' => '1200',
+                    ],
+                    'geo' => [
+                        '@type' => 'GeoCoordinates',
+                        'latitude' => 23.8103,
+                        'longitude' => 90.4125,
+                    ],
+                    'areaServed' => [
+                        [
+                            '@type' => 'City',
+                            'name' => 'Dhaka',
+                        ],
+                        [
+                            '@type' => 'Country',
+                            'name' => 'Bangladesh',
+                        ],
+                    ],
                 ],
                 [
                     '@type' => 'WebSite',
                     '@id' => $seoSiteUrl . '/#website',
                     'name' => 'Crowns IT',
-                    'alternateName' => ['Crown IT', 'CrownsIT', 'Crown IT Bangladesh'],
+                    'alternateName' => ['Crown IT', 'CrownsIT', 'Crown IT Bangladesh', 'Crown IT Dhaka'],
                     'url' => $seoSiteUrl . '/',
                     'publisher' => ['@id' => $seoSiteUrl . '/#organization'],
                 ],
@@ -48,7 +76,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $seoTitle }}</title>
     <meta name="description" content="{{ $seoDescription }}">
-    <meta name="keywords" content="Crown IT, Crowns IT, Crown IT Bangladesh, CrownsIT, Crown IT BD, Web Development Bangladesh, Custom Software Agency, IT Company Bangladesh">
+    <meta name="keywords" content="best software company in dhaka, best software company in bangladesh, software company in dhaka, software company in bangladesh, top software company in dhaka, custom software development bangladesh, best web development company in bangladesh, Crown IT, Crowns IT, IT company dhaka">
     <link rel="canonical" href="{{ $seoCanonicalUrl }}">
     
     <!-- Open Graph / Facebook -->
