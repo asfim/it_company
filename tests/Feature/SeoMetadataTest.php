@@ -134,4 +134,18 @@ class SeoMetadataTest extends TestCase
     {
         $this->get(route('blog.show', 'does-not-exist'))->assertNotFound();
     }
+
+    public function test_performance_and_resource_delivery_optimizations(): void
+    {
+        $response = $this->get('/');
+        $response->assertOk()
+            ->assertDontSee('swiper-bundle.min.js', false)
+            ->assertDontSee('swiper-bundle.min.css', false)
+            ->assertDontSee('<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input', false)
+            ->assertSee('media="print" onload="this.media=\'all\'"', false)
+            ->assertSee('lucide@latest" defer', false);
+
+        $clearCacheRes = $this->get('/clear-cache');
+        $clearCacheRes->assertOk()->assertSee('All Caches Cleared Successfully');
+    }
 }

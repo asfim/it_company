@@ -13,6 +13,7 @@
 
   --green: #22c55e;
   --green-dark: #16a34a;
+  --green-text: #15803d;
   --green-light: #dcfce7;
   --navy: #1a2744;
   --gray-text: #6b7280;
@@ -961,6 +962,12 @@ body {
   opacity: 0.15;
 }
 
+@media (max-width: 991px) {
+  .code-bg-container {
+    display: none !important;
+  }
+}
+
 .code-snippet-float {
   position: absolute;
   font-family: 'Fira Code', monospace;
@@ -1203,7 +1210,7 @@ body {
 }
 
 .services-clock-section .section-header .hero-tag {
-  color: var(--green);
+  color: var(--green-text);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1217,7 +1224,7 @@ body {
   content: '';
   width: 40px;
   height: 2px;
-  background: var(--green);
+  background: var(--green-text);
 }
 
 .services-clock-section .section-header h2 {
@@ -1488,11 +1495,11 @@ body {
 }
 
 .wcu-eyebrow {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--green-text);
   margin-bottom: 16px;
   animation: fadeUp 0.5s ease both;
   z-index: 2;
@@ -1710,9 +1717,9 @@ body {
 }
 
 .process-label {
-  color: var(--green);
+  color: var(--green-text);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
@@ -1834,8 +1841,7 @@ body {
   }
 
   12% {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(34, 197, 94, 0.4);
+    transform: scale(1.08);
   }
 
   13% {
@@ -1851,8 +1857,7 @@ body {
   }
 
   37% {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(34, 197, 94, 0.4);
+    transform: scale(1.08);
   }
 
   38% {
@@ -1868,8 +1873,7 @@ body {
   }
 
   62% {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(34, 197, 94, 0.4);
+    transform: scale(1.08);
   }
 
   63% {
@@ -1885,8 +1889,7 @@ body {
   }
 
   87% {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(34, 197, 94, 0.4);
+    transform: scale(1.08);
   }
 
   88% {
@@ -1979,11 +1982,11 @@ body {
 }
 
 .team-eyebrow {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--green-text);
   margin-bottom: 16px;
   animation: fadeUp 0.5s ease both;
   z-index: 2;
@@ -2101,7 +2104,7 @@ body {
 
 .team-card .designation {
   font-size: 0.8rem;
-  color: var(--green);
+  color: var(--green-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 700;
@@ -2146,8 +2149,8 @@ body {
 
 .product-heading-label {
   font-size: 13px;
-  font-weight: 500;
-  color: #2d9c4e;
+  font-weight: 700;
+  color: var(--green-text);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: inline-flex;
@@ -2160,7 +2163,7 @@ body {
   display: block;
   width: 40px;
   height: 2px;
-  background: #2d9c4e;
+  background: var(--green-text);
   border-radius: 2px;
 }
 
@@ -2235,10 +2238,11 @@ body {
 }
 
 .product-tab-btn.active {
-  background: var(--green);
+  background: var(--green-text);
   color: #fff;
-  border-color: var(--green);
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  border-color: var(--green-text);
+  box-shadow: 0 4px 15px rgba(21, 128, 61, 0.35);
+  font-weight: 700;
 }
 
 .product-content-area {
@@ -2289,10 +2293,10 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #2d9c4e;
+  background: var(--green-text);
   color: #fff;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
   padding: 12px 26px;
   border-radius: 40px;
@@ -2305,7 +2309,7 @@ body {
 }
 
 .product-get-btn:hover {
-  background: #258340;
+  background: #166534;
 }
 
 .product-get-btn i {
@@ -2330,7 +2334,7 @@ body {
 }
 
 .product-mock-bar {
-  background: #2d9c4e;
+  background: var(--green-text);
   height: 30px;
   display: flex;
   align-items: center;
@@ -2342,13 +2346,13 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.65);
 }
 
 .product-mock-label {
-  font-size: 10px;
+  font-size: 11px;
   color: #fff;
-  font-weight: 500;
+  font-weight: 700;
   margin-left: 8px;
   letter-spacing: 0.02em;
 }
@@ -2415,11 +2419,11 @@ body {
 }
 
 .tech-eyebrow {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--green-text);
   margin-bottom: 16px;
 }
 

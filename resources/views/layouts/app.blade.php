@@ -73,10 +73,12 @@
 
     @yield('hero_preload')
 
-    <!-- Fonts -->
+    <!-- Fonts (Non-blocking async load) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap"></noscript>
     
     <!-- Deferred Icon & Library Styles -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -84,9 +86,6 @@
 
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"></noscript>
-
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
 
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"></noscript>
@@ -123,7 +122,7 @@
         <div class="header-left">
             <a href="{{ url('/') }}" class="kastana-logo">
                 @if(\App\Models\HomepageSetting::getValue('site_logo'))
-                    <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Crowns IT Logo" width="180" height="40" style="height: 40px; width: auto; object-fit: contain;">
+                    <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Crowns IT Logo" width="180" height="40" fetchpriority="high" decoding="async" style="height: 40px; width: auto; object-fit: contain;">
                 @else
                     <div class="logo-dots">
                         <span class="dot d1"></span>
@@ -221,9 +220,9 @@
                 <div class="footer-col brand-col">
                     <a href="{{ url('/') }}" class="kastana-logo footer-logo">
                         @if(\App\Models\HomepageSetting::getValue('footer_logo'))
-                            <img src="{{ \App\Models\HomepageSetting::getValue('footer_logo') }}" alt="Crowns IT Footer Logo" width="180" height="40" style="height: 40px; width: auto; object-fit: contain;">
+                            <img src="{{ \App\Models\HomepageSetting::getValue('footer_logo') }}" alt="Crowns IT Footer Logo" width="180" height="40" loading="lazy" decoding="async" style="height: 40px; width: auto; object-fit: contain;">
                         @elseif(\App\Models\HomepageSetting::getValue('site_logo'))
-                            <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Crowns IT Logo" width="180" height="40" style="height: 40px; width: auto; object-fit: contain;">
+                            <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Crowns IT Logo" width="180" height="40" loading="lazy" decoding="async" style="height: 40px; width: auto; object-fit: contain;">
                         @else
                             <div class="logo-dots">
                                 <span class="dot d1"></span>
@@ -313,13 +312,14 @@
         </div>
     </footer>
 
-    <!-- Swiper & Icons JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Deferred Icons JS -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <script>
-        if (window.lucide) {
-            lucide.createIcons();
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
     </script>
     @stack('scripts')
 
@@ -622,30 +622,54 @@
     }
     </style>
 
-    <!-- intl-tel-input JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-
     <script>
-    let iti;
-    document.addEventListener('DOMContentLoaded', () => {
+    let iti = null;
+    let itiScriptLoading = false;
+
+    function initPhoneInput() {
         const phoneInput = document.getElementById('gs_phone');
-        if (phoneInput) {
+        if (!phoneInput || iti) return;
+
+        if (window.intlTelInput) {
             iti = window.intlTelInput(phoneInput, {
                 initialCountry: "bd",
                 separateDialCode: true,
                 preferredCountries: ["bd", "us", "gb", "ca"],
                 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
             });
+        } else if (!itiScriptLoading) {
+            itiScriptLoading = true;
+            const script = document.createElement('script');
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js";
+            script.async = true;
+            script.onload = () => {
+                itiScriptLoading = false;
+                const p = document.getElementById('gs_phone');
+                if (p && !iti && window.intlTelInput) {
+                    iti = window.intlTelInput(p, {
+                        initialCountry: "bd",
+                        separateDialCode: true,
+                        preferredCountries: ["bd", "us", "gb", "ca"],
+                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+                    });
+                }
+            };
+            document.body.appendChild(script);
         }
-    });
+    }
+
+    // Warm up intlTelInput only when browser main thread is idle
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => { setTimeout(initPhoneInput, 4000); });
+    }
 
     function openGetStartedModal() {
+        initPhoneInput();
         document.getElementById('getStartedModal').classList.add('active');
         document.body.style.overflow = 'hidden';
-        // Recalculate intl-tel-input width inside modal
         setTimeout(() => {
             window.dispatchEvent(new Event('resize'));
-        }, 100);
+        }, 150);
     }
     function closeGetStartedModal() {
         document.getElementById('getStartedModal').classList.remove('active');

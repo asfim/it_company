@@ -18,11 +18,80 @@ Route::get('/clear-cache', function () {
     Artisan::call('config:clear');
     Artisan::call('route:clear');
     Artisan::call('view:clear');
+
+    // Auto-optimize uploaded images in public storage
+    $optimizeImage = function (string $filePath, int $maxWidth = 800): bool {
+        if (!file_exists($filePath) || !is_file($filePath)) return false;
+        $info = @getimagesize($filePath);
+        if (!$info) return false;
+        $w = $info[0];
+        $h = $info[1];
+        $mime = $info['mime'] ?? '';
+        if ($w <= $maxWidth) return false;
+
+        $targetW = $maxWidth;
+        $targetH = (int) round(($h / $w) * $targetW);
+
+        $src = null;
+        switch ($mime) {
+            case 'image/jpeg': $src = @imagecreatefromjpeg($filePath); break;
+            case 'image/png':  $src = @imagecreatefrompng($filePath);  break;
+            case 'image/webp': $src = @imagecreatefromwebp($filePath); break;
+        }
+        if (!$src) return false;
+
+        $dst = imagecreatetruecolor($targetW, $targetH);
+        if ($mime === 'image/png' || $mime === 'image/webp') {
+            imagealphablending($dst, false);
+            imagesavealpha($dst, true);
+        }
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $targetW, $targetH, $w, $h);
+
+        switch ($mime) {
+            case 'image/jpeg': imagejpeg($dst, $filePath, 85); break;
+            case 'image/png':  imagepng($dst, $filePath, 8);   break;
+            case 'image/webp': imagewebp($dst, $filePath, 85); break;
+        }
+        imagedestroy($src);
+        imagedestroy($dst);
+        clearstatcache(true, $filePath);
+        return true;
+    };
+
+    $dirs = [
+        storage_path('app/public/homepage'),
+        storage_path('app/public/team'),
+        storage_path('app/public/products'),
+        storage_path('app/public/services'),
+        public_path('storage/homepage'),
+    ];
+
+    $optimizedCount = 0;
+    foreach ($dirs as $dir) {
+        if (!is_dir($dir)) continue;
+        $files = @scandir($dir);
+        if (!$files) continue;
+        foreach ($files as $file) {
+            if ($file === '.' || $file === '..') continue;
+            $path = $dir . DIRECTORY_SEPARATOR . $file;
+            if (!is_file($path)) continue;
+            $cap = str_contains($dir, 'homepage') ? 450 : 800;
+            if ($optimizeImage($path, $cap)) {
+                $optimizedCount++;
+            }
+        }
+    }
+
+    $imageMsg = $optimizedCount > 0
+        ? "<p style='color: #059669; font-weight: 600;'>&#10004; Auto-optimized {$optimizedCount} oversized image(s) down to high-performance dimensions.</p>"
+        : "<p style='color: #64748b;'>Images in storage are already optimized.</p>";
+
     return response()->make('
-        <div style="font-family: sans-serif; padding: 40px; text-align: center;">
-            <h2 style="color: #16a34a;">&#10004; All Caches Cleared Successfully!</h2>
-            <p style="color: #475569;">Cleared: Optimize Cache, Application Cache, Config Cache, Route Cache, and Blade View Cache.</p>
-            <a href="' . url('/') . '" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">Go to Homepage</a>
+        <div style="font-family: sans-serif; padding: 40px; text-align: center; max-width: 600px; margin: 40px auto; background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+            <h2 style="color: #16a34a; margin-bottom: 12px;">&#10004; All Caches Cleared Successfully!</h2>
+            <p style="color: #475569; line-height: 1.6;">Cleared: Optimize Cache, Application Cache, Config Cache, Route Cache, and Blade View Cache.</p>
+            ' . $imageMsg . '
+            <a href="' . url('/') . '" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700;">Go to Homepage</a>
         </div>
     ');
 })->name('clear-cache');
