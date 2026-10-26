@@ -45,11 +45,21 @@ class HomepageSetting extends Model
             if (filter_var($setting->value, FILTER_VALIDATE_URL)) {
                 return $setting->value;
             }
+            $val = $setting->value;
+            $webpVal = preg_replace('/\.(png|jpe?g)$/i', '.webp', $val);
+
             // Relative public path
-            if (str_starts_with($setting->value, 'assets/') || str_starts_with($setting->value, 'images/')) {
-                return asset($setting->value);
+            if (str_starts_with($val, 'assets/') || str_starts_with($val, 'images/')) {
+                if ($webpVal !== $val && file_exists(public_path($webpVal))) {
+                    return asset($webpVal);
+                }
+                return asset($val);
             }
-            return asset('storage/' . $setting->value);
+
+            if ($webpVal !== $val && file_exists(storage_path('app/public/' . $webpVal))) {
+                return asset('storage/' . $webpVal);
+            }
+            return asset('storage/' . $val);
         }
 
         return $setting->value ?? $default;

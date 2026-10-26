@@ -71,25 +71,29 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     @endif
 
+    @yield('hero_preload')
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!-- Deferred Icon & Library Styles -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"></noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"></noscript>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <div class="bg-glow">
         <div class="glow-1"></div>
         <div class="glow-2"></div>
@@ -99,7 +103,7 @@
         <div class="header-left">
             <a href="{{ url('/') }}" class="kastana-logo">
                 @if(\App\Models\HomepageSetting::getValue('site_logo'))
-                    <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
+                    <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Crowns IT Logo" width="180" height="40" style="height: 40px; width: auto; object-fit: contain;">
                 @else
                     <div class="logo-dots">
                         <span class="dot d1"></span>
@@ -197,9 +201,9 @@
                 <div class="footer-col brand-col">
                     <a href="{{ url('/') }}" class="kastana-logo footer-logo">
                         @if(\App\Models\HomepageSetting::getValue('footer_logo'))
-                            <img src="{{ \App\Models\HomepageSetting::getValue('footer_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
+                            <img src="{{ \App\Models\HomepageSetting::getValue('footer_logo') }}" alt="Crowns IT Footer Logo" width="180" height="40" style="height: 40px; width: auto; object-fit: contain;">
                         @elseif(\App\Models\HomepageSetting::getValue('site_logo'))
-                            <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Logo" style="height: 40px; width: auto; object-fit: contain;">
+                            <img src="{{ \App\Models\HomepageSetting::getValue('site_logo') }}" alt="Crowns IT Logo" width="180" height="40" style="height: 40px; width: auto; object-fit: contain;">
                         @else
                             <div class="logo-dots">
                                 <span class="dot d1"></span>
@@ -229,7 +233,7 @@
                                     default => 'fa-solid fa-globe',
                                 };
                             @endphp
-                            <a href="{{ $link->url }}" target="_blank"><i class="{{ $iconClass }}"></i></a>
+                            <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ucfirst($link->platform) }}"><i class="{{ $iconClass }}" aria-hidden="true"></i></a>
                         @endforeach
                     </div>
                 </div>
@@ -289,8 +293,13 @@
         </div>
     </footer>
 
+    <!-- Swiper & Icons JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        lucide.createIcons();
+        if (window.lucide) {
+            lucide.createIcons();
+        }
     </script>
     @stack('scripts')
 

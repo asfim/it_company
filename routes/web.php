@@ -5,7 +5,46 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\GraphicsDesignController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SitemapController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+
+// Utility & Server Maintenance Routes
+Route::get('/clear-cache', function () {
+    Artisan::call('optimize:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return response()->make('
+        <div style="font-family: sans-serif; padding: 40px; text-align: center;">
+            <h2 style="color: #16a34a;">&#10004; All Caches Cleared Successfully!</h2>
+            <p style="color: #475569;">Cleared: Optimize Cache, Application Cache, Config Cache, Route Cache, and Blade View Cache.</p>
+            <a href="' . url('/') . '" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">Go to Homepage</a>
+        </div>
+    ');
+})->name('clear-cache');
+
+Route::get('/storage-link', function () {
+    try {
+        Artisan::call('storage:link');
+        $output = Artisan::output();
+        return response()->make('
+            <div style="font-family: sans-serif; padding: 40px; text-align: center;">
+                <h2 style="color: #16a34a;">&#10004; Storage Link Created Successfully!</h2>
+                <pre style="background: #f1f5f9; padding: 15px; border-radius: 6px; display: inline-block; text-align: left; color: #334155;">' . htmlspecialchars($output ?: 'The [public/storage] link has been connected.') . '</pre><br>
+                <a href="' . url('/') . '" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">Go to Homepage</a>
+            </div>
+        ');
+    } catch (\Throwable $e) {
+        return response()->make('
+            <div style="font-family: sans-serif; padding: 40px; text-align: center;">
+                <h2 style="color: #ef4444;">&#10008; Error Creating Storage Link</h2>
+                <pre style="background: #fef2f2; color: #b91c1c; padding: 15px; border-radius: 6px; display: inline-block; text-align: left;">' . htmlspecialchars($e->getMessage()) . '</pre><br>
+                <a href="' . url('/') . '" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background: #64748b; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600;">Go to Homepage</a>
+            </div>
+        ', 500);
+    }
+})->name('storage-link');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/sitemap-{page}.xml', [SitemapController::class, 'chunk'])->whereNumber('page')->name('sitemap.chunk');

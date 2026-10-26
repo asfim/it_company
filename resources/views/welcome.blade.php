@@ -3,6 +3,15 @@
 @section('title', 'Crowns IT | Web Development & Custom Software')
 @section('meta_description', 'Crowns IT builds custom web applications, business software, websites, and digital products for organizations in Bangladesh and beyond.')
 
+@section('hero_preload')
+    @php
+        $heroPreloadImage = \App\Models\HomepageSetting::getValue('hero_slider_image_1');
+    @endphp
+    @if($heroPreloadImage)
+        <link rel="preload" as="image" href="{{ $heroPreloadImage }}" fetchpriority="high">
+    @endif
+@endsection
+
 @section('content')
     <!-- HERO -->
     <section class="hero-new" id="hero">
@@ -83,7 +92,13 @@
         <div class="hero-right">
             <!-- Main photo card -->
             <div class="photo-card">
-                <img id="heroSlider" src="{{ \App\Models\HomepageSetting::getValue('hero_slider_image_1') }}" alt="Crowns IT Software Agency - Hero Portfolio" style="transition: opacity 0.8s ease-in-out; width: 100%; height: 100%; object-fit: cover;">
+                <img id="heroSlider"
+                     src="{{ \App\Models\HomepageSetting::getValue('hero_slider_image_1') }}"
+                     alt="Crowns IT Software Agency - Hero Portfolio"
+                     fetchpriority="high"
+                     width="340"
+                     height="380"
+                     style="transition: opacity 0.8s ease-in-out; width: 100%; height: 100%; object-fit: cover;">
             </div>
 
             <!-- Card: Talents -->
@@ -252,7 +267,7 @@
     <section class="product-section-wrapper" id="product">
         <div class="product-section-heading">
             <div class="product-heading-label">{{ \App\Models\HomepageSetting::getValue('product_eyebrow') }}</div>
-            <p class="product-heading-sub">{{ \App\Models\HomepageSetting::getValue('product_title') }}</p>
+            <h2 class="product-heading-sub">{{ \App\Models\HomepageSetting::getValue('product_title') }}</h2>
         </div>
 
         <div class="product-panel">
@@ -290,7 +305,10 @@
                     <div class="product-mock-body">
                         <img id="mockImage" class="product-preview-img"
                             src="{{ $firstProduct?->image_url }}"
-                            alt="{{ $firstProduct?->mock_title }} Product Preview">
+                            alt="{{ $firstProduct?->mock_title }} Product Preview"
+                            loading="lazy"
+                            width="227"
+                            height="227">
                     </div>
                 </div>
             </div>
@@ -414,7 +432,7 @@
                             <div class="testi-user">
                                 <div class="testi-avatar" style="background:{{ $testi->avatar_color }}">{{ $testi->avatar_letter }}</div>
                                 <div class="testi-info">
-                                    <h4>{{ $testi->name }}</h4>
+                                    <h3 class="testi-name">{{ $testi->name }}</h3>
                                     <span>{{ $testi->role }}</span>
                                 </div>
                             </div>
@@ -433,7 +451,7 @@
                             <div class="testi-user">
                                 <div class="testi-avatar" style="background:{{ $testi->avatar_color }}">{{ $testi->avatar_letter }}</div>
                                 <div class="testi-info">
-                                    <h4>{{ $testi->name }}</h4>
+                                    <h3 class="testi-name">{{ $testi->name }}</h3>
                                     <span>{{ $testi->role }}</span>
                                 </div>
                             </div>

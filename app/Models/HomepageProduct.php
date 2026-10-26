@@ -26,9 +26,19 @@ class HomepageProduct extends Model
         }
 
         if (filter_var($this->image_path, FILTER_VALIDATE_URL) || str_starts_with($this->image_path, 'images/') || str_starts_with($this->image_path, 'assets/')) {
+            $path = $this->image_path;
+            $webpPath = preg_replace('/\.(png|jpe?g)$/i', '.webp', $path);
+            if ($webpPath !== $path && file_exists(public_path($webpPath))) {
+                return asset($webpPath);
+            }
             return asset($this->image_path);
         }
 
+        $path = $this->image_path;
+        $webpPath = preg_replace('/\.(png|jpe?g)$/i', '.webp', $path);
+        if ($webpPath !== $path && file_exists(storage_path('app/public/' . $webpPath))) {
+            return asset('storage/' . $webpPath);
+        }
         return asset('storage/' . $this->image_path);
     }
 

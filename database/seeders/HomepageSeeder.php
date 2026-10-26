@@ -65,7 +65,7 @@ class HomepageSeeder extends Seeder
             ],
             [
                 'key' => 'hero_slider_image_1',
-                'value' => 'assets/1.png',
+                'value' => 'assets/1.webp',
                 'label' => 'Hero Slider Image 1',
                 'type' => 'image',
                 'group' => 'hero',
@@ -74,7 +74,7 @@ class HomepageSeeder extends Seeder
             ],
             [
                 'key' => 'hero_slider_image_2',
-                'value' => 'assets/2.png',
+                'value' => 'assets/2.webp',
                 'label' => 'Hero Slider Image 2',
                 'type' => 'image',
                 'group' => 'hero',
@@ -83,7 +83,7 @@ class HomepageSeeder extends Seeder
             ],
             [
                 'key' => 'hero_slider_image_3',
-                'value' => 'assets/3.png',
+                'value' => 'assets/3.webp',
                 'label' => 'Hero Slider Image 3',
                 'type' => 'image',
                 'group' => 'hero',
