@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 // Utility & Server Maintenance Routes
 Route::get('/clear-cache', function () {
+    if (file_exists(public_path('hot'))) {
+        @unlink(public_path('hot'));
+    }
     Artisan::call('optimize:clear');
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
