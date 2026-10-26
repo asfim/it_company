@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\HomepageTeamMember;
+use App\Services\ImageOptimizerService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class HomepageTeamController extends Controller
 {
@@ -26,12 +26,18 @@ class HomepageTeamController extends Controller
             'name' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|image|max:10240',
             'sort_order' => 'required|integer',
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('team', 'public');
+            $seoHint = $validated['name'] . ' ' . $validated['designation'];
+            $validated['image_path'] = ImageOptimizerService::uploadAndOptimize(
+                $request->file('image'),
+                'team',
+                $seoHint,
+                400
+            );
         }
 
         HomepageTeamMember::create($validated);
@@ -50,16 +56,19 @@ class HomepageTeamController extends Controller
             'name' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:5120',
+            'image' => 'nullable|image|max:10240',
             'sort_order' => 'required|integer',
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old image if it's not default unsplash
-            if ($team->image_path && !str_starts_with($team->image_path, 'http') && !str_starts_with($team->image_path, 'images/') && !str_starts_with($team->image_path, 'assets/')) {
-                Storage::disk('public')->delete($team->image_path);
-            }
-            $validated['image_path'] = $request->file('image')->store('team', 'public');
+            ImageOptimizerService::deleteOldImage($team->image_path);
+            $seoHint = $validated['name'] . ' ' . $validated['designation'];
+            $validated['image_path'] = ImageOptimizerService::uploadAndOptimize(
+                $request->file('image'),
+                'team',
+                $seoHint,
+                400
+            );
         }
 
         $team->update($validated);
@@ -69,9 +78,7 @@ class HomepageTeamController extends Controller
 
     public function destroy(HomepageTeamMember $team)
     {
-        if ($team->image_path && !str_starts_with($team->image_path, 'http') && !str_starts_with($team->image_path, 'images/') && !str_starts_with($team->image_path, 'assets/')) {
-            Storage::disk('public')->delete($team->image_path);
-        }
+        ImageOptimizerService::deleteOldImage($team->image_path);
 
         $team->delete();
 

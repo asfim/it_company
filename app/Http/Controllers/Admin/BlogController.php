@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Services\ImageOptimizerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -56,9 +57,13 @@ class BlogController extends Controller
 
         $imageUrl = $request->image_url;
         if ($request->hasFile('image')) {
-            $imageName = time() . '_' . uniqid() . '.' . $request->image->extension();
-            $request->image->move(public_path('uploads/blogs'), $imageName);
-            $imageUrl = 'uploads/blogs/' . $imageName;
+            $imageUrl = ImageOptimizerService::uploadAndOptimize(
+                $request->file('image'),
+                'uploads/blogs',
+                $request->title ?: $slug,
+                1200,
+                'root_public'
+            );
         }
 
         // If this post is set as featured, reset other featured posts
@@ -123,13 +128,14 @@ class BlogController extends Controller
 
         $imageUrl = $request->image_url ?: $blog->image_url;
         if ($request->hasFile('image')) {
-            // Delete old uploaded image if exists and local
-            if ($blog->image_url && file_exists(public_path($blog->image_url)) && strpos($blog->image_url, 'uploads/blogs/') === 0) {
-                @unlink(public_path($blog->image_url));
-            }
-            $imageName = time() . '_' . uniqid() . '.' . $request->image->extension();
-            $request->image->move(public_path('uploads/blogs'), $imageName);
-            $imageUrl = 'uploads/blogs/' . $imageName;
+            ImageOptimizerService::deleteOldImage($blog->image_url, 'root_public');
+            $imageUrl = ImageOptimizerService::uploadAndOptimize(
+                $request->file('image'),
+                'uploads/blogs',
+                $request->title ?: $slug,
+                1200,
+                'root_public'
+            );
         }
 
         if ($request->has('is_featured') && $request->is_featured) {
@@ -158,10 +164,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        // Delete local image file if exists
-        if ($blog->image_url && file_exists(public_path($blog->image_url)) && strpos($blog->image_url, 'uploads/blogs/') === 0) {
-            @unlink(public_path($blog->image_url));
-        }
+        ImageOptimizerService::deleteOldImage($blog->image_url, 'root_public');
 
         $blog->delete();
 

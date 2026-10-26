@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\HomepageSetting;
 use App\Models\SocialLink;
+use App\Services\ImageOptimizerService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class FooterSettingsController extends Controller
 {
@@ -24,12 +24,12 @@ class FooterSettingsController extends Controller
         foreach ($settings as $setting) {
             if ($setting->type === 'image') {
                 if ($request->hasFile($setting->key)) {
-                    // Delete old image if it's not a default asset
-                    if ($setting->value && !str_starts_with($setting->value, 'assets/') && !str_starts_with($setting->value, 'images/')) {
-                        Storage::disk('public')->delete($setting->value);
-                    }
-
-                    $path = $request->file($setting->key)->store('homepage', 'public');
+                    ImageOptimizerService::deleteOldImage($setting->value);
+                    $path = ImageOptimizerService::uploadAndOptimize(
+                        $request->file($setting->key),
+                        'homepage',
+                        $setting->key
+                    );
                     $setting->update(['value' => $path]);
                 }
             } else {
@@ -55,12 +55,12 @@ class FooterSettingsController extends Controller
         foreach ($settings as $setting) {
             if ($setting->type === 'image') {
                 if ($request->hasFile($setting->key)) {
-                    // Delete old image if it's not a default asset
-                    if ($setting->value && !str_starts_with($setting->value, 'assets/') && !str_starts_with($setting->value, 'images/')) {
-                        Storage::disk('public')->delete($setting->value);
-                    }
-
-                    $path = $request->file($setting->key)->store('homepage', 'public');
+                    ImageOptimizerService::deleteOldImage($setting->value);
+                    $path = ImageOptimizerService::uploadAndOptimize(
+                        $request->file($setting->key),
+                        'homepage',
+                        $setting->key
+                    );
                     $setting->update(['value' => $path]);
                 }
             } else {
