@@ -75,7 +75,7 @@ Route::get('/clear-cache', function () {
             if ($file === '.' || $file === '..') continue;
             $path = $dir . DIRECTORY_SEPARATOR . $file;
             if (!is_file($path)) continue;
-            $cap = str_contains($dir, 'homepage') ? 450 : 800;
+            $cap = str_contains($dir, 'homepage') ? 340 : 800;
             if ($optimizeImage($path, $cap)) {
                 $optimizedCount++;
             }

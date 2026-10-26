@@ -80,15 +80,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;800&family=Sora:wght@300;400;600;700;800&display=swap"></noscript>
     
-    <!-- Deferred Icon & Library Styles -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"></noscript>
-
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"></noscript>
+    <!-- Non-critical external icon fonts (Deferred until after critical render) -->
+    <script>
+        (function() {
+            function loadDeferredIcons() {
+                var urls = [
+                    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css'
+                ];
+                urls.forEach(function(u) {
+                    var l = document.createElement('link');
+                    l.rel = 'stylesheet';
+                    l.href = u;
+                    document.head.appendChild(l);
+                });
+            }
+            if (window.requestIdleCallback) {
+                window.requestIdleCallback(loadDeferredIcons);
+            } else {
+                window.addEventListener('load', loadDeferredIcons);
+            }
+        })();
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    </noscript>
 
     @php
         $manifestPath = public_path('build/manifest.json');
@@ -103,10 +120,11 @@
             $manifestJs = $manifestData['resources/js/app.js']['file'] ?? null;
         @endphp
         @if($manifestCss)
+            <link rel="preload" href="{{ asset('build/' . $manifestCss) }}" as="style">
             <link rel="stylesheet" href="{{ asset('build/' . $manifestCss) }}">
         @endif
         @if($manifestJs)
-            <script type="module" src="{{ asset('build/' . $manifestJs) }}"></script>
+            <script type="module" src="{{ asset('build/' . $manifestJs) }}" defer></script>
         @endif
     @else
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -629,6 +647,15 @@
     function initPhoneInput() {
         const phoneInput = document.getElementById('gs_phone');
         if (!phoneInput || iti) return;
+
+        // Dynamically inject intlTelInput CSS on demand
+        if (!document.getElementById('iti-css')) {
+            const link = document.createElement('link');
+            link.id = 'iti-css';
+            link.rel = 'stylesheet';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css';
+            document.head.appendChild(link);
+        }
 
         if (window.intlTelInput) {
             iti = window.intlTelInput(phoneInput, {

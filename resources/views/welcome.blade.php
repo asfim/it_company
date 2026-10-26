@@ -248,7 +248,7 @@
                                 @if(strlen($step->icon_svg) < 30)
                                     {{-- Lucide icon name --}}
                                     <i data-lucide="{{ $step->icon_svg }}" class="process-icon"
-                                        style="color: var(--green); width: 40px; height: 40px; margin: 0 auto 1.5rem; display: block;"></i>
+                                        style="color: var(--green-text); width: 40px; height: 40px; margin: 0 auto 1.5rem; display: block;"></i>
                                 @else
                                     {{-- Raw SVG code --}}
                                     {!! $step->icon_svg !!}

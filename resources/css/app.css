@@ -16,8 +16,8 @@
   --green-text: #15803d;
   --green-light: #dcfce7;
   --navy: #1a2744;
-  --gray-text: #6b7280;
-  --red-accent: #ef4444;
+  --gray-text: #4b5563;
+  --red-accent: #dc2626;
 }
 
 * {
@@ -215,12 +215,12 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: color 0.3s ease;
 }
 
 .kastana-header .nav-links>a:hover,
 .kastana-header .nav-links .dropdown-trigger:hover {
   color: var(--green);
+  transition: color 0.2s ease;
 }
 
 /* Active nav link */
@@ -398,7 +398,10 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  transition: 0.3s;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
@@ -618,7 +621,7 @@ body {
 .cert-label {
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--green-dark);
+  color: var(--green-text);
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: 'Inter', sans-serif;
@@ -754,8 +757,8 @@ body {
 
 .card-meet {
   font-size: 0.72rem;
-  color: var(--green-dark);
-  font-weight: 600;
+  color: var(--green-text);
+  font-weight: 700;
   margin-bottom: 2px;
 }
 
@@ -1397,15 +1400,15 @@ body {
 .clock-card .clock-icon {
   width: 50px;
   height: 50px;
-  background: rgba(34, 197, 94, 0.05);
+  background: rgba(34, 197, 94, 0.08);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
-  color: var(--green);
+  color: var(--green-text);
   font-size: 1.4rem;
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(21, 128, 61, 0.25);
   transition: 0.3s;
 }
 
@@ -1804,14 +1807,14 @@ body {
   height: 100px;
   margin: 0 auto;
   background: #fff;
-  border: 4px solid var(--green);
+  border: 4px solid var(--green-text);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--green);
+  color: var(--green-text);
   box-shadow: 0 4px 20px rgba(34, 197, 94, 0.15);
   position: relative;
   z-index: 3;

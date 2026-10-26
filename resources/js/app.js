@@ -33,11 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Entry animations trigger
-    document.querySelectorAll('.hero-left, .hero-right').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-    });
 
     // Navbar scroll shadow
     window.addEventListener('scroll', () => {
@@ -99,17 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Active nav link highlighting
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.kastana-header .nav-links > a');
-    navLinks.forEach(link => {
-        const href = new URL(link.href, window.location.origin).pathname;
-        if (href === '/' && currentPath === '/') {
-            link.classList.add('nav-active');
-        } else if (href !== '/' && currentPath.startsWith(href)) {
-            link.classList.add('nav-active');
-        }
-    });
 
     // Mark services dropdown trigger as active when on a services sub-page
     const dropdownTrigger = document.querySelector('.kastana-header .dropdown-trigger');
